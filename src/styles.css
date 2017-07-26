@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0
+}
+body,
+html {
+    height: 100%;
+    width: 100%;
+    font-family: Heebo;
+}
+body {
+    background: #f6f6f6 !important;
+    color: #545555;
+    font-family: Heebo;
+}
+.demo-sidebar {
+    background-color: #333644;
+    padding: 2em 1em
+}
+ng-sidebar aside {
+    padding: 0 !important;
+}
+
+
+/* css for ng-select */
+.rtl-select .ui-select-match > .btn {
+    border-radius: 0;
+}
+.rtl-select .form-control.ui-select-search {
+    border-radius: 0;
+}
+
+.rtl-select .ui-select-choices.dropdown-menu {
+    border-radius: 0;
+}
+
+.btn.btn-default.btn-secondary.form-control.ui-select-toggle {
+    box-shadow: 0 0 0 white;
+}
+/* end css for ng-select */
+
+/* css for rtl ng-select */
+.rtl-select .ui-select-match-text.pull-left {
+    float: right !important;
+}
+
+.rtl-select .btn.btn-default.btn-secondary.form-control.ui-select-toggle >i.caret.pull-right {
+    left: 10px !important;
+    right: auto;
+}
+
+.rtl-select .ui-select-placeholder.text-muted {
+    float: right !important;
+}
+
+.rtl-select .ui-select-choices.dropdown-menu {
+    text-align: right !important;
+}
+/* end css for rtl ng-select */
+

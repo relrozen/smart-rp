@@ -1,0 +1,93 @@
+.tabs-container {
+	margin:25px;
+	font-family: Heebo;
+}
+
+.nav-pills:first-child {
+	border-right: 1px solid black;
+}
+
+.nav-pills>li {
+	float: right;
+	border-left: 1px solid black;
+	border-top: 1px solid black;
+	width: 83px;
+  	max-height: 40px;
+	margin: 0;
+	text-align: center;
+	cursor: pointer;
+
+}
+
+li>a {
+	border-radius: 0px;
+	color: #50b4fd;
+	font-weight: 500;
+
+}
+
+li>a.selected {
+	border-radius: 0px;
+	background-color: #50b4fd;
+	color: white;
+	font-weight: 500;
+
+}
+
+li>a.long-tab-name {
+	line-height: 15px;
+	padding-top: 4px;
+	padding-bottom: 6px;
+}
+
+.tab-content {
+	width: 100%;
+	padding: 14px;
+	border: 1px solid black;
+}
+
+.text-field-wrapper {
+	height: 55px;
+}
+
+label, input {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+label {
+	width: 120px;
+	margin-left: 5px;
+	margin-bottom: 0px;
+	font-weight: 500;
+}
+
+.select-wrapper {
+   display: inline-block;
+}
+
+
+/* inpus unified sizes */
+input[type="text"].small {
+	width: 172px;
+}
+
+input[type="text"].large {
+	width: 300px;
+}
+
+.select-wrapper.small {
+	width: 172px;
+}
+
+.select-wrapper.large {
+	width: 300px;
+}
+
+input[type="text"] {
+	height: 32px;
+	border: 1px solid #cccccc;
+	margin-right: 3px;
+    padding-right: 8px;
+}
