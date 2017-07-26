@@ -14,6 +14,7 @@ export class CosCreateComponent implements OnInit {
 	private physicalForms: any[];
 	private sex: any[];
 	private ages: any[];
+	private shelfLife: any[];
 
 
 	product = {
@@ -24,6 +25,8 @@ export class CosCreateComponent implements OnInit {
 			physicalForm: null,
 			sex: null,
 			age: null,
+			shelfLife: null,
+			shelfLifeOther: false
 		}
 	}
 
@@ -83,6 +86,9 @@ export class CosCreateComponent implements OnInit {
 			return { id: key, text: val.heb };
 		})
 		this.ages = _.map(scrollBars.ages, (val, key) => {
+			return { id: key, text: val.heb };
+		})
+		this.shelfLife = _.map(scrollBars.shelfLife, (val, key) => {
 			return { id: key, text: val.heb };
 		})
 	}

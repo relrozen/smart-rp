@@ -89,6 +89,41 @@
 		<div class="text-field-wrapper">
 			<label>מוצר נשטף/ לא נשטף</label><input class="small" type="text">
 		</div>
+		<div class="text-field-wrapper auto-height">
+			<label>חיי מדף</label>
+			<div class="select-wrapper small">
+				<my-select [options]="shelfLife"
+						[placeholder]="'בחר...'"
+						[(ngModel)]="product.spec.shelfLife">
+				</my-select>
+			</div>
+			<input *ngIf="product.spec.shelfLife === 'less_than_30m'" type="text" placeholder="הזן תוקף">
+			<input *ngIf="product.spec.shelfLife === 'more_than_30m'" type="text" placeholder="הזן POA">
+			<div class="checkbox indent-right">
+	      <label>
+	        <input type="checkbox" value="">
+	        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+	       		לשימוש חד פעמי
+	      </label>
+	    </div>
+	    <div class="checkbox indent-right">
+	      <label>
+	        <input type="checkbox" value="">
+	        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+	       		אריזות אטומות לאויר
+	      </label>
+	    </div>
+	    <div class="checkbox indent-right">
+	      <label>
+	        <input type="checkbox" [(ngModel)]="product.spec.shelfLifeOther" value="">
+	        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+	       		אחר
+	      </label>
+	      <input *ngIf="product.spec.shelfLifeOther" class="large" type="text" placeholder="הזן אחר">
+	    </div>
+		</div>
+
+		
 
  
 			

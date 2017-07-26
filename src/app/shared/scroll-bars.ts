@@ -536,5 +536,15 @@ export var scrollBars = {
 			"heb": "12-16 שנים",
 			"eng": "12-16 years"
 		}
+	},
+	shelfLife: {
+		"less_than_30m": {
+			"heb": "קצר מ-30 חודשים",
+			"eng": "Adults"
+		},
+		"more_than_30m": {
+			"heb": "ארוך מ30 חודשים",
+			"eng": "under 3 "
+		}
 	}
 }

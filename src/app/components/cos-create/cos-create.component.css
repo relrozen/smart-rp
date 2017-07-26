@@ -56,7 +56,7 @@ label, input {
     font-size: 14px;
 }
 
-label {
+.text-field-wrapper > label {
 	width: 120px;
 	margin-left: 5px;
 	margin-bottom: 0px;
