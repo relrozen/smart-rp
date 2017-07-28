@@ -126,6 +126,41 @@ span.cr.rtl {
 }
 /* end checkbox css */
 
+/* inputs unified sizes */
+input[type="text"].small {
+    width: 172px;
+}
+
+input[type="text"].large {
+    width: 300px;
+}
+
+.select-wrapper.small {
+    width: 172px;
+}
+
+.select-wrapper.large {
+    width: 300px;
+}
+/* endinputs unified sizes */
+
+label, input {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.text-field-wrapper > label {
+    width: 120px;
+    margin-left: 5px;
+    margin-bottom: 0px;
+    font-weight: 500;
+}
+
+.select-wrapper {
+   display: inline-block;
+}
+
 .indent-right {
     margin-right: 127px;
 }
@@ -141,6 +176,29 @@ span.cr.rtl {
 div.checkbox>label{
     padding-top: 6px;
     padding-bottom: 6px;
+}
+
+div.my-btn {
+    display: inline-block;
+    height: 32px;
+    width: 125px;
+    background-color: #50b4fd;
+    color: white;
+    line-height: 32px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+div.my-btn:hover {
+    opacity: 0.8;
+}
+
+input[type="text"] {
+    height: 32px;
+    border: 1px solid #cccccc;
+    padding-right: 8px;
+    margin-left: 3px;
 }
 
 

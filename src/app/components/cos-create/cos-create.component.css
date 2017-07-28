@@ -4,13 +4,13 @@
 }
 
 .nav-pills:first-child {
-	border-right: 1px solid black;
+	border-right: 1px solid #ccc;
 }
 
 .nav-pills>li {
 	float: right;
-	border-left: 1px solid black;
-	border-top: 1px solid black;
+	border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
 	width: 83px;
   	max-height: 40px;
 	margin: 0;
@@ -43,51 +43,14 @@ li>a.long-tab-name {
 .tab-content {
 	width: 100%;
 	padding: 14px;
-	border: 1px solid black;
-}
-
-.text-field-wrapper {
-	height: 55px;
-}
-
-label, input {
-    display: inline-block;
-    vertical-align: middle;
-    font-size: 14px;
-}
-
-.text-field-wrapper > label {
-	width: 120px;
-	margin-left: 5px;
-	margin-bottom: 0px;
-	font-weight: 500;
-}
-
-.select-wrapper {
-   display: inline-block;
+	border: 1px solid #ccc;
+	min-height: calc(100vh - 170px);
 }
 
 
-/* inpus unified sizes */
-input[type="text"].small {
-	width: 172px;
-}
 
-input[type="text"].large {
-	width: 300px;
-}
 
-.select-wrapper.small {
-	width: 172px;
-}
 
-.select-wrapper.large {
-	width: 300px;
-}
 
-input[type="text"] {
-	height: 32px;
-	border: 1px solid #cccccc;
-	margin-right: 3px;
-    padding-right: 8px;
-}
+
+
