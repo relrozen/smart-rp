@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { SelectModule } from 'ng2-select-compat'
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
+
 
 
 
@@ -18,11 +20,13 @@ import { SpecComponent } from './components/tabs/spec/spec.component';
     AppComponent,
     CosCreateComponent,
     MySelectComponent,
-    SpecComponent
+    SpecComponent,
+    FileSelectDirective,
+    FileDropDirective
   ],
   imports: [
     BrowserModule,
-    SidebarModule.forRoot(),
+    SidebarModule.forRoot(),  
     SelectModule,
     FormsModule,
     BrowserAnimationsModule

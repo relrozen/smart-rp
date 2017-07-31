@@ -1,32 +1,42 @@
 import {Component, trigger, transition, style, animate, state, OnInit} from '@angular/core'
 import { scrollBars } from '../../../shared/scroll-bars';
 import * as _ from "lodash";
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
+import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+
+
+const URL = '/upload';
+
+
 
 @Component({
 	selector: 'app-spec',
 	templateUrl: './spec.component.html',
 	styleUrls: ['./spec.component.css'],
 	animations: [
-		trigger(
-			'myAnimation',
-			[
-				transition(
-				':enter', [
-					style({transform: 'translateX(-100%)', opacity: 0}),
-					animate('200ms', style({transform: 'translateX(0)', 'opacity': 1}))
-				]
+	trigger(
+		'myAnimation',
+		[
+		transition(
+			':enter', [
+			style({transform: 'translateX(-100%)', opacity: 0}),
+			animate('200ms', style({transform: 'translateX(0)', 'opacity': 1}))
+			]
 			),
-			transition(
-				':leave', [
-					style({transform: 'translateX(0)', 'opacity': 1}),
-					animate('200ms', style({transform: 'translateX(100%)', 'opacity': 0}))
-					
-				]
+		transition(
+			':leave', [
+			style({transform: 'translateX(0)', 'opacity': 1}),
+			animate('200ms', style({transform: 'translateX(100%)', 'opacity': 0}))
+
+			]
 			)]
 		)
 	]
 })
 export class SpecComponent implements OnInit {
+	public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
+	public isFileDragOver = false;
+
 	private categoriesLevel1: any[];
 	private categoriesLevel2: any[];
 	private categoriesLevel3: any[];
@@ -56,13 +66,21 @@ export class SpecComponent implements OnInit {
 		});
 		this.sex = _.map(scrollBars.sex, (val, key) => {
 			return { id: key, text: val.heb };
-		})
+		});
 		this.ages = _.map(scrollBars.ages, (val, key) => {
 			return { id: key, text: val.heb };
-		})
+		});
 		this.shelfLife = _.map(scrollBars.shelfLife, (val, key) => {
 			return { id: key, text: val.heb };
-		})
+		});
+
+		this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+		//overide the onCompleteItem property of the uploader so we are 
+		//able to deal with the server response.
+		this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+			console.log("ImageUpload:uploaded:", item, status, response);
+		};		
+
 	}
 
 	onCategory1Select(cat:string):void {
@@ -80,6 +98,26 @@ export class SpecComponent implements OnInit {
 			return { id: key, text: val.heb };
 		})
 		this.spec.category3 = null;
+	}
+
+
+	hasBaseDropZoneOver:boolean = false;
+	hasAnotherDropZoneOver:boolean = false;
+
+	fileOverBase(e:any):void {
+		this.hasBaseDropZoneOver = e;
+	}
+
+	fileOverAnother(e:any):void {
+		this.hasAnotherDropZoneOver = e;
+	}
+
+	onDragOverTab() {
+		this.isFileDragOver = true;
+	}
+
+	onDragLeaveTab() {
+		this.isFileDragOver = false;
 	}
 
 }

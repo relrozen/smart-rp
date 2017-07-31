@@ -21,7 +21,7 @@
 
 li>a {
 	border-radius: 0px;
-	color: #50b4fd;
+	color: #828282;
 	font-weight: 500;
 
 }
@@ -46,6 +46,8 @@ li>a.long-tab-name {
 	border: 1px solid #ccc;
 	min-height: calc(100vh - 170px);
 }
+
+
 
 
 

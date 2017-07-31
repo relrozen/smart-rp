@@ -1,119 +1,147 @@
-<div class="text-field-wrapper">
-	<label>שם המוצר (עברית)</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>שם המוצר (אנגלית)</label><input class="small"type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>מספר מזהה/ מס' פורמולה</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>קטגוריה שלב 1</label>
-	<div class="select-wrapper large">
-		 <my-select [options]="categoriesLevel1"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.category1"
-				(select)="onCategory1Select($event)">
+<div (dragover)="onDragOverTab()" (dragleave)="onDragLeaveTab()">
+	<div class="text-field-wrapper">
+		<label>שם המוצר (עברית)</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>שם המוצר (אנגלית)</label><input class="small"type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>מספר מזהה/ מס' פורמולה</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>קטגוריה שלב 1</label>
+		<div class="select-wrapper large">
+			<my-select [options]="categoriesLevel1"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.category1"
+			(select)="onCategory1Select($event)">
 		</my-select>
 	</div>
-</div>
-<div class="text-field-wrapper">
-	<label>קטגוריה שלב 2</label>
-	<div class="select-wrapper large">
-		<my-select [options]="categoriesLevel2"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.category2"
-				(select)="onCategory2Select($event)">
-		</my-select>
-		
 	</div>
-</div>
-<div class="text-field-wrapper">
-	<label>קטגוריה שלב 3</label>
-	<div class="select-wrapper large">
-		<my-select [options]="categoriesLevel3"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.category3">
+	<div class="text-field-wrapper">
+		<label>קטגוריה שלב 2</label>
+		<div class="select-wrapper large">
+			<my-select [options]="categoriesLevel2"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.category2"
+			(select)="onCategory2Select($event)">
 		</my-select>
+
 	</div>
-</div>
-<div class="text-field-wrapper">
-	<label>נוסחה בשימוש החל מ</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>מאפיינים פיזיקוכימיים</label>
-	<div class="select-wrapper small">
-		<my-select [options]="physicalForms"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.physicalForm">
+	</div>
+	<div class="text-field-wrapper">
+		<label>קטגוריה שלב 3</label>
+		<div class="select-wrapper large">
+			<my-select [options]="categoriesLevel3"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.category3">
 		</my-select>
 	</div>
-	<input *ngIf="spec.physicalForm === 'other'" type="text" placeholder="הזן מאפיין">
-</div>
-<div class="text-field-wrapper">
-	<label>אזור חשיפה</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>מין המשתמש</label>
-	<div class="select-wrapper small">
-		<my-select [options]="sex"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.sex">
+	</div>
+	<div class="text-field-wrapper">
+		<label>נוסחה בשימוש החל מ</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>מאפיינים פיזיקוכימיים</label>
+		<div class="select-wrapper small">
+			<my-select [options]="physicalForms"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.physicalForm">
 		</my-select>
 	</div>
-</div>
-<div class="text-field-wrapper">
-	<label>גילאי משתמשים</label>
-	<div class="select-wrapper small">
-		<my-select [options]="ages"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.age">
+	<input *ngIf="spec.physicalForm === 'other'" [@myAnimation] type="text" placeholder="הזן מאפיין">
+	</div>
+	<div class="text-field-wrapper">
+		<label>אזור חשיפה</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>מין המשתמש</label>
+		<div class="select-wrapper small">
+			<my-select [options]="sex"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.sex">
 		</my-select>
 	</div>
-</div>
-<div class="text-field-wrapper">
-	<label>תדירות השימוש המקס'</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>כמות המוצר לשימוש יחיד</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper">
-	<label>מוצר נשטף/ לא נשטף</label><input class="small" type="text">
-</div>
-<div class="text-field-wrapper auto-height">
-	<label>חיי מדף</label>
-	<div class="select-wrapper small">
-		<my-select [options]="shelfLife"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.shelfLife">
+	</div>
+	<div class="text-field-wrapper">
+		<label>גילאי משתמשים</label>
+		<div class="select-wrapper small">
+			<my-select [options]="ages"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.age">
+		</my-select>
+	</div>
+	</div>
+	<div class="text-field-wrapper">
+		<label>תדירות השימוש המקס'</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>כמות המוצר לשימוש יחיד</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper">
+		<label>מוצר נשטף/ לא נשטף</label><input class="small" type="text">
+	</div>
+	<div class="text-field-wrapper auto-height">
+		<label>חיי מדף</label>
+		<div class="select-wrapper small">
+			<my-select [options]="shelfLife"
+			[placeholder]="'בחר...'"
+			[(ngModel)]="spec.shelfLife">
 		</my-select>
 	</div>
 	<input *ngIf="spec.shelfLife === 'less_than_30m'" [@myAnimation] type="text" placeholder="הזן תוקף">
 	<input *ngIf="spec.shelfLife === 'more_than_30m'" [@myAnimation] type="text" placeholder="הזן POA">
 	<div class="checkbox indent-right">
-  <label>
-    <input type="checkbox" value="">
-    <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-   		לשימוש חד פעמי
-  </label>
-</div>
-<div class="checkbox indent-right">
-  <label>
-    <input type="checkbox" value="">
-    <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-   		אריזות אטומות לאויר
-  </label>
-</div>
-<div class="checkbox indent-right">
-  <label>
-    <input type="checkbox" [(ngModel)]="spec.shelfLifeOther" value="">
-    <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-   		אחר
-  </label>
-  <input *ngIf="spec.shelfLifeOther" [@myAnimation] class="large" type="text" placeholder="הזן אחר">
-  <div *ngIf="spec.shelfLifeOther" [@myAnimation] class="my-btn">צרף מסמך</div>
-</div>
-<div class="text-field-wrapper">
-		<label>שיטת קידוד אצווה</label><div class="my-btn">צרף מסמך</div>
+		<label>
+			<input type="checkbox" value="">
+			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			לשימוש חד פעמי
+		</label>
 	</div>
+	<div class="checkbox indent-right">
+		<label>
+			<input type="checkbox" value="">
+			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			אריזות אטומות לאויר
+		</label>
+	</div>
+
+	<div class="checkbox indent-right">
+		<label>
+			<input type="checkbox" [(ngModel)]="spec.shelfLifeOther" value="">
+			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+			אחר
+		</label>
+		<input *ngIf="spec.shelfLifeOther" [@myAnimation] class="large" type="text" placeholder="הזן אחר">
+		<div *ngIf="spec.shelfLifeOther" [@myAnimation] class="my-btn">צרף מסמך</div>
+	</div>
+	<div class="text-field-wrapper"  (fileOver)="fileOverBase($event)" >
+		<label>שיטת קידוד אצווה</label>
+			<label for="file-upload" class="my-btn" ng2FileDrop [uploader]="uploader" [ngClass]="{'file-hover-on-tab': isFileDragOver}">
+		    צרף מסמך
+		</label>
+		<input id="file-upload" type="file" style="display:none" name="photo" ng2FileSelect [uploader]="uploader"/>
+	</div>
+
+
+	<!-- <label for="file-upload" class="custom-file-upload">
+	    Custom Upload
+	</label>
+	<input id="file-upload" type="file"/>
+
+	<label class="custom-file-upload">
+	    <input type="file"/>
+	    Custom Upload
+	</label> -->
+
+
+	<!-- File input for the file-upload plugin, with special ng2-file-upload directive called ng2FileSelect -->
+	<!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" /> -->
+	<!-- button to trigger the file upload when submitted -->
+	<button type="button" 
+			class="btn btn-success btn-s" 
+			(click)="uploader.uploadAll()" 
+			[disabled]="!uploader.getNotUploadedItems().length">
+		Upload with ng-2 file uploader
+	</button>
 </div>

@@ -178,6 +178,7 @@ div.checkbox>label{
     padding-bottom: 6px;
 }
 
+label.my-btn,
 div.my-btn {
     display: inline-block;
     height: 32px;
@@ -190,6 +191,7 @@ div.my-btn {
     cursor: pointer;
 }
 
+label.my-btn:hover,
 div.my-btn:hover {
     opacity: 0.8;
 }
@@ -201,4 +203,6 @@ input[type="text"] {
     margin-left: 3px;
 }
 
-
+.file-hover-on-tab {
+    background-color: red !important;
+}
