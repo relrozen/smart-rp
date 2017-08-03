@@ -88,9 +88,9 @@
 				[(ngModel)]="spec.shelfLife">
 			</my-select>
 		</div>
+		<input *ngIf="spec.shelfLife === 'less_than_30m'" [@myAnimation] type="text" placeholder="הזן תוקף">
+		<input *ngIf="spec.shelfLife === 'more_than_30m'" [@myAnimation] type="text" placeholder="הזן POA">
 	</div>
-	<input *ngIf="spec.shelfLife === 'less_than_30m'" [@myAnimation] type="text" placeholder="הזן תוקף">
-	<input *ngIf="spec.shelfLife === 'more_than_30m'" [@myAnimation] type="text" placeholder="הזן POA">
 	<div class="checkbox indent-right">
 		<label>
 			<input type="checkbox" value="">
