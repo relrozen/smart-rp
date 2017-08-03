@@ -36,6 +36,7 @@ const URL = '/upload';
 export class SpecComponent implements OnInit {
 	public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 	public isFileDragOver = false;
+	public showFileUploadModal = false;
 
 	private categoriesLevel1: any[];
 	private categoriesLevel2: any[];
@@ -108,16 +109,21 @@ export class SpecComponent implements OnInit {
 		this.hasBaseDropZoneOver = e;
 	}
 
-	fileOverAnother(e:any):void {
-		this.hasAnotherDropZoneOver = e;
-	}
-
-	onDragOverTab() {
+	onDragOver() {
 		this.isFileDragOver = true;
 	}
 
-	onDragLeaveTab() {
+	onDragLeave() {
 		this.isFileDragOver = false;
 	}
+
+	openFileUpload() {
+		this.showFileUploadModal = true
+	}
+
+	closeFileUpload() {
+		this.showFileUploadModal = false;
+	}
+
 
 }

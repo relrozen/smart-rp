@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 import { CosCreateComponent } from './components/cos-create/cos-create.component';
 import { MySelectComponent } from './shared/my-select/my-select.component';
 import { SpecComponent } from './components/tabs/spec/spec.component';
+import { ModalComponent } from './shared/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SpecComponent } from './components/tabs/spec/spec.component';
     MySelectComponent,
     SpecComponent,
     FileSelectDirective,
-    FileDropDirective
+    FileDropDirective,
+    ModalComponent
   ],
   imports: [
     BrowserModule,
