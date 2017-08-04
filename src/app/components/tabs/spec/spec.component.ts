@@ -1,13 +1,6 @@
 import {Component, trigger, transition, style, animate, state, OnInit} from '@angular/core'
 import { scrollBars } from '../../../shared/scroll-bars';
 import * as _ from "lodash";
-import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
-import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
-
-
-const URL = '/upload';
-
-
 
 @Component({
 	selector: 'app-spec',
@@ -34,8 +27,7 @@ const URL = '/upload';
 	]
 })
 export class SpecComponent implements OnInit {
-	public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
-	public isFileDragOver = false;
+	
 	public showFileUploadModal = false;
 
 	private categoriesLevel1: any[];
@@ -74,14 +66,6 @@ export class SpecComponent implements OnInit {
 		this.shelfLife = _.map(scrollBars.shelfLife, (val, key) => {
 			return { id: key, text: val.heb };
 		});
-
-		this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
-		//overide the onCompleteItem property of the uploader so we are 
-		//able to deal with the server response.
-		this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
-			console.log("ImageUpload:uploaded:", item, status, response);
-		};		
-
 	}
 
 	onCategory1Select(cat:string):void {
@@ -107,14 +91,6 @@ export class SpecComponent implements OnInit {
 
 	fileOverBase(e:any):void {
 		this.hasBaseDropZoneOver = e;
-	}
-
-	onDragOver() {
-		this.isFileDragOver = true;
-	}
-
-	onDragLeave() {
-		this.isFileDragOver = false;
 	}
 
 	openFileUpload() {

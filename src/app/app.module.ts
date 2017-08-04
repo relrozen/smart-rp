@@ -15,6 +15,7 @@ import { CosCreateComponent } from './components/cos-create/cos-create.component
 import { MySelectComponent } from './shared/my-select/my-select.component';
 import { SpecComponent } from './components/tabs/spec/spec.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { FileUploadComponent } from './shared/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ModalComponent } from './shared/modal/modal.component';
     SpecComponent,
     FileSelectDirective,
     FileDropDirective,
-    ModalComponent
+    ModalComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
