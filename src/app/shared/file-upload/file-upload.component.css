@@ -9,7 +9,8 @@ label.drag-area {
 	font-weight: 500;
 	font-size: 20px;
 	border-style: dashed;
-  border-width: 1px;
+	border-width: 1px;
+	margin-bottom: 5px;
 }
 
 label.drag-area.file-over {
@@ -20,6 +21,7 @@ label.drag-area.file-over {
 	background-color: #50b4fd !important;
 }
 .glyphicon-trash.file-trash {
-  top: 3px;
-  cursor: pointer;
+	top: 3px;
+	cursor: pointer;
 }
+

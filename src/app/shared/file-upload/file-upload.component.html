@@ -1,48 +1,52 @@
-<div class="file-upload-wrapper">
-	<label>צירוף קובץ</label>
-	<div>
-	</div>
-	<label  class="drag-area"
-			for="file-upload" 
-			ng2FileDrop 
-			[uploader]="uploader" 
-			(fileOver)="fileOverBase($event)"
-			[ngClass]="{'file-over': isFileDragOver}"
-			(dragover)="onDragOver()" 
-			(dragleave)="onDragLeave()"
-			(drop)="onDragLeave()">
-   		גרור קובץ לכאן או לחץ
-	</label>
-	<input id="file-upload" type="file" style="display:none" name="photo" ng2FileSelect [uploader]="uploader"/>
-	<div *ngFor="let item of uploader.queue">
-		<div class="text-field-wrapper ">
-			<label style="word-wrap: break-word">{{item?.file?.name}}</label>
-			<input class="small" type="text" placeholder="הוסף הערה" [disabled]="item.progress !== 0">
-			<label class="progress" style="margin-bottom: 0;">	
-	            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">{{item.progress + '%'}}</div>
-	        </label>
-	        <!-- <span *ngIf="item.progress === 0"class="glyphicon glyphicon-trash file-trash" aria-hidden="true" (click)="item.remove()"></span> -->
-			<button *ngIf="item.progress === 0" type="button" class="btn btn-danger btn-xs"
-				(click)="item.remove()">
-				<span class="glyphicon glyphicon-trash"></span> הסר
-			</button>
-			<button type="button" class="btn btn-warning btn-xs"
-				(click)="item.cancel()" *ngIf="item.isUploading">
-				<span class="glyphicon glyphicon-ban-circle"></span> Cancel
-			</button>
+<label class="my-btn" (click)="openFileUpload()">
+	צרף מסמך
+</label>
+<modal [@myAnimation] *ngIf="showFileUploadModal">
+	<div class="file-upload-wrapper">
+		<label>צירוף קובץ</label>
+		<div>
 		</div>
+		<label  class="drag-area"
+				for="file-upload" 
+				ng2FileDrop 
+				[uploader]="uploader" 
+				[ngClass]="{'file-over': isFileDragOver}"
+				(dragover)="onDragOver()" 
+				(dragleave)="onDragLeave()"
+				(drop)="onDragLeave()">
+	   		גרור קובץ לכאן או לחץ
+		</label>
+		<input id="file-upload" type="file" style="display:none" name="photo" ng2FileSelect [uploader]="uploader"/>
+		<div *ngFor="let item of uploader.queue">
+			<div class="text-field-wrapper ">
+				<label style="word-wrap: break-word">{{item?.file?.name}}</label>
+				<input class="small" type="text" placeholder="הוסף הערה" [disabled]="item.progress !== 0">
+				<label class="progress" style="margin-bottom: 0;">	
+		            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">{{item.progress + '%'}}</div>
+		        </label>
+		        <!-- <span *ngIf="item.progress === 0"class="glyphicon glyphicon-trash file-trash" aria-hidden="true" (click)="item.remove()"></span> -->
+				<button *ngIf="item.progress === 0" type="button" class="btn btn-danger btn-xs"
+					(click)="item.remove()">
+					<span class="glyphicon glyphicon-trash"></span> הסר
+				</button>
+				<button type="button" class="btn btn-warning btn-xs"
+					(click)="item.cancel()" *ngIf="item.isUploading">
+					<span class="glyphicon glyphicon-ban-circle"></span> Cancel
+				</button>
+			</div>
+		</div>
+		
+		<button type="button" 
+			class="btn btn-info btn-s" 	
+			(click)="uploader.uploadAll()"
+			[disabled]="!uploader.getNotUploadedItems().length">
+		העלה קבצים
+		</button>
+		<button type="button" 
+			class="btn btn-info btn-s"
+			[disabled]="uploader.getNotUploadedItems().length"
+			(click)="closeFileUpload($event)">
+		סיום
+		</button>
 	</div>
-	
-	<button type="button" 
-		class="btn btn-info btn-s" 	
-		(click)="uploader.uploadAll()"
-		[disabled]="!uploader.getNotUploadedItems().length">
-	העלה קבצים
-	</button>
-	<button type="button" 
-		class="btn btn-info btn-s"
-		[disabled]="uploader.getNotUploadedItems().length"
-		(click)="closeFileUpload($event)">
-	סיום
-	</button>
-</div>
+</modal>

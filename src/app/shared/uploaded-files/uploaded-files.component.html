@@ -1,0 +1,7 @@
+<img class="file-mag" src="/assets/images/file_mag.png" (click)="openUploadedFiles()">
+<modal [@myAnimation] *ngIf="showUploadedFilesModal">
+	<ngx-datatable class="material"
+		[rows]="filesList"
+		[columns]="columns">
+	</ngx-datatable>
+</modal>

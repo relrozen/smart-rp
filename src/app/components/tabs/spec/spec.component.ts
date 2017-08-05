@@ -27,8 +27,6 @@ import * as _ from "lodash";
 	]
 })
 export class SpecComponent implements OnInit {
-	
-	public showFileUploadModal = false;
 
 	private categoriesLevel1: any[];
 	private categoriesLevel2: any[];
@@ -46,7 +44,16 @@ export class SpecComponent implements OnInit {
 		sex: null,
 		age: null,
 		shelfLife: null,
-		shelfLifeOther: false
+		shelfLifeOther: false,
+		azvaFileList: [
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'זה קובץ abc שלנו' },
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
+			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' }
+		]
 	}
 	constructor() { }
 
@@ -91,14 +98,6 @@ export class SpecComponent implements OnInit {
 
 	fileOverBase(e:any):void {
 		this.hasBaseDropZoneOver = e;
-	}
-
-	openFileUpload() {
-		this.showFileUploadModal = true
-	}
-
-	closeFileUpload() {
-		this.showFileUploadModal = false;
 	}
 
 

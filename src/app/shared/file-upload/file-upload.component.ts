@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, trigger, transition, style, animate } from '@angular/core';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
 import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -7,13 +7,31 @@ const URL = '/upload';
 @Component({
 	selector: 'file-upload',
 	templateUrl: './file-upload.component.html',
-	styleUrls: ['./file-upload.component.css']
+	styleUrls: ['./file-upload.component.css'],
+	animations: [
+	trigger(
+		'myAnimation',
+		[
+		transition(
+			':enter', [
+			style({transform: 'translateX(-100%)', opacity: 0}),
+			animate('200ms', style({transform: 'translateX(0)', 'opacity': 1}))
+			]
+			),
+		transition(
+			':leave', [
+			style({transform: 'translateX(0)', 'opacity': 1}),
+			animate('200ms', style({transform: 'translateX(100%)', 'opacity': 0}))
+
+			]
+			)]
+		)
+	]
 })
 export class FileUploadComponent implements OnInit {
-	@Output() close = new EventEmitter()
 	public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 	public isFileDragOver = false;
-
+	public showFileUploadModal = false;
 
 	constructor() { }
 
@@ -34,8 +52,11 @@ export class FileUploadComponent implements OnInit {
 		this.isFileDragOver = false;
 	}
 
-	closeFileUpload(event) {
-		this.close.emit();	
+	openFileUpload() {
+		this.showFileUploadModal = true;
 	}
 
+	closeFileUpload(event) {
+		this.showFileUploadModal = false;
+	}
 }

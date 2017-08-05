@@ -112,20 +112,18 @@
 			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			אחר
 		</label>
-		<input *ngIf="spec.shelfLifeOther" [@myAnimation] class="large" type="text" placeholder="הזן אחר">
-		<div *ngIf="spec.shelfLifeOther" [@myAnimation] class="my-btn" (click)="openFileUpload()">צרף מסמך</div>
+		<span *ngIf="spec.shelfLifeOther" [@myAnimation]>
+			<input class="large" type="text" placeholder="הזן אחר">
+			<file-upload></file-upload>
+			<uploaded-files></uploaded-files>
+			
+		</span>
 	</div>
 	<div class="text-field-wrapper">
 		<label>שיטת קידוד אצווה</label>
-			<label class="my-btn" (click)="openFileUpload()">
-		   		צרף מסמך
-			</label>
+		<file-upload></file-upload>
+		<uploaded-files [filesList]="spec.azvaFileList"></uploaded-files>
 	</div>
-	
-	<modal [@myAnimation] *ngIf="showFileUploadModal">
-		<file-upload (close)="closeFileUpload()"></file-upload>
-	</modal>
-
 </div>
 
 
