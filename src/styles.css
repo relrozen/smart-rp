@@ -216,4 +216,14 @@ input[type="text"] {
 }
 
 
+/* css for tables */
+
+.table-header {
+	float: right !important;
+	text-align: right !important;
+	word-wrap: break-word;
+
+}
+
+
 

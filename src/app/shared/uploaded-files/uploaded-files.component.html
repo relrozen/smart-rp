@@ -1,7 +1,22 @@
 <img class="file-mag" src="/assets/images/file_mag.png" (click)="openUploadedFiles()">
 <modal [@myAnimation] *ngIf="showUploadedFilesModal">
 	<ngx-datatable class="material"
+		[columnMode]="'standard'"
 		[rows]="filesList"
-		[columns]="columns">
+		[columns]="columns"
+		headerClass="'table-header'">
 	</ngx-datatable>
+	<button type="button" 
+		class="btn btn-info btn-s"
+		(click)="closeUploadedFiles($event)">
+	סיום
+	</button>
 </modal>
+
+<ng-template #downloadTemplate let-row="row" let-value="value">
+	<i class="fa fa-download" aria-hidden="true"></i>
+</ng-template>
+
+<ng-template #deleteTemplate let-row="row" let-value="value">
+	<i class="fa fa-trash" aria-hidden="true"></i>
+</ng-template>

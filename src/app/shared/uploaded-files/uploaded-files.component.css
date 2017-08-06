@@ -1,0 +1,8 @@
+ngx-datatable {
+	margin-bottom: 5px;
+}
+
+i.fa.fa-download,
+i.fa.fa-trash {
+	cursor: pointer;
+}

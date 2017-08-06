@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Input, Output, trigger, transition, style, animate } from '@angular/core';
+import { Component, EventEmitter, OnInit, Input, Output, trigger, transition, style, animate, TemplateRef, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'uploaded-files',
@@ -25,14 +25,12 @@ import { Component, EventEmitter, OnInit, Input, Output, trigger, transition, st
   ]
 })
 export class UploadedFilesComponent implements OnInit {
+  columns: any[];
   @Input() filesList;
-  columns = [
-    { prop: 'filename', name: "שם הקובץ" },
-    { prop: 'uploadDate', name: "תאריך העלאה" },
-    { prop: 'note', name: "הערות" },
-    { prop: 'download', name: "הורדה" }
 
-  ];
+  @ViewChild('downloadTemplate') downloadTemplate: TemplateRef<any>;
+  @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
+  
 
   showUploadedFilesModal = false;
 
@@ -40,10 +38,28 @@ export class UploadedFilesComponent implements OnInit {
 
 
   ngOnInit() {
+    this.columns = [
+      { prop: 'filename', name: "שם הקובץ", headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      { prop: 'uploadDate', name: "תאריך העלאה", headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      { prop: 'note', name: "הערות", headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      {
+        cellTemplate: this.downloadTemplate,
+        name: 'הורדה',
+        width: 50, headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      {
+        cellTemplate: this.deleteTemplate,
+        name: 'מחיקה',
+        width: 50, headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+    ];
   }
 
   openUploadedFiles() {
-    this.showUploadedFilesModal = true;
+    this.showUploadedFilesModal = true; 
+
+  }
+
+  closeUploadedFiles() {
+    this.showUploadedFilesModal = false;
   }
 
 }
