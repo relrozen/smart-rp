@@ -36,8 +36,11 @@ export class SpecComponent implements OnInit {
 	private sex: any[];
 	private ages: any[];
 	private shelfLife: any[];
+	private cosmeticType: any[];
+	private countries: any[];
 
 	spec = {
+		productType: null,
 		category1: null,
 		category2: null,
 		category3: null,
@@ -47,7 +50,10 @@ export class SpecComponent implements OnInit {
 		shelfLife: null,
 		shelfLifeOther: false,
 		azvaFileList: [],
-		shelfLiveOtherFileList: []
+		country: null,
+		shelfLiveOtherFileList: [],
+		freeSaleCerFileList: [],
+		gmpFileList: []
 	}
 	constructor() { }
 
@@ -65,6 +71,12 @@ export class SpecComponent implements OnInit {
 			return { id: key, text: val.heb };
 		});
 		this.shelfLife = _.map(scrollBars.shelfLife, (val, key) => {
+			return { id: key, text: val.heb };
+		});
+		this.cosmeticType = _.map(scrollBars.cosmeticType, (val, key) => {
+			return { id: key, text: val.heb };
+		});
+		this.countries = _.map(scrollBars.countries, (val, key) => {
 			return { id: key, text: val.heb };
 		});
 	}

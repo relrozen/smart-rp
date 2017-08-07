@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output, trigger, transition, style, animate } from '@angular/core';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload/ng2-file-upload';
-import {  FileUploader } from 'ng2-file-upload/ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 const URL = '/upload';
 
@@ -46,13 +46,15 @@ export class FileUploadComponent implements OnInit {
 		//able to deal with the server response.
 		this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
 			console.log("ImageUpload:uploaded:", item, status, response);
-			var res = JSON.parse(response);
-			this.fileUploaded.emit({
-				filename: item.file.name,
-				uploadDate: new Date(),
-				note: item.note,
-				path: res.path
-			});
+			if (item.isUploaded) {
+				var res = JSON.parse(response);
+				this.fileUploaded.emit({
+					filename: item.file.name,
+					uploadDate: new Date(),
+					note: item.note,
+					path: res.path
+				});
+			}
 		};	
 	}
 

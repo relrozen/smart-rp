@@ -1,5 +1,14 @@
 <div>
 	<div class="text-field-wrapper">
+		<label>סוג תמרוק</label>
+		<div class="select-wrapper small">
+			<my-select [options]="cosmeticType"
+				[placeholder]="'בחר...'"
+				[(ngModel)]="spec.productType">
+			</my-select>
+		</div>
+	</div>
+	<div class="text-field-wrapper">
 		<label>שם המוצר (עברית)</label><input class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
@@ -115,13 +124,32 @@
 		<span *ngIf="spec.shelfLifeOther" [@myAnimation]>
 			<input class="large" type="text" placeholder="הזן אחר">
 			<file-upload (fileUploaded)="onFileUploaded('shelfLiveOtherFileList', $event)"></file-upload>
-			<uploaded-files [filesList]="spec.shelfLiveOtherFileList"></uploaded-files>
+			<uploaded-files *ngIf="spec.shelfLiveOtherFileList.length" [filesList]="spec.shelfLiveOtherFileList"></uploaded-files>
 		</span>
 	</div>
 	<div class="text-field-wrapper">
 		<label>שיטת קידוד אצווה</label>
 		<file-upload (fileUploaded)="onFileUploaded('azvaFileList', $event)"></file-upload>
-		<uploaded-files [filesList]="spec.azvaFileList"></uploaded-files>
+		<uploaded-files *ngIf="spec.azvaFileList.length" [filesList]="spec.azvaFileList"></uploaded-files>
+	</div>
+	<div class="text-field-wrapper" *ngIf="spec.productType === 'imported'">
+		<label>מדינת הייצור</label>
+		<div class="select-wrapper small">
+			<my-select [options]="countries"
+				[placeholder]="'בחר...'"
+				[(ngModel)]="spec.country">
+			</my-select>
+		</div>
+	</div>
+	<div class="text-field-wrapper" *ngIf="spec.productType === 'imported'">
+		<label>Certificate of free sale</label>
+		<file-upload (fileUploaded)="onFileUploaded('freeSaleCerFileList', $event)"></file-upload>
+		<uploaded-files *ngIf="spec.freeSaleCerFileList.length" [filesList]="spec.freeSaleCerFileList"></uploaded-files>
+	</div>
+	<div class="text-field-wrapper" *ngIf="spec.productType === 'imported'">
+		<label>GMP מרשות מוכרת במדינת הייצור</label>
+		<file-upload (fileUploaded)="onFileUploaded('gmpFileList', $event)"></file-upload>
+		<uploaded-files *ngIf="spec.gmpFileList.length" [filesList]="spec.gmpFileList"></uploaded-files>
 	</div>
 	
 </div>

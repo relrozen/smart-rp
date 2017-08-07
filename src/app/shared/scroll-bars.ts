@@ -1,4 +1,28 @@
 export var scrollBars = {
+	countries: {
+		"il": {
+			"heb": "ישראל",
+			"eng": "Israel"
+		},
+		"de": {
+			"heb": "גרמניה",
+			"eng": "Germany"
+		},
+		"it": {
+			"heb": "איטליה",
+			"eng": "Italy"
+		}
+	},
+	cosmeticType: {
+		"israely": {
+			"heb": "תמרוק ישראלי",
+			"eng": "Israely product"
+		},
+		"imported": {
+			"heb": "תמרוק מיובא",
+			"eng": "Imported Product"
+		}
+	},
 	categories: {
 		"skin_products": {
 			"heb": "מוצרים לעור",
