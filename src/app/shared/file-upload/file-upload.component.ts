@@ -29,18 +29,30 @@ const URL = '/upload';
 	]
 })
 export class FileUploadComponent implements OnInit {
+	@Output() fileUploaded = new EventEmitter();
+
 	public uploader:FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});
 	public isFileDragOver = false;
 	public showFileUploadModal = false;
 
+
 	constructor() { }
 
 	ngOnInit() {
-		this.uploader.onAfterAddingFile = (file)=> { file.withCredentials = false; };
+		this.uploader.onAfterAddingFile = (file)=> { 
+			file.withCredentials = false;
+		};
 		//overide the onCompleteItem property of the uploader so we are 
 		//able to deal with the server response.
 		this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
 			console.log("ImageUpload:uploaded:", item, status, response);
+			var res = JSON.parse(response);
+			this.fileUploaded.emit({
+				filename: item.file.name,
+				uploadDate: new Date(),
+				note: item.note,
+				path: res.path
+			});
 		};	
 	}
 

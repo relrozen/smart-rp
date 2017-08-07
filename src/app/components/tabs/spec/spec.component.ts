@@ -1,6 +1,7 @@
 import {Component, trigger, transition, style, animate, state, OnInit} from '@angular/core'
 import { scrollBars } from '../../../shared/scroll-bars';
 import * as _ from "lodash";
+declare var moment: any;
 
 @Component({
 	selector: 'app-spec',
@@ -45,15 +46,8 @@ export class SpecComponent implements OnInit {
 		age: null,
 		shelfLife: null,
 		shelfLifeOther: false,
-		azvaFileList: [
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'זה קובץ abc שלנו' },
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' },
-			{ 'filename': 'file.csv', 'uploadDate': '4/6/2017-10:34', 'note': 'This is a file' }
-		]
+		azvaFileList: [],
+		shelfLiveOtherFileList: []
 	}
 	constructor() { }
 
@@ -100,5 +94,9 @@ export class SpecComponent implements OnInit {
 		this.hasBaseDropZoneOver = e;
 	}
 
+	onFileUploaded(modelName,event) {
+		event.uploadDate = moment(event.uploadDate).format("D/M/YYYY-HH:mm")
+		this.spec[modelName].push(event);
+	}
 
 }

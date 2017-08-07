@@ -22,7 +22,7 @@ router.post('/', function (req, res, next) {
         }  
        // No error occured.
         path = req.file.path;
-        return res.send("Upload Completed for "+path); 
+        return res.send(req.file); 
   });     
 })
 module.exports = router;

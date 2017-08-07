@@ -17,10 +17,10 @@
 	   		גרור קובץ לכאן או לחץ
 		</label>
 		<input id="file-upload" type="file" style="display:none" name="photo" ng2FileSelect [uploader]="uploader"/>
-		<div *ngFor="let item of uploader.queue">
-			<div class="text-field-wrapper ">
+		<div *ngFor="let item of uploader.queue; let i = index" #details>
+			<div class="text-field-wrapper">
 				<label style="word-wrap: break-word">{{item?.file?.name}}</label>
-				<input class="small" type="text" placeholder="הוסף הערה" [disabled]="item.progress !== 0">
+				<input class="small" type="text" [(ngModel)]="item.note" placeholder="הוסף הערה" [disabled]="item.progress !== 0">
 				<label class="progress" style="margin-bottom: 0;">	
 		            <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': item.progress + '%' }">{{item.progress + '%'}}</div>
 		        </label>

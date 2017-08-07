@@ -114,14 +114,13 @@
 		</label>
 		<span *ngIf="spec.shelfLifeOther" [@myAnimation]>
 			<input class="large" type="text" placeholder="הזן אחר">
-			<file-upload></file-upload>
-			<uploaded-files></uploaded-files>
-			
+			<file-upload (fileUploaded)="onFileUploaded('shelfLiveOtherFileList', $event)"></file-upload>
+			<uploaded-files [filesList]="spec.shelfLiveOtherFileList"></uploaded-files>
 		</span>
 	</div>
 	<div class="text-field-wrapper">
 		<label>שיטת קידוד אצווה</label>
-		<file-upload></file-upload>
+		<file-upload (fileUploaded)="onFileUploaded('azvaFileList', $event)"></file-upload>
 		<uploaded-files [filesList]="spec.azvaFileList"></uploaded-files>
 	</div>
 	
