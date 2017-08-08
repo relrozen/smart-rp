@@ -47,7 +47,9 @@
 		</div>
 	</div>
 	<div class="text-field-wrapper">
-		<label>נוסחה בשימוש החל מ</label><input class="small" type="text">
+		<label>נוסחה בשימוש החל מ</label>
+		<!-- <input class="small" type="text"> -->
+		<datetime [(ngModel)]="date" [timepicker]="false" [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
 	</div>
 	<div class="text-field-wrapper">
 		<label>מאפיינים פיזיקוכימיים</label>

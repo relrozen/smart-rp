@@ -5,11 +5,10 @@ import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
-
-
-
-
+import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { SidebarModule } from 'ng-sidebar';
+import * as $ from 'jquery';
+
 
 import { AppComponent } from './app.component';
 import { CosCreateComponent } from './components/cos-create/cos-create.component';
@@ -37,7 +36,8 @@ import { UploadedFilesComponent } from './shared/uploaded-files/uploaded-files.c
     SelectModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    NKDatetimeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

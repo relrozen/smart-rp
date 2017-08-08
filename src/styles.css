@@ -225,5 +225,15 @@ input[type="text"] {
 
 }
 
+/* css for datepicker */
+.form-group.input-group.date > .input-group-addon {
+	display: none;
+}
+
+.form-inline.ng2-datetime {
+	display: inline-block;
+}
+
+
 
 
