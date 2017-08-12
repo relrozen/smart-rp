@@ -1,14 +1,14 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var http = require('http');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+const http = require('http');
 
-var index = require('./server/routes/index');
+const index = require('./server/routes/index');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -32,10 +32,11 @@ app.use(function(err, req, res, next) {
 });
 
 app.use('/upload', require('./server/routes'));
+app.use('/api/products/', require('./server/routes/product-routes'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
@@ -45,7 +46,7 @@ app.use(function(req, res, next) {
 
 app.get('*', (req, res) => {
 	res.sendFile(path.join(__dirname, 'dist/index.html'))
-})
+});
 
 const port = process.env.PORT || '3000';
 app.set('port', port);

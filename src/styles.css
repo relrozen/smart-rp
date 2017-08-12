@@ -7,12 +7,12 @@ body,
 html {
 	height: 100%;
 	width: 100%;
-	font-family: Heebo;
+	font-family: Heebo, serif;
 }
 body {
 	background: #f6f6f6 !important;
 	color: #545555;
-	font-family: Heebo;
+	font-family: Heebo serif;
 }
 .demo-sidebar {
 	background-color: #333644;
@@ -60,7 +60,7 @@ ng-sidebar aside {
 /* end css for rtl ng-select */
 
 /* checkbox css */
-.checkbox label:after, 
+.checkbox label:after,
 .radio label:after {
 	content: '';
 	display: table;
@@ -121,7 +121,7 @@ ng-sidebar aside {
 
 span.cr.rtl {
 	float: right;
-	margin-right: 0px;
+	margin-right: 0;
 	margin-left: 5px;
 }
 /* end checkbox css */
@@ -137,10 +137,13 @@ input[type="text"].large {
 
 .select-wrapper.small {
 	width: 172px;
+	margin-right: -3px;
+
 }
 
 .select-wrapper.large {
 	width: 300px;
+	margin-right: -3px;
 }
 /* end inputs unified sizes */
 
@@ -153,7 +156,7 @@ label, input {
 .text-field-wrapper > label {
 	width: 120px;
 	margin-left: 5px;
-	margin-bottom: 0px;
+	margin-bottom: 0;
 	font-weight: 500;
 }
 

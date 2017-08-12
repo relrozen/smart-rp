@@ -4,18 +4,18 @@
 		<div class="select-wrapper small">
 			<my-select [options]="cosmeticType"
 				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.productType">
+				[(ngModel)]="spec.type">
 			</my-select>
 		</div>
 	</div>
 	<div class="text-field-wrapper">
-		<label>שם המוצר (עברית)</label><input class="small" type="text">
+		<label>שם המוצר (עברית)</label><input [(ngModel)]="spec.hebName" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
-		<label>שם המוצר (אנגלית)</label><input class="small"type="text">
+		<label>שם המוצר (אנגלית)</label><input [(ngModel)]="spec.engName" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
-		<label>מספר מזהה/ מס' פורמולה</label><input class="small" type="text">
+		<label>מספר מזהה/ מס' פורמולה</label><input [(ngModel)]="spec.formulaIdNumber" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
 		<label>קטגוריה שלב 1</label>
@@ -49,7 +49,7 @@
 	<div class="text-field-wrapper">
 		<label>נוסחה בשימוש החל מ</label>
 		<!-- <input class="small" type="text"> -->
-		<datetime [(ngModel)]="date" [timepicker]="false" [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
+		<datetime [(ngModel)]="spec.formulaUsedSince" [timepicker]="false" [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
 	</div>
 	<div class="text-field-wrapper">
 		<label>מאפיינים פיזיקוכימיים</label>
@@ -59,17 +59,17 @@
 			[(ngModel)]="spec.physicalForm">
 			</my-select>
 		</div>
-		<input *ngIf="spec.physicalForm === 'other'" [@myAnimation] type="text" placeholder="הזן מאפיין">
+		<input *ngIf="spec.physicalForm === 'other'" [(ngModel)]="spec.physicalFormOther" [@myAnimation] type="text" placeholder="הזן מאפיין">
 	</div>
 	<div class="text-field-wrapper">
-		<label>אזור חשיפה</label><input class="small" type="text">
+		<label>אזור חשיפה</label><input [(ngModel)]="spec.siteOfApplication" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
 		<label>מין המשתמש</label>
 		<div class="select-wrapper small">
 			<my-select [options]="sex"
 				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.sex">
+				[(ngModel)]="spec.userSex">
 			</my-select>
 		</div>
 	</div>
@@ -78,18 +78,18 @@
 		<div class="select-wrapper small">
 			<my-select [options]="ages"
 				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.age">
+				[(ngModel)]="spec.consumerAgeRange">
 			</my-select>
 		</div>
 	</div>
 	<div class="text-field-wrapper">
-		<label>תדירות השימוש המקס'</label><input class="small" type="text">
+		<label>תדירות השימוש המקס'</label><input [(ngModel)]="spec.maxFrequencyOfUse" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
-		<label>כמות המוצר לשימוש יחיד</label><input class="small" type="text">
+		<label>כמות המוצר לשימוש יחיד</label><input [(ngModel)]="spec.amountPerApplication" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper">
-		<label>מוצר נשטף/ לא נשטף</label><input class="small" type="text">
+		<label>מוצר נשטף/ לא נשטף</label><input [(ngModel)]="spec.leaveOrRinse" class="small" type="text">
 	</div>
 	<div class="text-field-wrapper auto-height">
 		<label>חיי מדף</label>
@@ -99,19 +99,19 @@
 				[(ngModel)]="spec.shelfLife">
 			</my-select>
 		</div>
-		<input *ngIf="spec.shelfLife === 'less_than_30m'" [@myAnimation] type="text" placeholder="הזן תוקף">
-		<input *ngIf="spec.shelfLife === 'more_than_30m'" [@myAnimation] type="text" placeholder="הזן POA">
+		<input *ngIf="spec.shelfLife === 'less_than_30m'" [(ngModel)]="spec.shelfLifeExpiration" [@myAnimation] type="text" placeholder="הזן תוקף">
+		<input *ngIf="spec.shelfLife === 'more_than_30m'" [(ngModel)]="spec.shelfLifePoa" [@myAnimation] type="text" placeholder="הזן POA">
 	</div>
 	<div class="checkbox indent-right">
 		<label>
-			<input type="checkbox" value="">
+			<input type="checkbox" [(ngModel)]="spec.oneTimeUse" value="">
 			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			לשימוש חד פעמי
 		</label>
 	</div>
 	<div class="checkbox indent-right">
 		<label>
-			<input type="checkbox" value="">
+			<input type="checkbox" [(ngModel)]="spec.airTight" value="">
 			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
 			אריזות אטומות לאויר
 		</label>
@@ -124,17 +124,17 @@
 			אחר
 		</label>
 		<span *ngIf="spec.shelfLifeOther" [@myAnimation]>
-			<input class="large" type="text" placeholder="הזן אחר">
-			<file-upload (fileUploaded)="onFileUploaded('shelfLiveOtherFileList', $event)"></file-upload>
-			<uploaded-files *ngIf="spec.shelfLiveOtherFileList.length" [filesList]="spec.shelfLiveOtherFileList"></uploaded-files>
+			<input [(ngModel)]="spec.shelfLifeOtherText" class="large" type="text" placeholder="הזן אחר">
+			<file-upload (fileUploaded)="onFileUploaded('shelfLifeFiles', $event)"></file-upload>
+			<uploaded-files *ngIf="spec.shelfLifeFiles.length" [filesList]="spec.shelfLifeFiles"></uploaded-files>
 		</span>
 	</div>
 	<div class="text-field-wrapper">
 		<label>שיטת קידוד אצווה</label>
-		<file-upload (fileUploaded)="onFileUploaded('azvaFileList', $event)"></file-upload>
-		<uploaded-files *ngIf="spec.azvaFileList.length" [filesList]="spec.azvaFileList"></uploaded-files>
+		<file-upload (fileUploaded)="onFileUploaded('batchCodeMethodFiles', $event)"></file-upload>
+		<uploaded-files *ngIf="spec.batchCodeMethodFiles.length" [filesList]="spec.batchCodeMethodFiles"></uploaded-files>
 	</div>
-	<div class="text-field-wrapper" *ngIf="spec.productType === 'imported'">
+	<div class="text-field-wrapper" *ngIf="spec.type === 'imported'">
 		<label>מדינת הייצור</label>
 		<div class="select-wrapper small">
 			<my-select [options]="countries"
@@ -143,17 +143,17 @@
 			</my-select>
 		</div>
 	</div>
-	<div class="text-field-wrapper" *ngIf="spec.productType === 'imported'">
+	<div class="text-field-wrapper" *ngIf="spec.type === 'imported'">
 		<label>Certificate of free sale</label>
-		<file-upload (fileUploaded)="onFileUploaded('freeSaleCerFileList', $event)"></file-upload>
-		<uploaded-files *ngIf="spec.freeSaleCerFileList.length" [filesList]="spec.freeSaleCerFileList"></uploaded-files>
+		<file-upload (fileUploaded)="onFileUploaded('certOfFreeSaleFiles', $event)"></file-upload>
+		<uploaded-files *ngIf="spec.certOfFreeSaleFiles.length" [filesList]="spec.certOfFreeSaleFiles"></uploaded-files>
 	</div>
-	<div class="text-field-wrapper" *ngIf="spec.productType === 'imported'">
+	<div class="text-field-wrapper" *ngIf="spec.type === 'imported'">
 		<label>GMP מרשות מוכרת במדינת הייצור</label>
-		<file-upload (fileUploaded)="onFileUploaded('gmpFileList', $event)"></file-upload>
-		<uploaded-files *ngIf="spec.gmpFileList.length" [filesList]="spec.gmpFileList"></uploaded-files>
+		<file-upload (fileUploaded)="onFileUploaded('gmpFiles', $event)"></file-upload>
+		<uploaded-files *ngIf="spec.gmpFiles.length" [filesList]="spec.gmpFiles"></uploaded-files>
 	</div>
-	
+
 </div>
 
 

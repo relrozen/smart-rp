@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { SelectModule } from 'ng2-select-compat'
+import { SelectModule } from 'ng2-select-compat';
 import { FormsModule} from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
@@ -32,7 +32,7 @@ import { UploadedFilesComponent } from './shared/uploaded-files/uploaded-files.c
   ],
   imports: [
     BrowserModule,
-    SidebarModule.forRoot(),  
+    SidebarModule.forRoot(),
     SelectModule,
     FormsModule,
     BrowserAnimationsModule,
