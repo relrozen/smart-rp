@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+declare let moment: any;
 
 @Component({
   selector: 'app-misc',
@@ -10,6 +11,11 @@ export class MiscComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onFileUploaded(modelName, event) {
+    event.uploadDate = moment(event.uploadDate).format('D/M/YYYY-HH:mm');
+    this.misc[modelName].push(event);
   }
 
 }

@@ -126,6 +126,14 @@ export class CosCreateComponent implements OnInit {
         tests: [false, false, false, false, false, false, false, false, false, false],
         notes: null,
         safetyAssessmentReportFiles: []
+      },
+      misc: {
+        animalDeclarationFiles: [],
+        tollPaymentApprovalFiles: [],
+        notificationNumber: null,
+        notificationFiles: [],
+        manufacturingMethodFiles: [],
+        qaDuringManufacturingFiles: []
       }
     };
   }

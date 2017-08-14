@@ -1,3 +1,27 @@
-<p>
-  misc works!
-</p>
+<div>
+  <div class="text-field-wrapper" >
+    <label>הצהרת בעלי חיים</label>
+    <file-upload (fileUploaded)="onFileUploaded('animalDeclarationFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="misc.animalDeclarationFiles.length" [filesList]="misc.animalDeclarationFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper" >
+    <label>אישור תשלום אגרה</label>
+    <file-upload (fileUploaded)="onFileUploaded('tollPaymentApprovalFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="misc.tollPaymentApprovalFiles.length" [filesList]="misc.tollPaymentApprovalFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper">
+    <label>מספר נוטיפיקציה</label><input [(ngModel)]="misc.notificationNumber" class="large" type="text">
+    <file-upload (fileUploaded)="onFileUploaded('notificationFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="misc.notificationFiles.length" [filesList]="misc.notificationFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper" >
+    <label>שיטת ייצור התמרוק</label>
+    <file-upload (fileUploaded)="onFileUploaded('manufacturingMethodFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="misc.manufacturingMethodFiles.length" [filesList]="misc.manufacturingMethodFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper" >
+    <label>בדיקות בקרת איכות במהלך היצור</label>
+    <file-upload (fileUploaded)="onFileUploaded('qaDuringManufacturingFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="misc.qaDuringManufacturingFiles.length" [filesList]="misc.qaDuringManufacturingFiles"></uploaded-files>
+  </div>
+</div>

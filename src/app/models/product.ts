@@ -51,5 +51,12 @@ export interface IProduct {
     safetyAssessmentReportFiles: IFile[];
   };
   consumers?: {};
-  misc?: {};
+  misc?: {
+    animalDeclarationFiles: IFile[];
+    tollPaymentApprovalFiles: IFile[];
+    notificationNumber: string;
+    notificationFiles: IFile[];
+    manufacturingMethodFiles: IFile[];
+    qaDuringManufacturingFiles: IFile[];
+  };
 }
