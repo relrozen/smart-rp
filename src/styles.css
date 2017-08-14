@@ -153,11 +153,25 @@ label, input {
 	font-size: 14px;
 }
 
+textarea {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
 .text-field-wrapper > label {
 	width: 120px;
 	margin-left: 5px;
 	margin-bottom: 0;
 	font-weight: 500;
+}
+
+.text-field-wrapper > label.title {
+  width: auto;
+  margin-left: 5px;
+  margin-bottom: 0;
+  font-weight: 500;
 }
 
 .select-wrapper {

@@ -1,3 +1,96 @@
-<p>
-  safety works!
-</p>
+<div>
+  <div class="text-field-wrapper">
+    <label>שם מעריך הבטיחות</label><input [(ngModel)]="safety.safetyAssessorName" class="large" type="text">
+    <file-upload [buttonText]="'צרף קורות חיים'"
+                 (fileUploaded)="onFileUploaded('safetyAssessorCVFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="safety.safetyAssessorCVFiles.length"
+                    [filesList]="safety.safetyAssessorCVFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper">
+    <label>כתובת מעריך הבטיחות</label><input [(ngModel)]="safety.safetyAssessorAddress" class="large" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label class="title">דו"ח הבטיחות נבדק על פי הקריטריונים הבאים:</label>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[0]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבדק ההרכב הכמותי והאיכותי של התמרוק
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[1]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבחן הפרופיל הטוקסיקולוגי של רכיבי התמרוק
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[2]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבחנה מטרת השימוש של התמרוק והחשיפה המערכתית הצפויה הצפויה של הגוף לרכיבים שבמוצר המוגמר
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[3]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        הדו"ח מסתמך על ניסויים ובדיקות שנערכו במעבדות העומדות בסטנדרטים הדירים ומבוקרים.
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[4]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבדקה האיכות המיקרוביאלית
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[5]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבדקו מרכיבי האריזה
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[6]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבחנו המאפיינים הפיזיקו-כימים ויציבות התמרוק
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[7]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבדק השימוש הסביר בתמרוק בהתייחס להוראות השימוש ולאזהרות
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[8]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        דוח הבטיחות מכיל את סעיף "מסקנות הערכת הבטיחות ונמצא בטוח לשימוש
+      </label>
+    </div>
+    <div class="checkbox indent-right">
+      <label>
+        <input type="checkbox" [(ngModel)]="safety.tests[9]" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        נבדקה הצהרת מעריך הבטיחות בדבר הצורך לציין אזהרות או הוראות שימוש
+      </label>
+    </div>
+
+  </div>
+  <div class="text-field-wrapper">
+    <label>הערות</label><textarea style="width: 439px;height: 135px;" [(ngModel)]="safety.notes" type="text"></textarea>
+  </div>
+
+  <div class="text-field-wrapper" >
+    <label>דו"ח הערכת בטיחות</label>
+    <file-upload (fileUploaded)="onFileUploaded('safetyAssessmentReportFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="safety.safetyAssessmentReportFiles.length" [filesList]="safety.safetyAssessmentReportFiles"></uploaded-files>
+  </div>
+
+</div>

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output, trigger, transition, style, animate} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, trigger, transition, style, animate, Input} from '@angular/core';
 import {FileSelectDirective, FileDropDirective} from 'ng2-file-upload/ng2-file-upload';
 import {FileUploader} from 'ng2-file-upload/ng2-file-upload';
 
@@ -29,6 +29,7 @@ const URL = '/upload';
   ]
 })
 export class FileUploadComponent implements OnInit {
+  @Input() buttonText = "צרף קובץ";
   @Output() fileUploaded = new EventEmitter();
 
   public uploader: FileUploader = new FileUploader({url: URL, itemAlias: 'photo'});

@@ -1,7 +1,7 @@
 import {Component, trigger, transition, style, animate, state, OnInit} from '@angular/core';
-import {IProduct} from "../../models/product";
+import {IProduct} from '../../models/product';
 import {IFile} from "../../models/file";
-import {ProductService} from "../../services/product.service";
+import {ProductService} from '../../services/product.service';
 
 @Component({
   selector: 'cos-create',
@@ -119,8 +119,13 @@ export class CosCreateComponent implements OnInit {
         certOfFreeSaleFiles: [],
         gmpFiles: []
       },
-      packaging: {
-
+      safety: {
+        safetyAssessorName: null,
+        safetyAssessorAddress: null,
+        safetyAssessorCVFiles: [],
+        tests: [false, false, false, false, false, false, false, false, false, false],
+        notes: null,
+        safetyAssessmentReportFiles: []
       }
     };
   }

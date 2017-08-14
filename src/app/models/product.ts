@@ -42,7 +42,14 @@ export interface IProduct {
   lab?: {};
   label?: {};
   marketing?: {};
-  safety?: {};
+  safety?: {
+    safetyAssessorName?: string;
+    safetyAssessorAddress?: string;
+    safetyAssessorCVFiles?: IFile[];
+    tests?: boolean[];
+    notes?: string;
+    safetyAssessmentReportFiles: IFile[];
+  };
   consumers?: {};
   misc?: {};
 }
