@@ -33,6 +33,7 @@ export interface IProduct {
     shelfLifeFiles?: IFile[];
     batchCodeMethodFiles?: IFile[];
     country?: string[];
+    euCountry: string;
     countryOther?: string;
     certOfFreeSaleFiles?: IFile[];
     gmpFiles?: IFile[];

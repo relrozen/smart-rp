@@ -115,6 +115,7 @@ export class CosCreateComponent implements OnInit {
         shelfLifeFiles: [],
         batchCodeMethodFiles: [],
         country: [],
+        euCountry: null,
         countryOther: null,
         certOfFreeSaleFiles: [],
         gmpFiles: []

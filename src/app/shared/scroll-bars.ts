@@ -207,11 +207,11 @@ export let scrollBars = {
   },
   leaveOrRinse: {
     'leave': {
-      'heb': 'ללא שטיפה',
+      'heb': 'תמרוק ללא שטיפה',
       'eng': 'Leave on'
     },
     'rinse': {
-      'heb': 'עם שטיפה',
+      'heb': 'תמרוק נשטף',
       'eng': 'Rinse off'
     },
     'other': {

@@ -114,7 +114,7 @@
     <label>כמות המוצר לשימוש יחיד</label><input [(ngModel)]="spec.amountPerApplication" class="small" type="text">
   </div>
   <div class="text-field-wrapper">
-    <label>מוצר נשטף</label>
+    <label>Leave-on/Rinse-off</label>
     <ss-multiselect-dropdown [options]="leaveOrRinse"
                              [(ngModel)]="spec.leaveOrRinse"
                              [settings]="inputConfig.singleSelectSettingsWithoutSearch"
@@ -187,6 +187,11 @@
            [@myAnimation]
            type="text"
            placeholder="הזן">
+    <input *ngIf="spec.country ? (spec.country[0] === 'eu_member_state') : false"
+           [(ngModel)]="spec.euCountry"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן מדינה">
   </div>
   <div class="text-field-wrapper" *ngIf="spec.type ? (spec.type[0] === 'imported') : false">
     <label>Certificate of free sale</label>

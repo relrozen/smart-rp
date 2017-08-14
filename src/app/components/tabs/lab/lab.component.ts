@@ -114,8 +114,8 @@ export class LabComponent implements OnInit {
       testFiles: this.testFiles
     });
 
-    this.selectedTest = []
-    this.selectedSubTests = []
+    this.selectedTest = [];
+    this.selectedSubTests = [];
     this.selectedSubTestsOther = null;
     this.testResults = {};
     this.labName = null;
