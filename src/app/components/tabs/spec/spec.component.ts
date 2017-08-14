@@ -76,23 +76,23 @@ export class SpecComponent implements OnInit {
     });
   }
 
-  onCategory1Select(cat: string): void {
+  onCategory1Select(cat): void {
     if (cat.length === 0) { return; }
     cat = cat[0];
     const children = scrollBars.categories[cat].children;
     this.categoriesLevel2 = _.map(children, (val: any, key) => {
       return { id: key, name: val.heb };
     });
-    this.spec.category2 = null;
-    this.spec.category3 = null;
+    this.spec.category2 = [];
+    this.spec.category3 = [];
   }
 
-  onCategory2Select(cat: string): void {
+  onCategory2Select(cat): void {
     const children = scrollBars.categories[this.spec.category1].children[cat].children;
     this.categoriesLevel3 = _.map(children, (val: any, key) => {
       return { id: key, name: val.heb };
     });
-    this.spec.category3 = null;
+    this.spec.category3 = [];
   }
 
   onFileUploaded(modelName, event) {

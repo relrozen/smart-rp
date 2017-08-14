@@ -1,3 +1,67 @@
-<p>
-  lab works!
-</p>
+<div>
+  <div class="text-field-wrapper">
+    <label class="title">הוספת בדיקה חדשה</label>
+  </div>
+  <div class="text-field-wrapper">
+    <label>סוג בדיקה</label>
+    <ss-multiselect-dropdown [options]="tests"
+                             [(ngModel)]="selectedTest"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             (ngModelChange)="onTestSelect($event)"
+                             class="large-select">
+    </ss-multiselect-dropdown>
+
+  </div>
+  <div class="text-field-wrapper">
+    <label>תת-בדיקה</label>
+
+    <ss-multiselect-dropdown [options]="subTests"
+                             [(ngModel)]="selectedSubTests"
+                             [settings]="inputConfig.multiSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             (ngModelChange)="onSubTestSelected($event)"
+                             class="large-select">
+    </ss-multiselect-dropdown>
+    <input *ngIf="subTests ? (selectedSubTests.includes('other')) : false"
+           [(ngModel)]="selectedSubTestsOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן אחר">
+  </div>
+  <div *ngFor="let selectedSubTest of filterOther(selectedSubTests); let i = index" class="text-field-wrapper">
+      <label>תוצאת בדיקת {{scrollBars.labTests[selectedTest].children[selectedSubTest].heb}}</label>
+      <input style="margin-left: 30px;" [(ngModel)]="testResults[selectedSubTest].result" class="small" type="text">
+      <label>תחום מוצהר ע"י היצרן</label>
+      <input [(ngModel)]="testResults[selectedSubTest].area" class="small" type="text">
+  </div>
+  <div *ngIf="selectedSubTests.includes('other')" class="text-field-wrapper">
+    <label>תוצאת בדיקת {{selectedSubTestsOther}}</label>
+    <input style="margin-left: 30px;" [(ngModel)]="testResults.other.result" class="small" type="text">
+    <label>תחום מוצהר ע"י היצרן</label>
+    <input [(ngModel)]="testResults.other.area" class="small" type="text">
+  </div>
+  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
+    <label>שם מעבדה</label><input [(ngModel)]="labName" class="large" type="text">
+  </div>
+  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
+    <label>מספר תעודה</label><input [(ngModel)]="certNumber" class="large" type="text">
+  </div>
+  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
+    <label>תאריך בדיקה</label>
+    <!-- <input class="small" type="text"> -->
+    <datetime [(ngModel)]="testDate" [timepicker]="false"
+              [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
+  </div>
+  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
+    <label>הוספת קובץ</label>
+    <file-upload (fileUploaded)="onFileUploaded('testFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="testFiles.length > 0" [filesList]="testFiles"></uploaded-files>
+  </div>
+  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
+    <label>שמור בדיקה</label>
+    <label class="my-btn save-btn" (click)="saveTest()">שמור</label>
+  </div>
+
+</div>
+<!--<div style="direction: ltr">{{diagnostic}}</div>-->

@@ -69,17 +69,17 @@
   </div>
   <div class="text-field-wrapper">
     <label>מאפיינים פיזיקוכימיים</label>
-      <ss-multiselect-dropdown [options]="physicalForms"
-                               [(ngModel)]="spec.physicalForm"
-                               [settings]="inputConfig.singleSelectSettingsWithSearch"
-                               [texts]="inputConfig.selectBoxTexts"
-                               class="medium-select">
-      </ss-multiselect-dropdown>
-    <input  *ngIf="spec.physicalForm ? (spec.physicalForm[0] === 'other') : false"
-            [(ngModel)]="spec.physicalFormOther"
-            [@myAnimation]
-            type="text"
-            placeholder="הזן מאפיין">
+    <ss-multiselect-dropdown [options]="physicalForms"
+                             [(ngModel)]="spec.physicalForm"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+    <input *ngIf="spec.physicalForm ? (spec.physicalForm[0] === 'other') : false"
+           [(ngModel)]="spec.physicalFormOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן מאפיין">
   </div>
   <div class="text-field-wrapper">
     <label>אזור חשיפה</label><input [(ngModel)]="spec.siteOfApplication" class="small" type="text">
@@ -101,11 +101,11 @@
                              [texts]="inputConfig.selectBoxTexts"
                              class="medium-select">
     </ss-multiselect-dropdown>
-    <input  *ngIf="spec.consumerAgeRange ? (spec.consumerAgeRange.includes('other')) : false"
-            [(ngModel)]="spec.consumerAgeRangeOther"
-            [@myAnimation]
-            type="text"
-            placeholder="הזן">
+    <input *ngIf="spec.consumerAgeRange ? (spec.consumerAgeRange.includes('other')) : false"
+           [(ngModel)]="spec.consumerAgeRangeOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן">
   </div>
   <div class="text-field-wrapper">
     <label>תדירות השימוש המקס'</label><input [(ngModel)]="spec.maxFrequencyOfUse" class="small" type="text">
@@ -121,11 +121,11 @@
                              [texts]="inputConfig.selectBoxTexts"
                              class="medium-select">
     </ss-multiselect-dropdown>
-    <input  *ngIf="spec.leaveOrRinse ? (spec.leaveOrRinse[0] === 'other') : false"
-            [(ngModel)]="spec.leaveOrRinseOther"
-            [@myAnimation]
-            type="text"
-            placeholder="הזן">
+    <input *ngIf="spec.leaveOrRinse ? (spec.leaveOrRinse[0] === 'other') : false"
+           [(ngModel)]="spec.leaveOrRinseOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן">
   </div>
   <div class="text-field-wrapper auto-height">
     <label>חיי מדף</label>
@@ -182,11 +182,11 @@
                              [texts]="inputConfig.selectBoxTexts"
                              class="medium-select">
     </ss-multiselect-dropdown>
-    <input  *ngIf="spec.country ? (spec.country[0] === 'other') : false"
-            [(ngModel)]="spec.countryOther"
-            [@myAnimation]
-            type="text"
-            placeholder="הזן">
+    <input *ngIf="spec.country ? (spec.country[0] === 'other') : false"
+           [(ngModel)]="spec.countryOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן">
   </div>
   <div class="text-field-wrapper" *ngIf="spec.type ? (spec.type[0] === 'imported') : false">
     <label>Certificate of free sale</label>

@@ -1,4 +1,210 @@
 export let scrollBars = {
+  labTests: {
+    'microbiological_test': {
+      'heb': 'בדיקה מיקרוביולוגית',
+      'eng': 'Microbiological Test',
+      'children': {
+        'total_count': {
+          'heb': 'ספירה כללית',
+          'eng': 'Total Count'
+        },
+        'yeast': {
+          'heb': 'שמרים',
+          'eng': 'Yeast'
+        },
+        'molds': {
+          'heb': 'עובשים',
+          'eng': 'Molds'
+        },
+        'pseudomonas_aeruginosa': {
+          'heb': 'Pseudomonas aeruginosa',
+          'eng': 'Pseudomonas aeruginosa'
+        },
+        'staphylococcus_aureus': {
+          'heb': 'Staphylococcus aureus',
+          'eng': 'Staphylococcus aureus'
+        },
+        'enterobacteriaceae': {
+          'heb': 'Enterobacteriaceae',
+          'eng': 'Enterobacteriaceae'
+        },
+        'e_coli': {
+          'heb': 'E. coli',
+          'eng': 'E. coli'
+        },
+        'c_albicans': {
+          'heb': 'C. albicans',
+          'eng': 'C. albicans'
+        },
+        'ph': {
+          'heb': 'pH',
+          'eng': 'pH'
+        },
+        'other': {
+          'heb': 'אחר (פרט)',
+          'eng': 'Other (specify)'
+        }
+      }
+    },
+    'detergent_presence': {
+      'heb': 'בדיקת דטרגנט',
+      'eng': 'Detergent presence',
+      'children': {
+        'behentrimonium_chloride': {
+          'heb': 'Behentrimonium Chloride',
+          'eng': 'Behentrimonium Chloride'
+        },
+        'cetrimonium_chloride': {
+          'heb': 'Cetrimonium Chloride',
+          'eng': 'Cetrimonium Chloride'
+        },
+        'other': {
+          'heb': 'אחר (פרט)',
+          'eng': 'Other (specify)'
+        }
+      }
+    },
+    'metals_presence': {
+      'heb': 'מתכות',
+      'eng': 'Metals presence',
+      'children': {
+        'lead': {
+          'heb': 'עופרת',
+          'eng': 'Lead'
+        },
+        'other': {
+          'heb': 'אחר (פרט)',
+          'eng': 'Other (specify)'
+        }
+      }
+    },
+    'meoh': {
+      'heb': 'מתנול',
+      'eng': 'MeOH',
+      'children': {
+        'meoh': {'heb': 'מתנול', 'eng': 'MeOH'}
+      }
+    },
+    'hydrogen_peroxyde': {
+      'heb': 'מי חמצן',
+      'eng': 'Hydrogen peroxyde',
+      'children': {
+        'hydrogen_peroxyde': {'heb': 'מי חמצן', 'eng': 'Hydrogen peroxyde'}
+      }
+    },
+    'formaldehyd': {
+      'heb': 'פורמלאדהיד',
+      'eng': 'Formaldehyd',
+      'children': {
+        'formaldehyd': {'heb': 'פורמלאדהיד', 'eng': 'Formaldehyd'}
+      }
+    },
+    'fluoride': {
+      'heb': 'פלואוריד',
+      'eng': 'Fluoride',
+      'children': {
+        'fluoride': {'heb': 'פלואוריד', 'eng': 'Fluoride'}
+      }
+    },
+    'challenge': {
+      'heb': 'יעילות משמרים',
+      'eng': 'Challenge',
+      'children': {
+        'challenge': {'heb': 'יעילות משמרים', 'eng': 'Challenge'}
+      }
+    },
+    'stability': {
+      'heb': 'יציבות',
+      'eng': 'Stability',
+      'children': {
+        'stability': {'heb': 'יציבות', 'eng': 'Stability'}
+      }
+    },
+    'glycolic_acid': {
+      'heb': 'חומצה גליקולית',
+      'eng': 'Glycolic acid',
+      'children': {
+        'glycolic_acid': {'heb': 'חומצה גליקולית', 'eng': 'Glycolic acid'}
+      }
+    },
+    'salicylic_acid': {
+      'heb': 'חומצה סליצילית',
+      'eng': 'Salicylic acid',
+      'children': {
+        'salicylic_acid': {'heb': 'חומצה סליצילית', 'eng': 'Salicylic acid'}
+      }
+    },
+    'lactic_acid': {
+      'heb': 'חומצה לקטית',
+      'eng': 'Lactic acid',
+      'children': {
+        'lactic_acid': {'heb': 'חומצה לקטית', 'eng': 'Lactic acid'}
+      }
+    },
+    'citric_acid': {
+      'heb': 'חומצה ציטרית',
+      'eng': 'Citric acid',
+      'children': {
+        'citric_acid': {'heb': 'חומצה ציטרית', 'eng': 'Citric acid'}
+      }
+    },
+    'mandelic_acid': {
+      'heb': 'חומצה מנדלית',
+      'eng': 'Mandelic acid',
+      'children': {
+        'mandelic_acid': {'heb': 'חומצה מנדלית', 'eng': 'Mandelic acid'}
+      }
+    },
+    'kojic_acid': {
+      'heb': 'חומצה קוג\'ית',
+      'eng': 'Kojic acid',
+      'children': {
+        'kojic_acid': {'heb': 'חומצה קוג\'ית', 'eng': 'Kojic acid'}
+      }
+    },
+    'thioglycolic_acid': {
+      'heb': 'חומצה תיוגליקולית',
+      'eng': 'Thioglycolic acid',
+      'children': {
+        'thioglycolic_acid': {'heb': 'חומצה תיוגליקולית', 'eng': 'Thioglycolic acid'}
+      }
+    },
+    'camphor': {
+      'heb': 'קאמפור',
+      'eng': 'Camphor',
+      'children': {
+        'camphor': {'heb': 'קאמפור', 'eng': 'Camphor'}
+      }
+    },
+    'menthol': {
+      'heb': 'מנטול',
+      'eng': 'Menthol',
+      'children': {
+        'menthol': {'heb': 'מנטול', 'eng': 'Menthol'}
+      }
+    },
+    'sulfur': {
+      'heb': 'גפרית',
+      'eng': 'Sulfur',
+      'children': {
+        'sulfur': {'heb': 'גפרית', 'eng': 'Sulfur'}
+      }
+    },
+    'sealing': {
+      'heb': 'אטימות סגירה',
+      'eng': 'Sealing',
+      'children': {
+        'sealing': {'heb': 'אטימות סגירה', 'eng': 'Sealing'}
+      }
+    },
+    'other': {
+      'heb': 'אחר (פרט)',
+      'eng': 'Other (specify)',
+      'children': {
+        'other': {'heb': 'אחר (פרט)', 'eng': 'Other (specify)'}
+      }
+    }
+  },
   leaveOrRinse: {
     'leave': {
       'heb': 'ללא שטיפה',

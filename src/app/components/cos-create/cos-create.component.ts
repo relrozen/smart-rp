@@ -134,6 +134,9 @@ export class CosCreateComponent implements OnInit {
         notificationFiles: [],
         manufacturingMethodFiles: [],
         qaDuringManufacturingFiles: []
+      },
+      lab: {
+        tests: []
       }
     };
   }
