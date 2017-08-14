@@ -7,7 +7,8 @@
 			</li>
 	</ul>
 	<div class="tab-content">
-		<app-spec [(spec)]="product.spec" [hidden]="selectedTab !== 1"></app-spec>
+    <label class="my-btn save-btn" (click)="saveProduct()">שמור</label>
+    <app-spec [(spec)]="product.spec" [hidden]="selectedTab !== 1"></app-spec>
 	</div>
 </div>
 <!--<div style="direction: ltr">{{diagnostic}}</div>-->

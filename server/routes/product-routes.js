@@ -56,7 +56,10 @@ function getProduct(req, res) {
 
 function createProduct(req, res) {
   let product = new Product(req.body);
-  product.save();
+  // console.log(product);
+  product.save((err) => {
+    if (err) { console.log(err) };
+  });
   res.status(201).send(product.toJSON());
 }
 

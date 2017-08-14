@@ -3,24 +3,27 @@ import {IFile} from './file';
 export interface IProduct {
   _id?: number;
   spec?: {
-    type?: string;
+    type?: string[];
     hebName?: string;
     engName?: string;
     formulaIdNumber?: number;
-    category1?: string;
-    category2?: string;
-    category3?: string;
+    category1?: string[];
+    category2?: string[];
+    category3?: string[];
     formulaUsedSince?: any;
-    physicalForm?: string;
+    startingFromNow?: boolean;
+    physicalForm?: string[];
     physicalFormOther?: string;
     physicalFormFiles?: IFile[];
     siteOfApplication?: string;
-    userSex?: string;
-    consumerAgeRange?: string;
+    userSex?: string[];
+    consumerAgeRange?: string[];
+    consumerAgeRangeOther?: string;
     maxFrequencyOfUse?: string;
     amountPerApplication?: string;
-    leaveOrRinse?: string;
-    shelfLife?: string;
+    leaveOrRinse?: string[]
+    leaveOrRinseOther?: string;
+    shelfLife?: string[];
     shelfLifeExpiration?: string;
     shelfLifePoa?: string;
     oneTimeUse?: Boolean;
@@ -29,7 +32,8 @@ export interface IProduct {
     shelfLifeOtherText?: string;
     shelfLifeFiles?: IFile[];
     batchCodeMethodFiles?: IFile[];
-    country?: string;
+    country?: string[];
+    countryOther?: string;
     certOfFreeSaleFiles?: IFile[];
     gmpFiles?: IFile[];
   };

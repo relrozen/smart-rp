@@ -1,16 +1,58 @@
 export let scrollBars = {
+  leaveOrRinse: {
+    'leave': {
+      'heb': 'ללא שטיפה',
+      'eng': 'Leave on'
+    },
+    'rinse': {
+      'heb': 'עם שטיפה',
+      'eng': 'Rinse off'
+    },
+    'other': {
+      'heb': 'אחר (ציין)',
+      'eng': 'Other (Specify)'
+    }
+  },
   countries: {
-    'il': {
-      'heb': 'ישראל',
-      'eng': 'Israel'
+    'eu_member_state': {
+      'heb': 'מדינות האיחוד האירופי',
+      'eng': 'EU member state'
     },
-    'de': {
-      'heb': 'גרמניה',
-      'eng': 'Germany'
+    'australia': {
+      'heb': 'אוסטרליה',
+      'eng': 'Australia'
     },
-    'it': {
-      'heb': 'איטליה',
-      'eng': 'Italy'
+    'island': {
+      'heb': 'איסלנד',
+      'eng': 'Island'
+    },
+    'usa': {
+      'heb': 'ארצות הברית',
+      'eng': 'USA'
+    },
+    'japan': {
+      'heb': 'יפן',
+      'eng': 'Japan'
+    },
+    'norway': {
+      'heb': 'נורבגיה',
+      'eng': 'Norway'
+    },
+    'new_zealand': {
+      'heb': 'ניו זילנד',
+      'eng': 'New Zealand'
+    },
+    'canada': {
+      'heb': 'קנדה',
+      'eng': 'Canada'
+    },
+    'switzerland': {
+      'heb': 'שוויץ',
+      'eng': 'Switzerland'
+    },
+    'other': {
+      'heb': 'אחר (פרט)',
+      'eng': 'Other (Specify)'
     }
   },
   cosmeticType: {
@@ -559,6 +601,10 @@ export let scrollBars = {
     'twelve_two_sixtee': {
       'heb': '12-16 שנים',
       'eng': '12-16 years'
+    },
+    'other': {
+      'heb': 'אחר (ציין)',
+      'eng': 'Other (Specify)'
     }
   },
   shelfLife: {

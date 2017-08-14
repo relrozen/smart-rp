@@ -47,6 +47,12 @@ li>a.long-tab-name {
 	min-height: calc(100vh - 170px);
 }
 
+.save-btn {
+  position: fixed;
+  bottom: 752px;
+  left: 26px;
+}
+
 
 
 

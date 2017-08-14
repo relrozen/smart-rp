@@ -1,158 +1,203 @@
 <div>
-	<div class="text-field-wrapper">
-		<label>סוג תמרוק</label>
-		<div class="select-wrapper small">
-			<my-select [options]="cosmeticType"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.type">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper">
-		<label>שם המוצר (עברית)</label><input [(ngModel)]="spec.hebName" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper">
-		<label>שם המוצר (אנגלית)</label><input [(ngModel)]="spec.engName" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper">
-		<label>מספר מזהה/ מס' פורמולה</label><input [(ngModel)]="spec.formulaIdNumber" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper">
-		<label>קטגוריה שלב 1</label>
-		<div class="select-wrapper large">
-			<my-select [options]="categoriesLevel1"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.category1"
-				(select)="onCategory1Select($event)">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper">
-		<label>קטגוריה שלב 2</label>
-		<div class="select-wrapper large">
-			<my-select [options]="categoriesLevel2"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.category2"
-				(select)="onCategory2Select($event)">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper">
-		<label>קטגוריה שלב 3</label>
-		<div class="select-wrapper large">
-			<my-select [options]="categoriesLevel3"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.category3">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper">
-		<label>נוסחה בשימוש החל מ</label>
-		<!-- <input class="small" type="text"> -->
-		<datetime [(ngModel)]="spec.formulaUsedSince" [timepicker]="false" [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
-	</div>
-	<div class="text-field-wrapper">
-		<label>מאפיינים פיזיקוכימיים</label>
-		<div class="select-wrapper small">
-			<my-select [options]="physicalForms"
-			[placeholder]="'בחר...'"
-			[(ngModel)]="spec.physicalForm">
-			</my-select>
-		</div>
-		<input *ngIf="spec.physicalForm === 'other'" [(ngModel)]="spec.physicalFormOther" [@myAnimation] type="text" placeholder="הזן מאפיין">
-	</div>
-	<div class="text-field-wrapper">
-		<label>אזור חשיפה</label><input [(ngModel)]="spec.siteOfApplication" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper">
-		<label>מין המשתמש</label>
-		<div class="select-wrapper small">
-			<my-select [options]="sex"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.userSex">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper">
-		<label>גילאי משתמשים</label>
-		<div class="select-wrapper small">
-			<my-select [options]="ages"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.consumerAgeRange">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper">
-		<label>תדירות השימוש המקס'</label><input [(ngModel)]="spec.maxFrequencyOfUse" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper">
-		<label>כמות המוצר לשימוש יחיד</label><input [(ngModel)]="spec.amountPerApplication" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper">
-		<label>מוצר נשטף/ לא נשטף</label><input [(ngModel)]="spec.leaveOrRinse" class="small" type="text">
-	</div>
-	<div class="text-field-wrapper auto-height">
-		<label>חיי מדף</label>
-		<div class="select-wrapper small">
-			<my-select [options]="shelfLife"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.shelfLife">
-			</my-select>
-		</div>
-		<input *ngIf="spec.shelfLife === 'less_than_30m'" [(ngModel)]="spec.shelfLifeExpiration" [@myAnimation] type="text" placeholder="הזן תוקף">
-		<input *ngIf="spec.shelfLife === 'more_than_30m'" [(ngModel)]="spec.shelfLifePoa" [@myAnimation] type="text" placeholder="הזן POA">
-	</div>
-	<div class="checkbox indent-right">
-		<label>
-			<input type="checkbox" [(ngModel)]="spec.oneTimeUse" value="">
-			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			לשימוש חד פעמי
-		</label>
-	</div>
-	<div class="checkbox indent-right">
-		<label>
-			<input type="checkbox" [(ngModel)]="spec.airTight" value="">
-			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			אריזות אטומות לאויר
-		</label>
-	</div>
+  <div class="text-field-wrapper">
+    <label>סוג תמרוק</label>
+    <div class="select-wrapper">
+      <ss-multiselect-dropdown [options]="cosmeticType"
+                               [(ngModel)]="spec.type"
+                               [settings]="inputConfig.singleSelectSettingsWithoutSearch"
+                               [texts]="inputConfig.selectBoxTexts"
+                               class="medium-select">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+  <div class="text-field-wrapper">
+    <label>שם המוצר (עברית)</label><input [(ngModel)]="spec.hebName" class="small" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>שם המוצר (אנגלית)</label><input [(ngModel)]="spec.engName" class="small" type="text" pattern="[a-c]">
+  </div>
+  <div class="text-field-wrapper">
+    <label>מספר מזהה/ מס' פורמולה</label><input [(ngModel)]="spec.formulaIdNumber" class="small" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>קטגוריה שלב 1</label>
+    <div class="select-wrapper">
+      <ss-multiselect-dropdown [options]="categoriesLevel1"
+                               [(ngModel)]="spec.category1"
+                               [settings]="inputConfig.singleSelectSettingsWithSearch"
+                               [texts]="inputConfig.selectBoxTexts"
+                               (ngModelChange)="onCategory1Select($event)"
+                               class="large-select">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+  <div class="text-field-wrapper">
+    <label>קטגוריה שלב 2</label>
+    <div class="select-wrapper">
+      <ss-multiselect-dropdown [options]="categoriesLevel2"
+                               [(ngModel)]="spec.category2"
+                               [settings]="inputConfig.singleSelectSettingsWithSearch"
+                               [texts]="inputConfig.selectBoxTexts"
+                               (ngModelChange)="onCategory2Select($event)"
+                               class="large-select">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+  <div class="text-field-wrapper">
+    <label>קטגוריה שלב 3</label>
+    <div class="select-wrapper">
+      <ss-multiselect-dropdown [options]="categoriesLevel3"
+                               [(ngModel)]="spec.category3"
+                               [settings]="inputConfig.singleSelectSettingsWithSearch"
+                               [texts]="inputConfig.selectBoxTexts"
+                               class="large-select">
+      </ss-multiselect-dropdown>
+    </div>
+  </div>
+  <div class="text-field-wrapper">
+    <label>נוסחה בשימוש החל מ</label>
+    <!-- <input class="small" type="text"> -->
+    <datetime [(ngModel)]="spec.formulaUsedSince" [timepicker]="false"
+              [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
+    <div class="checkbox display-ib">
+      <label>
+        <input type="checkbox" [(ngModel)]="spec.startingFromNow" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        זמן סגירת התיק
+      </label>
+    </div>
+  </div>
+  <div class="text-field-wrapper">
+    <label>מאפיינים פיזיקוכימיים</label>
+      <ss-multiselect-dropdown [options]="physicalForms"
+                               [(ngModel)]="spec.physicalForm"
+                               [settings]="inputConfig.singleSelectSettingsWithSearch"
+                               [texts]="inputConfig.selectBoxTexts"
+                               class="medium-select">
+      </ss-multiselect-dropdown>
+    <input  *ngIf="spec.physicalForm ? (spec.physicalForm[0] === 'other') : false"
+            [(ngModel)]="spec.physicalFormOther"
+            [@myAnimation]
+            type="text"
+            placeholder="הזן מאפיין">
+  </div>
+  <div class="text-field-wrapper">
+    <label>אזור חשיפה</label><input [(ngModel)]="spec.siteOfApplication" class="small" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>מין המשתמש</label>
+    <ss-multiselect-dropdown [options]="sex"
+                             [(ngModel)]="spec.userSex"
+                             [settings]="inputConfig.singleSelectSettingsWithoutSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+  </div>
+  <div class="text-field-wrapper">
+    <label>גילאי משתמשים</label>
+    <ss-multiselect-dropdown [options]="ages"
+                             [(ngModel)]="spec.consumerAgeRange"
+                             [settings]="inputConfig.multiSelectSettingsWithoutSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+    <input  *ngIf="spec.consumerAgeRange ? (spec.consumerAgeRange[0] === 'other') : false"
+            [(ngModel)]="spec.consumerAgeRangeOther"
+            [@myAnimation]
+            type="text"
+            placeholder="הזן">
+  </div>
+  <div class="text-field-wrapper">
+    <label>תדירות השימוש המקס'</label><input [(ngModel)]="spec.maxFrequencyOfUse" class="small" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>כמות המוצר לשימוש יחיד</label><input [(ngModel)]="spec.amountPerApplication" class="small" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>מוצר נשטף</label>
+    <ss-multiselect-dropdown [options]="leaveOrRinse"
+                             [(ngModel)]="spec.leaveOrRinse"
+                             [settings]="inputConfig.singleSelectSettingsWithoutSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+    <input  *ngIf="spec.leaveOrRinse ? (spec.leaveOrRinse[0] === 'other') : false"
+            [(ngModel)]="spec.leaveOrRinseOther"
+            [@myAnimation]
+            type="text"
+            placeholder="הזן">
+  </div>
+  <div class="text-field-wrapper auto-height">
+    <label>חיי מדף</label>
+    <ss-multiselect-dropdown [options]="shelfLife"
+                             [(ngModel)]="spec.shelfLife"
+                             [settings]="inputConfig.singleSelectSettingsWithoutSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+    <input *ngIf="spec.shelfLife ? (spec.shelfLife[0] === 'less_than_30m') : false"
+           [(ngModel)]="spec.shelfLifeExpiration" [@myAnimation] type="text"
+           placeholder="הזן תוקף">
+    <input *ngIf="spec.shelfLife ? (spec.shelfLife[0] === 'more_than_30m') : false"
+           [(ngModel)]="spec.shelfLifePoa" [@myAnimation] type="text"
+           placeholder="הזן POA">
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="spec.oneTimeUse" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      לשימוש חד פעמי
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="spec.airTight" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      אריזות אטומות לאויר
+    </label>
+  </div>
 
-	<div class="checkbox indent-right">
-		<label>
-			<input type="checkbox" [(ngModel)]="spec.shelfLifeOther" value="">
-			<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-			אחר
-		</label>
-		<span *ngIf="spec.shelfLifeOther" [@myAnimation]>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="spec.shelfLifeOther" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      אחר
+    </label>
+    <span *ngIf="spec.shelfLifeOther" [@myAnimation]>
 			<input [(ngModel)]="spec.shelfLifeOtherText" class="large" type="text" placeholder="הזן אחר">
 			<file-upload (fileUploaded)="onFileUploaded('shelfLifeFiles', $event)"></file-upload>
 			<uploaded-files *ngIf="spec.shelfLifeFiles.length" [filesList]="spec.shelfLifeFiles"></uploaded-files>
 		</span>
-	</div>
-	<div class="text-field-wrapper">
-		<label>שיטת קידוד אצווה</label>
-		<file-upload (fileUploaded)="onFileUploaded('batchCodeMethodFiles', $event)"></file-upload>
-		<uploaded-files *ngIf="spec.batchCodeMethodFiles.length" [filesList]="spec.batchCodeMethodFiles"></uploaded-files>
-	</div>
-	<div class="text-field-wrapper" *ngIf="spec.type === 'imported'">
-		<label>מדינת הייצור</label>
-		<div class="select-wrapper small">
-			<my-select [options]="countries"
-				[placeholder]="'בחר...'"
-				[(ngModel)]="spec.country">
-			</my-select>
-		</div>
-	</div>
-	<div class="text-field-wrapper" *ngIf="spec.type === 'imported'">
-		<label>Certificate of free sale</label>
-		<file-upload (fileUploaded)="onFileUploaded('certOfFreeSaleFiles', $event)"></file-upload>
-		<uploaded-files *ngIf="spec.certOfFreeSaleFiles.length" [filesList]="spec.certOfFreeSaleFiles"></uploaded-files>
-	</div>
-	<div class="text-field-wrapper" *ngIf="spec.type === 'imported'">
-		<label>GMP מרשות מוכרת במדינת הייצור</label>
-		<file-upload (fileUploaded)="onFileUploaded('gmpFiles', $event)"></file-upload>
-		<uploaded-files *ngIf="spec.gmpFiles.length" [filesList]="spec.gmpFiles"></uploaded-files>
-	</div>
+  </div>
+  <div class="text-field-wrapper">
+    <label>שיטת קידוד אצווה</label>
+    <file-upload (fileUploaded)="onFileUploaded('batchCodeMethodFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="spec.batchCodeMethodFiles.length" [filesList]="spec.batchCodeMethodFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper" *ngIf="spec.type ? (spec.type[0] === 'imported') : false">
+    <label>מדינת הייצור</label>
+    <ss-multiselect-dropdown [options]="countries"
+                             [(ngModel)]="spec.country"
+                             [settings]="inputConfig.singleSelectSettingsWithoutSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+    <input  *ngIf="spec.country ? (spec.country[0] === 'other') : false"
+            [(ngModel)]="spec.countryOther"
+            [@myAnimation]
+            type="text"
+            placeholder="הזן">
+  </div>
+  <div class="text-field-wrapper" *ngIf="spec.type ? (spec.type[0] === 'imported') : false">
+    <label>Certificate of free sale</label>
+    <file-upload (fileUploaded)="onFileUploaded('certOfFreeSaleFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="spec.certOfFreeSaleFiles.length" [filesList]="spec.certOfFreeSaleFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper" *ngIf="spec.type ? (spec.type[0] === 'imported') : false">
+    <label>GMP מרשות מוכרת במדינת הייצור</label>
+    <file-upload (fileUploaded)="onFileUploaded('gmpFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="spec.gmpFiles.length" [filesList]="spec.gmpFiles"></uploaded-files>
+  </div>
 
 </div>
 

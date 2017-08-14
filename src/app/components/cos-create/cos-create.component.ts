@@ -1,6 +1,7 @@
 import {Component, trigger, transition, style, animate, state, OnInit} from '@angular/core';
 import {IProduct} from "../../models/product";
 import {IFile} from "../../models/file";
+import {ProductService} from "../../services/product.service";
 
 @Component({
   selector: 'cos-create',
@@ -28,6 +29,7 @@ import {IFile} from "../../models/file";
 })
 export class CosCreateComponent implements OnInit {
   product: IProduct;
+  currentProductId: number = null;
 
   selectedTab = 1;
   tabs = [
@@ -77,29 +79,32 @@ export class CosCreateComponent implements OnInit {
       longText: false
     },
   ];
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
 
   ngOnInit() {
     this.product = {
       spec: {
-        type: null,
-        hebName: 'אריאל רוזן',
+        type: [],
+        hebName: '',
         engName: null,
         formulaIdNumber: null,
-        category1: null,
-        category2: null,
-        category3: null,
+        category1: [],
+        category2: [],
+        category3: [],
         formulaUsedSince: null,
-        physicalForm: null,
+        startingFromNow: false,
+        physicalForm: [],
         physicalFormOther: null,
         physicalFormFiles: [],
         siteOfApplication: null,
-        userSex: null,
-        consumerAgeRange: null,
+        userSex: [],
+        consumerAgeRange: [],
+        consumerAgeRangeOther: null,
         maxFrequencyOfUse: null,
         amountPerApplication: null,
-        leaveOrRinse: null,
+        leaveOrRinse: [],
+        leaveOrRinseOther: null,
         shelfLife: null,
         shelfLifeExpiration: null,
         shelfLifePoa: null,
@@ -109,7 +114,8 @@ export class CosCreateComponent implements OnInit {
         shelfLifeOtherText: null,
         shelfLifeFiles: [],
         batchCodeMethodFiles: [],
-        country: null,
+        country: [],
+        countryOther: null,
         certOfFreeSaleFiles: [],
         gmpFiles: []
       }
@@ -118,6 +124,16 @@ export class CosCreateComponent implements OnInit {
 
   selectTab(id) {
     this.selectedTab = id;
+  }
+
+  saveProduct() {
+    if (!this.currentProductId) {
+      this.productService.saveProduct(this.product).subscribe((product) => {
+        this.currentProductId = product._id;
+      });
+    } else {
+      this.productService.updateProduct(this.currentProductId, this.product).subscribe(event => {});
+    }
   }
 
   get diagnostic() {

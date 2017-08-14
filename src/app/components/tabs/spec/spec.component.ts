@@ -1,7 +1,10 @@
 import {Component, trigger, transition, style, animate, state, OnInit, Input} from '@angular/core';
+import {IMultiSelectOption, IMultiSelectSettings, IMultiSelectTexts} from 'angular-2-dropdown-multiselect';
 import { scrollBars } from '../../../shared/scroll-bars';
+import { inputConfig} from '../../../shared/input-config';
 import * as _ from 'lodash';
 declare let moment: any;
+
 
 @Component({
   selector: 'app-spec',
@@ -28,6 +31,11 @@ declare let moment: any;
   ]
 })
 export class SpecComponent implements OnInit {
+  @Input() spec;
+
+  inputConfig = inputConfig;
+
+  // options for select boxes
   categoriesLevel1: any[];
   categoriesLevel2: any[];
   categoriesLevel3: any[];
@@ -37,67 +45,43 @@ export class SpecComponent implements OnInit {
   shelfLife: any[];
   cosmeticType: any[];
   countries: any[];
-
-  @Input() spec;
-    // type: null,
-    // hebName: null,
-    // engName: null,
-    // formulaIdNumber: null,
-    // category1: null,
-    // category2: null,
-    // category3: null,
-    // formulaUsedSince: null,
-    // physicalForm: null,
-    // physicalFormOther: null,
-    // physicalFormFiles: [],
-    // siteOfApplication: null,
-    // userSex: null,
-    // consumerAgeRange: null,
-    // maxFrequencyOfUse: null,
-    // amountPerApplication: null,
-    // leaveOrRinse: null,
-    // shelfLife: null,
-    // shelfLifeExpiration: null,
-    // shelfLifePoa: null,
-    // oneTimeUse: null,
-    // airTight: null,
-    // shelfLifeOther: null,
-    // shelfLifeFiles: [],
-    // batchCodeMethodFiles: [],
-    // country: null,
-    // certOfFreeSaleFiles: [],
-    // gmpFiles: []
+  leaveOrRinse: any[];
 
   constructor() { }
 
   ngOnInit() {
     this.categoriesLevel1 = _.map(scrollBars.categories, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.physicalForms = _.map(scrollBars.physicalForms, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.sex = _.map(scrollBars.sex, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.ages = _.map(scrollBars.ages, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.shelfLife = _.map(scrollBars.shelfLife, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.cosmeticType = _.map(scrollBars.cosmeticType, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.countries = _.map(scrollBars.countries, (val, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
+    });
+    this.leaveOrRinse = _.map(scrollBars.leaveOrRinse, (val, key) => {
+      return { id: key, name: val.heb };
     });
   }
 
   onCategory1Select(cat: string): void {
+    if (cat.length === 0) { return; }
+    cat = cat[0];
     const children = scrollBars.categories[cat].children;
     this.categoriesLevel2 = _.map(children, (val: any, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.spec.category2 = null;
     this.spec.category3 = null;
@@ -106,7 +90,7 @@ export class SpecComponent implements OnInit {
   onCategory2Select(cat: string): void {
     const children = scrollBars.categories[this.spec.category1].children[cat].children;
     this.categoriesLevel3 = _.map(children, (val: any, key) => {
-      return { id: key, text: val.heb };
+      return { id: key, name: val.heb };
     });
     this.spec.category3 = null;
   }

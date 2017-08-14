@@ -5,8 +5,13 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const http = require('http');
+const mongoose = require('mongoose');
+const config = require('config');
+const mongoConfig = config.get('mongo');
 
-const index = require('./server/routes/index');
+const db = mongoose.connect(`mongodb://${mongoConfig.host}:${mongoConfig.port}/productAPI`, { useMongoClient: true }, function(err) {
+  if (err) console.log(err);
+});
 
 const app = express();
 
@@ -18,7 +23,7 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'dist')));
 app.use(function(err, req, res, next) {
