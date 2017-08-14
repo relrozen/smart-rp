@@ -101,7 +101,7 @@
                              [texts]="inputConfig.selectBoxTexts"
                              class="medium-select">
     </ss-multiselect-dropdown>
-    <input  *ngIf="spec.consumerAgeRange ? (spec.consumerAgeRange[0] === 'other') : false"
+    <input  *ngIf="spec.consumerAgeRange ? (spec.consumerAgeRange.includes('other')) : false"
             [(ngModel)]="spec.consumerAgeRangeOther"
             [@myAnimation]
             type="text"
