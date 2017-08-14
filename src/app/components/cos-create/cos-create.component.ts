@@ -118,6 +118,9 @@ export class CosCreateComponent implements OnInit {
         countryOther: null,
         certOfFreeSaleFiles: [],
         gmpFiles: []
+      },
+      packaging: {
+
       }
     };
   }

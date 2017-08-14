@@ -37,4 +37,12 @@ export interface IProduct {
     certOfFreeSaleFiles?: IFile[];
     gmpFiles?: IFile[];
   };
+  formula?: {};
+  packaging?: {};
+  lab?: {};
+  label?: {};
+  marketing?: {};
+  safety?: {};
+  consumers?: {};
+  misc?: {};
 }

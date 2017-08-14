@@ -9,6 +9,14 @@
 	<div class="tab-content">
     <label class="my-btn save-btn" (click)="saveProduct()">שמור</label>
     <app-spec [(spec)]="product.spec" [hidden]="selectedTab !== 1"></app-spec>
+    <app-formula [(formula)]="product.formula" [hidden]="selectedTab !== 2"></app-formula>
+    <app-packaging [(packaging)]="product.packaging" [hidden]="selectedTab !== 3"></app-packaging>
+    <app-lab [(lab)]="product.lab" [hidden]="selectedTab !== 4"></app-lab>
+    <app-label [(label)]="product.label" [hidden]="selectedTab !== 5"></app-label>
+    <app-marketing [(marketing)]="product.marketing" [hidden]="selectedTab !== 6"></app-marketing>
+    <app-safety [(safety)]="product.safety" [hidden]="selectedTab !== 7"></app-safety>
+    <app-consumers [(consumers)]="product.consumers" [hidden]="selectedTab !== 8"></app-consumers>
+    <app-misc [(misc)]="product.misc" [hidden]="selectedTab !== 9"></app-misc>
 	</div>
 </div>
 <!--<div style="direction: ltr">{{diagnostic}}</div>-->

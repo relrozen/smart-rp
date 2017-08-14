@@ -20,6 +20,14 @@ import { UploadedFilesComponent } from './shared/uploaded-files/uploaded-files.c
 import { ProductService } from './services/product.service';
 import { HttpModule } from '@angular/http';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { PackagingComponent } from './components/tabs/packaging/packaging.component';
+import { SafetyComponent } from './components/tabs/safety/safety.component';
+import { FormulaComponent } from './components/tabs/formula/formula.component';
+import { LabComponent } from './components/tabs/lab/lab.component';
+import { LabelComponent } from './components/tabs/label/label.component';
+import { MarketingComponent } from './components/tabs/marketing/marketing.component';
+import { ConsumersComponent } from './components/tabs/consumers/consumers.component';
+import { MiscComponent } from './components/tabs/misc/misc.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +39,15 @@ import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
     FileDropDirective,
     ModalComponent,
     FileUploadComponent,
-    UploadedFilesComponent
+    UploadedFilesComponent,
+    PackagingComponent,
+    SafetyComponent,
+    FormulaComponent,
+    LabComponent,
+    LabelComponent,
+    MarketingComponent,
+    ConsumersComponent,
+    MiscComponent
   ],
   imports: [
     HttpModule,
