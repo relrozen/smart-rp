@@ -27,10 +27,11 @@ import { Component, EventEmitter, OnInit, Input, Output, trigger, transition, st
 export class UploadedFilesComponent implements OnInit {
   columns: any[];
   @Input() filesList;
+  @Input() hideIcon = false;
 
   @ViewChild('downloadTemplate') downloadTemplate: TemplateRef<any>;
   @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
-  
+
 
   showUploadedFilesModal = false;
 
@@ -39,9 +40,9 @@ export class UploadedFilesComponent implements OnInit {
 
   ngOnInit() {
     this.columns = [
-      { prop: 'filename', name: "שם הקובץ", headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
-      { prop: 'uploadDate', name: "תאריך העלאה", headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
-      { prop: 'note', name: "הערות", headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      { prop: 'filename', name: 'שם הקובץ', headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      { prop: 'uploadDate', name: 'תאריך העלאה', headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
+      { prop: 'note', name: 'הערות', headerClass: 'table-header', cellClass: 'table-header', resizeable: false },
       {
         cellTemplate: this.downloadTemplate,
         name: 'הורדה',
@@ -53,8 +54,8 @@ export class UploadedFilesComponent implements OnInit {
     ];
   }
 
-  openUploadedFiles() {
-    this.showUploadedFilesModal = true; 
+  public openUploadedFiles() {
+    this.showUploadedFilesModal = true;
 
   }
 

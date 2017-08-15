@@ -2,6 +2,8 @@
   <div class="text-field-wrapper">
     <label class="title">הוספת בדיקה חדשה</label>
   </div>
+
+
   <div class="text-field-wrapper">
     <label>סוג בדיקה</label>
     <ss-multiselect-dropdown [options]="tests"
@@ -11,9 +13,11 @@
                              (ngModelChange)="onTestSelect($event)"
                              class="large-select">
     </ss-multiselect-dropdown>
-
   </div>
+
+
   <div class="text-field-wrapper">
+
     <label>תת-בדיקה</label>
 
     <ss-multiselect-dropdown [options]="subTests"
@@ -23,45 +27,107 @@
                              (ngModelChange)="onSubTestSelected($event)"
                              class="large-select">
     </ss-multiselect-dropdown>
+
     <input *ngIf="subTests ? (selectedSubTests.includes('other')) : false"
            [(ngModel)]="selectedSubTestsOther"
            [@myAnimation]
            type="text"
            placeholder="הזן אחר">
   </div>
+
   <div *ngFor="let selectedSubTest of filterOther(selectedSubTests); let i = index" class="text-field-wrapper">
-      <label>תוצאת בדיקת {{scrollBars.labTests[selectedTest].children[selectedSubTest].heb}}</label>
-      <input style="margin-left: 30px;" [(ngModel)]="testResults[selectedSubTest].result" class="small" type="text">
-      <label>תחום מוצהר ע"י היצרן</label>
-      <input [(ngModel)]="testResults[selectedSubTest].area" class="small" type="text">
+    <label>תוצאת בדיקת {{scrollBars.labTests[selectedTest].children[selectedSubTest].heb}}</label>
+    <input style="margin-left: 30px;" [(ngModel)]="testResults[selectedSubTest].result" class="small" type="text">
+    <label>תחום מוצהר ע"י היצרן</label>
+    <input [(ngModel)]="testResults[selectedSubTest].area" class="small" type="text">
   </div>
+
   <div *ngIf="selectedSubTests.includes('other')" class="text-field-wrapper">
     <label>תוצאת בדיקת {{selectedSubTestsOther}}</label>
     <input style="margin-left: 30px;" [(ngModel)]="testResults.other.result" class="small" type="text">
     <label>תחום מוצהר ע"י היצרן</label>
     <input [(ngModel)]="testResults.other.area" class="small" type="text">
   </div>
+
   <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
     <label>שם מעבדה</label><input [(ngModel)]="labName" class="large" type="text">
   </div>
+
   <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
     <label>מספר תעודה</label><input [(ngModel)]="certNumber" class="large" type="text">
   </div>
+
   <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
     <label>תאריך בדיקה</label>
     <!-- <input class="small" type="text"> -->
     <datetime [(ngModel)]="testDate" [timepicker]="false"
               [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
   </div>
+
   <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
     <label>הוספת קובץ</label>
     <file-upload (fileUploaded)="onFileUploaded('testFiles', $event)"></file-upload>
     <uploaded-files *ngIf="testFiles.length > 0" [filesList]="testFiles"></uploaded-files>
   </div>
+
   <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
     <label>שמור בדיקה</label>
     <label class="my-btn save-btn" (click)="saveTest()">שמור</label>
   </div>
 
+  <ngx-datatable #myTable
+                 class="material"
+                 [columnMode]="'standard'"
+                 [rows]="lab.tests"
+                 [columns]="columns"
+                 headerClass="'table-header'">
+    <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <div style="overflow-y: scroll;height:80px">
+          <div *ngFor="let st of filterOther(row.subTests)">
+            <span style="font-weight: bold">{{scrollBars.labTests[row.test].children[st].heb}}</span> :
+            תוצאות:
+            {{row.results[st].result}}
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            תחום מוצהר:
+            {{row.results[st].area}}
+          </div>
+          <div *ngIf="row.other">
+            <span style="font-weight: bold">{{row.other}}</span> :
+            תוצאות:
+            {{row.results.other.result}}
+            &nbsp;
+            &nbsp;
+            &nbsp;
+            תחום מוצהר:
+            {{row.results.other.area}}
+          </div>
+        </div>
+      </ng-template>
+    </ngx-datatable-row-detail>
+  </ngx-datatable>
+
 </div>
 <!--<div style="direction: ltr">{{diagnostic}}</div>-->
+
+<ng-template #expandBtnTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <a
+    href="#"
+    [class.datatable-icon-left]="!expanded[rowIndex]"
+    [class.datatable-icon-down]="expanded[rowIndex]"
+    title="Expand/Collapse Row"
+    (click)="toggleExpandRow(row, rowIndex)">
+  </a>
+</ng-template>
+
+<ng-template #filesTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <img class="file-mag" src="/assets/images/file_mag.png" (click)="showTestFiles(row.testFiles)">
+</ng-template>
+
+<ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <i style="cursor:pointer;" class="fa fa-trash" aria-hidden="true" (click)="deleteTest(rowIndex)"></i>
+</ng-template>
+
+<uploaded-files [hideIcon]="true" #fileListViewer [filesList]="currentFileList"></uploaded-files>

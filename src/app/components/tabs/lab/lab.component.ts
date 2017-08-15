@@ -1,7 +1,9 @@
-import {animate, Component, Input, OnInit, style, transition, trigger} from '@angular/core';
+import {animate, Component, Input, OnInit, style, TemplateRef, transition, trigger, ViewChild} from '@angular/core';
 import {inputConfig} from '../../../shared/input-config';
 import {scrollBars} from '../../../shared/scroll-bars';
 import * as _ from 'lodash';
+import {UploadedFilesComponent} from "../../../shared/uploaded-files/uploaded-files.component";
+
 declare let moment: any;
 
 @Component({
@@ -31,6 +33,12 @@ declare let moment: any;
 export class LabComponent implements OnInit {
   @Input() lab;
 
+  @ViewChild('myTable') table: any;
+  @ViewChild('expandBtnTemplate') expandBtnTemplate: TemplateRef<any>;
+  @ViewChild('filesTemplate') filesTemplate: TemplateRef<any>;
+  @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
+  @ViewChild('fileListViewer') fileListViewer: UploadedFilesComponent;
+
   inputConfig = inputConfig;
   scrollBars = scrollBars;
 
@@ -48,12 +56,39 @@ export class LabComponent implements OnInit {
   certNumber: string;
   testFiles: any[] = [];
 
-  constructor() { }
+  currentFileList: any[] = [];
+
+  expanded = {};
+  columns: any[];
+
+  constructor() {
+  }
 
   ngOnInit() {
     this.tests = _.map(scrollBars.labTests, (val, key) => {
-      return { id: key, name: val.heb };
+      return {id: key, name: val.heb};
     });
+    this.columns = [
+      {
+        cellTemplate: this.expandBtnTemplate,
+        name: 'תוצאות',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+      },
+      { prop: 'testName', name: 'בדיקה', headerClass: 'table-header', resizeable: false },
+      { prop: 'labName', name: 'שם מעבדה', headerClass: 'table-header', resizeable: false },
+      { prop: 'testDate', name: 'תאריך', headerClass: 'table-header', resizeable: false },
+      { prop: 'certNumber', name: 'מספר תעודה', headerClass: 'table-header', resizeable: false },
+      {
+        cellTemplate: this.filesTemplate,
+        name: 'קבצים',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+      },
+      {
+        cellTemplate: this.deleteTemplate,
+        name: 'מחיקה',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+      }
+    ];
   }
 
   onTestSelect(test): void {
@@ -65,7 +100,7 @@ export class LabComponent implements OnInit {
     test = test[0];
     const children = scrollBars.labTests[test].children;
     this.subTests = _.map(children, (val: any, key) => {
-      return { id: key, name: val.heb };
+      return {id: key, name: val.heb};
     });
     if (this.subTests.length === 1) {
       this.selectedSubTests = [this.subTests[0].id];
@@ -93,7 +128,9 @@ export class LabComponent implements OnInit {
 
 
   filterOther(subTests) {
-    if (!subTests) { return []; }
+    if (!subTests) {
+      return [];
+    }
     return _.filter(subTests, (test => test !== 'other'));
   }
 
@@ -104,7 +141,8 @@ export class LabComponent implements OnInit {
 
   saveTest() {
     this.lab.tests.push({
-      test: this.selectedTest,
+      test: this.selectedTest[0],
+      testName: this.scrollBars.labTests[this.selectedTest[0]].heb,
       subTests: this.selectedSubTests,
       other: this.selectedSubTestsOther,
       results: this.testResults,
@@ -114,6 +152,7 @@ export class LabComponent implements OnInit {
       testFiles: this.testFiles
     });
 
+    this.subTests = [];
     this.selectedTest = [];
     this.selectedSubTests = [];
     this.selectedSubTestsOther = null;
@@ -122,6 +161,24 @@ export class LabComponent implements OnInit {
     this.testDate = null;
     this.certNumber = null;
     this.testFiles = [];
+  }
+
+  toggleExpandRow(row, rowIndex) {
+    if (this.expanded[rowIndex]) {
+      this.expanded[rowIndex] = !this.expanded[rowIndex];
+    } else {
+      this.expanded[rowIndex] = true;
+    }
+    this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  showTestFiles(testFiles) {
+    this.currentFileList = testFiles;
+    this.fileListViewer.openUploadedFiles();
+  }
+
+  deleteTest(index) {
+    this.lab.tests.splice(index, 1);
   }
 
   get diagnostic() {
