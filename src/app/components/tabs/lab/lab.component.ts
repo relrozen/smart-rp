@@ -35,6 +35,7 @@ export class LabComponent implements OnInit {
 
   @ViewChild('myTable') table: any;
   @ViewChild('expandBtnTemplate') expandBtnTemplate: TemplateRef<any>;
+  @ViewChild('dateTemplate') dateTemplate: TemplateRef<any>;
   @ViewChild('filesTemplate') filesTemplate: TemplateRef<any>;
   @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
   @ViewChild('fileListViewer') fileListViewer: UploadedFilesComponent;
@@ -76,7 +77,11 @@ export class LabComponent implements OnInit {
       },
       { prop: 'testName', name: 'בדיקה', headerClass: 'table-header', resizeable: false },
       { prop: 'labName', name: 'שם מעבדה', headerClass: 'table-header', resizeable: false },
-      { prop: 'testDate', name: 'תאריך', headerClass: 'table-header', resizeable: false },
+      {
+        cellTemplate: this.dateTemplate,
+        name: 'תאריך',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+      },
       { prop: 'certNumber', name: 'מספר תעודה', headerClass: 'table-header', resizeable: false },
       {
         cellTemplate: this.filesTemplate,

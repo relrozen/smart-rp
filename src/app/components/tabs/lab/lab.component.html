@@ -122,6 +122,10 @@
   </a>
 </ng-template>
 
+<ng-template #dateTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  {{row.testDate | date: 'dd/MM/yyyy'}}
+</ng-template>
+
 <ng-template #filesTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
   <img class="file-mag" src="/assets/images/file_mag.png" (click)="showTestFiles(row.testFiles)">
 </ng-template>
@@ -129,5 +133,7 @@
 <ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
   <i style="cursor:pointer;" class="fa fa-trash" aria-hidden="true" (click)="deleteTest(rowIndex)"></i>
 </ng-template>
+
+
 
 <uploaded-files [hideIcon]="true" #fileListViewer [filesList]="currentFileList"></uploaded-files>
