@@ -1,8 +1,33 @@
 <div>
   <div class="text-field-wrapper">
+    <label>ספסיפיקציות יצרן</label>
+    <file-upload (fileUploaded)="onFileUploaded('manSpecificationFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="lab.manSpecificationFiles.length > 0" [filesList]="lab.manSpecificationFiles"></uploaded-files>
+  </div>
+
+  <div class="text-field-wrapper">
     <label class="title">הוספת בדיקה חדשה</label>
   </div>
 
+  <div class="text-field-wrapper">
+    <label>שם מעבדה</label><input [(ngModel)]="labName" class="large" type="text">
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>מספר תעודה</label><input [(ngModel)]="certNumber" class="large" type="text">
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>תאריך בדיקה</label>
+    <datetime [(ngModel)]="testDate" [timepicker]="false"
+              [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>הוספת קובץ</label>
+    <file-upload (fileUploaded)="onFileUploaded('testFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="testFiles.length > 0" [filesList]="testFiles"></uploaded-files>
+  </div>
 
   <div class="text-field-wrapper">
     <label>סוג בדיקה</label>
@@ -24,7 +49,6 @@
                              [(ngModel)]="selectedSubTests"
                              [settings]="inputConfig.multiSelectSettingsWithSearch"
                              [texts]="inputConfig.selectBoxTexts"
-                             (ngModelChange)="onSubTestSelected($event)"
                              class="large-select">
     </ss-multiselect-dropdown>
 
@@ -33,44 +57,31 @@
            [@myAnimation]
            type="text"
            placeholder="הזן אחר">
+    <label class="my-btn save-btn" (click)="addTests()">הוסף בדיקות</label>
   </div>
 
-  <div *ngFor="let selectedSubTest of filterOther(selectedSubTests); let i = index" class="text-field-wrapper">
-    <label>תוצאת בדיקת {{scrollBars.labTests[selectedTest].children[selectedSubTest].heb}}</label>
-    <input style="margin-left: 30px;" [(ngModel)]="testResults[selectedSubTest].result" class="small" type="text">
-    <label>תחום מוצהר ע"י היצרן</label>
-    <input [(ngModel)]="testResults[selectedSubTest].area" class="small" type="text">
+  <div *ngFor="let addedTest of addedTests let i = index" class="text-field-wrapper">
+    <div class="title-wrapper">
+      <label class="bold">{{getTestHebName(addedTest.test)}}</label>
+    </div>
+
+    <div *ngFor="let subTest of filterOther(addedTest.subTests); let i = index" class="text-field-wrapper">
+      <label>תוצאת בדיקת {{getSubTestHebName(addedTest.test, subTest.name)}}</label>
+      <input style="margin-left: 30px;" [(ngModel)]="subTest.result" class="small" type="text">
+      <label>תחום מוצהר ע"י היצרן</label>
+      <input [(ngModel)]="subTest.area" class="small" type="text">
+    </div>
+
+    <div *ngIf="isIncludesOtherSubtest(addedTest.subTests)" class="text-field-wrapper">
+      <label>תוצאת בדיקת {{addedTest.otherSubTestName}}</label>
+      <input style="margin-left: 30px;" [(ngModel)]="addedTest.otherResult" class="small" type="text">
+      <label>תחום מוצהר ע"י היצרן</label>
+      <input [(ngModel)]="addedTest.otherArea" class="small" type="text">
+    </div>
   </div>
 
-  <div *ngIf="selectedSubTests.includes('other')" class="text-field-wrapper">
-    <label>תוצאת בדיקת {{selectedSubTestsOther}}</label>
-    <input style="margin-left: 30px;" [(ngModel)]="testResults.other.result" class="small" type="text">
-    <label>תחום מוצהר ע"י היצרן</label>
-    <input [(ngModel)]="testResults.other.area" class="small" type="text">
-  </div>
 
-  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
-    <label>שם מעבדה</label><input [(ngModel)]="labName" class="large" type="text">
-  </div>
-
-  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
-    <label>מספר תעודה</label><input [(ngModel)]="certNumber" class="large" type="text">
-  </div>
-
-  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
-    <label>תאריך בדיקה</label>
-    <!-- <input class="small" type="text"> -->
-    <datetime [(ngModel)]="testDate" [timepicker]="false"
-              [datepicker]="{ placeholder: 'בחר תאריך',  format: 'd/m/yyyy' }"></datetime>
-  </div>
-
-  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
-    <label>הוספת קובץ</label>
-    <file-upload (fileUploaded)="onFileUploaded('testFiles', $event)"></file-upload>
-    <uploaded-files *ngIf="testFiles.length > 0" [filesList]="testFiles"></uploaded-files>
-  </div>
-
-  <div *ngIf="selectedSubTests.length > 0" class="text-field-wrapper">
+  <div class="text-field-wrapper">
     <label>שמור בדיקה</label>
     <label class="my-btn save-btn" (click)="saveTest()">שמור</label>
   </div>
@@ -81,30 +92,25 @@
                  [rows]="lab.tests"
                  [columns]="columns"
                  headerClass="'table-header'">
-    <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow>
+    <ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow>
       <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-        <div style="overflow-y: scroll;height:80px">
-          <div *ngFor="let st of filterOther(row.subTests)">
-            <span style="font-weight: bold">{{scrollBars.labTests[row.test].children[st].heb}}</span> :
-            תוצאות:
-            {{row.results[st].result}}
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            תחום מוצהר:
-            {{row.results[st].area}}
-          </div>
-          <div *ngIf="row.other">
-            <span style="font-weight: bold">{{row.other}}</span> :
-            תוצאות:
-            {{row.results.other.result}}
-            &nbsp;
-            &nbsp;
-            &nbsp;
-            תחום מוצהר:
-            {{row.results.other.area}}
-          </div>
-        </div>
+        <table style="width:50%">
+          <tr>
+            <th>תת-בדיקה</th>
+            <th>תוצאה</th>
+            <th>תחום מוצהר</th>
+          </tr>
+          <tr *ngFor="let st of filterOther(row.subTests)">
+            <td>{{getSubTestHebName(row.test, st.name)}}</td>
+            <td>{{st.result}}</td>
+            <td>{{st.area}}</td>
+          </tr>
+          <tr *ngIf="row.otherSubTestName">
+            <td>{{row.otherSubTestName}}</td>
+            <td>{{row.otherResult}}</td>
+            <td>{{row.otherArea}}</td>
+          </tr>
+        </table>
       </ng-template>
     </ngx-datatable-row-detail>
   </ngx-datatable>
@@ -131,7 +137,11 @@
 </ng-template>
 
 <ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
-  <i style="cursor:pointer;" class="fa fa-trash" aria-hidden="true" (click)="deleteTest(rowIndex)"></i>
+  <i style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="deleteTest(rowIndex)"></i>
+</ng-template>
+
+<ng-template #editTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <i style="cursor:pointer;" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" (click)="editTest(rowIndex)"></i>
 </ng-template>
 
 

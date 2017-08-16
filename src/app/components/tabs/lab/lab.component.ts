@@ -38,6 +38,7 @@ export class LabComponent implements OnInit {
   @ViewChild('dateTemplate') dateTemplate: TemplateRef<any>;
   @ViewChild('filesTemplate') filesTemplate: TemplateRef<any>;
   @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
+  @ViewChild('editTemplate') editTemplate: TemplateRef<any>;
   @ViewChild('fileListViewer') fileListViewer: UploadedFilesComponent;
 
   inputConfig = inputConfig;
@@ -51,11 +52,12 @@ export class LabComponent implements OnInit {
   selectedTest: string[];
   selectedSubTests: string[] = [];
   selectedSubTestsOther: string;
-  testResults: any = {};
   labName: string;
   testDate: Date;
   certNumber: string;
   testFiles: any[] = [];
+
+  addedTests = [];
 
   currentFileList: any[] = [];
 
@@ -73,7 +75,7 @@ export class LabComponent implements OnInit {
       {
         cellTemplate: this.expandBtnTemplate,
         name: 'תוצאות',
-        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 70
       },
       { prop: 'testName', name: 'בדיקה', headerClass: 'table-header', resizeable: false },
       { prop: 'labName', name: 'שם מעבדה', headerClass: 'table-header', resizeable: false },
@@ -89,9 +91,14 @@ export class LabComponent implements OnInit {
         headerClass: 'table-header', cellClass: 'table-header', resizeable: false
       },
       {
+        cellTemplate: this.editTemplate,
+        name: 'עריכה',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
+      },
+      {
         cellTemplate: this.deleteTemplate,
         name: 'מחיקה',
-        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
       }
     ];
   }
@@ -99,7 +106,6 @@ export class LabComponent implements OnInit {
   onTestSelect(test): void {
     if (test.length === 0) {
       this.selectedSubTests = [];
-      this.onSubTestSelected([]);
       return;
     }
     test = test[0];
@@ -112,23 +118,35 @@ export class LabComponent implements OnInit {
     } else {
       this.selectedSubTests = [];
     }
-    this.onSubTestSelected(this.selectedSubTests);
   }
 
-  onSubTestSelected(curSubTests) {
-    curSubTests.forEach((st) => {
-      if (!this.testResults[st]) {
-        this.testResults[st] = {
+
+
+  isIncludesOtherSubtest(subTests) {
+    return subTests.find((st) => {
+      return st.name === 'other';
+    });
+  }
+
+  addTests() {
+    this.addedTests.push({
+      test: this.selectedTest[0],
+      subTests: _.map(this.selectedSubTests, (subTest) => {
+        return {
+          name: subTest,
           result: null,
           area: null
         };
-      }
+      }),
+      otherSubTestName: this.selectedSubTestsOther,
+      otherResult: null,
+      otherArea: null
     });
-    _.forEach(this.testResults, (val, key) => {
-      if (!curSubTests.includes(key)) {
-        delete this.testResults[key];
-      }
-    });
+
+    this.selectedTest = [];
+    this.selectedSubTests = [];
+    this.subTests = [];
+    this.selectedSubTestsOther = null;
   }
 
 
@@ -136,7 +154,7 @@ export class LabComponent implements OnInit {
     if (!subTests) {
       return [];
     }
-    return _.filter(subTests, (test => test !== 'other'));
+    return _.filter(subTests, (test: any) => test.name !== 'other');
   }
 
   onFileUploaded(modelName, event) {
@@ -145,23 +163,26 @@ export class LabComponent implements OnInit {
   }
 
   saveTest() {
-    this.lab.tests.push({
-      test: this.selectedTest[0],
-      testName: this.scrollBars.labTests[this.selectedTest[0]].heb,
-      subTests: this.selectedSubTests,
-      other: this.selectedSubTestsOther,
-      results: this.testResults,
-      labName: this.labName,
-      testDate: this.testDate,
-      certNumber: this.certNumber,
-      testFiles: this.testFiles
+    this.addedTests.forEach(at => {
+      this.lab.tests.push({
+        test: at.test,
+        testName: this.getTestHebName(at.test),
+        subTests: at.subTests,
+        otherSubTestName: at.otherSubTestName,
+        otherResult: at.otherResult,
+        otherArea: at.otherArea,
+        labName: this.labName,
+        testDate: this.testDate,
+        certNumber: this.certNumber,
+        testFiles: this.testFiles
+      });
     });
 
+    this.addedTests = [];
     this.subTests = [];
     this.selectedTest = [];
     this.selectedSubTests = [];
     this.selectedSubTestsOther = null;
-    this.testResults = {};
     this.labName = null;
     this.testDate = null;
     this.certNumber = null;
@@ -186,8 +207,24 @@ export class LabComponent implements OnInit {
     this.lab.tests.splice(index, 1);
   }
 
+  editTest(index) {
+
+  }
+
+  getTestHebName(test) {
+    return scrollBars.labTests[test].heb;
+  }
+
+  getSubTestHebName(test, subTest) {
+    return scrollBars.labTests[test].children[subTest].heb;
+  }
+
+  getHeight(row: any, index: number) {
+    return 40 + row.subTests.length * 20;
+  }
+
   get diagnostic() {
-    return JSON.stringify(this.testResults, null, 4);
+    return JSON.stringify(this.lab, null, 4);
   }
 
 }
