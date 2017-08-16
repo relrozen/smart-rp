@@ -84,6 +84,7 @@
   <div class="text-field-wrapper">
     <label>שמור בדיקה</label>
     <label class="my-btn save-btn" (click)="saveTest()">שמור</label>
+    <label *ngIf="currentlyEditedIndex !== null" class="my-btn save-btn" (click)="cancelEdit()">בטל עריכה</label>
   </div>
 
   <ngx-datatable #myTable

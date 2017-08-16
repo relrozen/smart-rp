@@ -64,6 +64,8 @@ export class LabComponent implements OnInit {
   expanded = {};
   columns: any[];
 
+  currentlyEditedIndex = null;
+
   constructor() {
   }
 
@@ -163,6 +165,10 @@ export class LabComponent implements OnInit {
   }
 
   saveTest() {
+    if (this.currentlyEditedIndex !== null) {
+      this.lab.tests.splice(this.currentlyEditedIndex, 1);
+      this.currentlyEditedIndex = null;
+    }
     this.addedTests.forEach(at => {
       this.lab.tests.push({
         test: at.test,
@@ -187,6 +193,8 @@ export class LabComponent implements OnInit {
     this.testDate = null;
     this.certNumber = null;
     this.testFiles = [];
+
+    this.lab.tests = [...this.lab.tests];
   }
 
   toggleExpandRow(row, rowIndex) {
@@ -208,7 +216,23 @@ export class LabComponent implements OnInit {
   }
 
   editTest(index) {
+    this.currentlyEditedIndex = index;
+    const test = this.lab.tests[index];
+    this.addedTests = [{
+      test: test.test,
+      subTests: test.subTests,
+      otherSubTestName: test.selectedSubTestsOther,
+      otherResult: test.otherResult,
+      otherArea: test.otherArea
+    }];
+    this.labName = test.labName;
+    this.certNumber = test.certNumber;
+    this.testFiles = test.testFiles;
+    this.testDate = test.testDate;
+  }
 
+  cancelEdit() {
+    this.currentlyEditedIndex = null;
   }
 
   getTestHebName(test) {
