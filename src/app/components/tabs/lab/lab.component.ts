@@ -84,13 +84,13 @@ export class LabComponent implements OnInit {
       {
         cellTemplate: this.dateTemplate,
         name: 'תאריך',
-        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 110
       },
-      { prop: 'certNumber', name: 'מספר תעודה', headerClass: 'table-header', resizeable: false },
+      { prop: 'certNumber', name: 'מספר תעודה', headerClass: 'table-header', resizeable: false, width: 100 },
       {
         cellTemplate: this.filesTemplate,
         name: 'קבצים',
-        headerClass: 'table-header', cellClass: 'table-header', resizeable: false
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
       },
       {
         cellTemplate: this.editTemplate,
