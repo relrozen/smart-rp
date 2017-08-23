@@ -1,4 +1,33 @@
 export let scrollBars = {
+  labs: {
+    'machon_letkanim': {'heb': 'מכון לתקנים של חומרי רפואה'},
+    'aminolab': {'heb': 'אמינולב'},
+    'system_labs': {'heb': 'סיסטם מעבדות מתקדמות בע"מ'},
+    'loreal': {'heb': 'לוריאל ישראל בע"מ'},
+    'baktochem': {'heb': 'באקטוכם'},
+    'medivenders': {'heb': 'מדיברנדס'},
+    'food_microbioligy_institue': {'heb': 'מכון מיקרוביולוגיה של מזון'},
+    'fisher_labs': {'heb': 'פישר מעבדות פרמצטיות (תל אביב)'},
+    'henkel_sod_labs': {'heb': 'הנקל סוד (חיפה)'},
+    'agis_yerucham': {'heb': 'אגיס (ירוחם)'},
+    'trima': {'heb': 'תרימה (מעברות)'},
+    'halavin': {'heb': 'מעבדות חלאבין (רעננה)'},
+    'bischool': {'heb': 'ביסקול בע"ם (ראש העין)'},
+    'zahor_dalia': {'heb': 'זהור דליה (קיבוץ דליה)'},
+    'moraz': {'heb': 'מורז צמחי מרפא'},
+    'teva': {'heb': 'טבע תעשיות פרמצבטיות בע"מ'},
+    'rekah': {'heb': 'רקח תעשית תרופות'},
+    'vitamed_binyamina': {'heb': 'ויטמד בינימינה'},
+    'alpha_cosmetics': {'heb': 'אלפא קוסמטיקה'},
+    'tero': {'heb': 'תרו'},
+    'floris': {'heb': 'פלוריס'},
+    'rafa': {'heb': 'מעבדות רפא בע"מ'},
+    'miloda': {'heb': 'מילודע שירותי תעשיות ביולוגיות'},
+    'neotech_korden': {'heb': 'נאוטק קבוצת קורדן'},
+    'shik_cosmetics': {'heb': 'תעשיות תמרוקים שיק בע"מ'},
+    'premier_dead_sea_labs': {'heb': 'פרמייר ים המלח מעבדות קוסמטיקה בע"מ'},
+    'other': {'heb': 'אחר'}
+  },
   labTests: {
     'microbiological_test': {
       'heb': 'בדיקה מיקרוביולוגית',

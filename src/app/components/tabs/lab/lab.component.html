@@ -10,7 +10,22 @@
   </div>
 
   <div class="text-field-wrapper">
-    <label>שם מעבדה</label><input [(ngModel)]="labName" class="large" type="text">
+    <label>שם מעבדה</label>
+    <ss-multiselect-dropdown [options]="labs"
+                             [(ngModel)]="selectedLab"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="large-select">
+    </ss-multiselect-dropdown>
+
+
+    <input *ngIf="selectedLab ? (selectedLab.includes('other')) : false"
+           [(ngModel)]="selectedLabOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן שם מעבדה">
+    <file-upload *ngIf="selectedLab ? (selectedLab.includes('other')) : false" (fileUploaded)="onFileUploaded('labCertification', $event)" [buttonText]="'תעודת הסמכה'"></file-upload>
+    <uploaded-files *ngIf="lab.manSpecificationFiles.length > 0" [filesList]="lab.labCertification"></uploaded-files>
   </div>
 
   <div class="text-field-wrapper">

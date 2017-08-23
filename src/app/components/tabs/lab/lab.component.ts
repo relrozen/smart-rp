@@ -47,12 +47,14 @@ export class LabComponent implements OnInit {
   // options for select boxes
   tests: any[];
   subTests: any[];
+  labs: any[];
 
   // properties for currently added test
   selectedTest: string[];
   selectedSubTests: string[] = [];
   selectedSubTestsOther: string;
-  labName: string;
+  selectedLab: string[] = [];
+  selectedLabOther: string;
   testDate: Date;
   certNumber: string;
   testFiles: any[] = [];
@@ -71,6 +73,9 @@ export class LabComponent implements OnInit {
 
   ngOnInit() {
     this.tests = _.map(scrollBars.labTests, (val, key) => {
+      return {id: key, name: val.heb};
+    });
+    this.labs = _.map(scrollBars.labs, (val, key) => {
       return {id: key, name: val.heb};
     });
     this.columns = [
@@ -177,7 +182,7 @@ export class LabComponent implements OnInit {
         otherSubTestName: at.otherSubTestName,
         otherResult: at.otherResult,
         otherArea: at.otherArea,
-        labName: this.labName,
+        labName: this.selectedLab,
         testDate: this.testDate,
         certNumber: this.certNumber,
         testFiles: this.testFiles
@@ -189,7 +194,7 @@ export class LabComponent implements OnInit {
     this.selectedTest = [];
     this.selectedSubTests = [];
     this.selectedSubTestsOther = null;
-    this.labName = null;
+    this.selectedLab = null;
     this.testDate = null;
     this.certNumber = null;
     this.testFiles = [];
@@ -225,7 +230,7 @@ export class LabComponent implements OnInit {
       otherResult: test.otherResult,
       otherArea: test.otherArea
     }];
-    this.labName = test.labName;
+    this.selectedLab = test.labName;
     this.certNumber = test.certNumber;
     this.testFiles = test.testFiles;
     this.testDate = test.testDate;
