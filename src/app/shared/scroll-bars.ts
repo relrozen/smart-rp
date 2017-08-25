@@ -1,4 +1,246 @@
 export let scrollBars = {
+  packageTypes: {
+    "airless": {
+      "heb": "איירלס",
+      "eng": "Airless"
+    },
+    "aerosol": {
+      "heb": "אירוסול",
+      "eng": "Aerosol"
+    },
+    "ampoule": {
+      "heb": "אמפולה",
+      "eng": "Ampoule"
+    },
+    "vacuum_container": {
+      "heb": "אריזת וואקום",
+      "eng": "Vacuum container"
+    },
+    "pressure_container": {
+      "heb": "אריזת לחץ",
+      "eng": "Pressure container"
+    },
+    "bulk": {
+      "heb": "באלק",
+      "eng": "Bulk"
+    },
+    "blister": {
+      "heb": "בליסטר",
+      "eng": "Blister"
+    },
+    "bottle": {
+      "heb": "בקבוק",
+      "eng": "Bottle"
+    },
+    "godet": {
+      "heb": "גודט",
+      "eng": "Godet"
+    },
+    "gallon": {
+      "heb": "גלון",
+      "eng": "Gallon"
+    },
+    "sample": {
+      "heb": "דוגמית",
+      "eng": "Sample"
+    },
+    "dispenser": {
+      "heb": "דיספנסר",
+      "eng": "Dispenser"
+    },
+    "barrel": {
+      "heb": "חבית",
+      "eng": "Barrel"
+    },
+    "liner": {
+      "heb": "טוש",
+      "eng": "Liner"
+    },
+    "laminate": {
+      "heb": "למינט",
+      "eng": "Laminate"
+    },
+    "wipe": {
+      "heb": "מגבון",
+      "eng": "Wipe"
+    },
+    "tray": {
+      "heb": "מגש",
+      "eng": "Tray"
+    },
+    "container": {
+      "heb": "מיכל",
+      "eng": "Container"
+    },
+    "container_with_a_brush": {
+      "heb": "מיכל + מברשת",
+      "eng": "Container with a brush"
+    },
+    "container_with_a_paintbrush": {
+      "heb": "מיכל + מכחול",
+      "eng": "Container with a paintbrush"
+    },
+    "container_with_sponge_and_a_mirror": {
+      "heb": "מיכל + מראה וספוגית",
+      "eng": "Container with sponge and a mirror"
+    },
+    "container_with_a_sponge": {
+      "heb": "מיכל + ספוגית",
+      "eng": "Container with a sponge"
+    },
+    "container_with_a_stick": {
+      "heb": "מיכל +מקל ספוגי",
+      "eng": "Container with a stick"
+    },
+    "devided_container": {
+      "heb": "מיכל מחולק",
+      "eng": "Devided container"
+    },
+    "rotating_container": {
+      "heb": "מיכל מסתובב",
+      "eng": "Rotating container"
+    },
+    "container_with_a_dripper": {
+      "heb": "מיכל עם מטפטף",
+      "eng": "Container with a dripper"
+    },
+    "container_with_a_pump": {
+      "heb": "מיכל עם משאבה",
+      "eng": "Container with a pump"
+    },
+    "paper_tissues": {
+      "heb": "ממחטות נייר",
+      "eng": "Paper Tissues"
+    },
+    "envelope": {
+      "heb": "מעטפה",
+      "eng": "Envelope"
+    },
+    "stick": {
+      "heb": "סטיק",
+      "eng": "Stick"
+    },
+    "sponge_soaked_in_liquid": {
+      "heb": "ספוג ספוג בנוזל",
+      "eng": "Sponge soaked in liquid"
+    },
+    "sachet": {
+      "heb": "סשט",
+      "eng": "Sachet"
+    },
+    "rotating_pen": {
+      "heb": "עט מסתובב",
+      "eng": "rotating pen"
+    },
+    "pencil": {
+      "heb": "עפרון",
+      "eng": "pencil"
+    },
+    "pencil_+_brush": {
+      "heb": "עפרון עם מברשת",
+      "eng": "pencil + brush"
+    },
+    "peds_in_a_box": {
+      "heb": "פדים בקופסה",
+      "eng": "Peds in a box"
+    },
+    "can": {
+      "heb": "פחית",
+      "eng": "Can"
+    },
+    "flow_pack": {
+      "heb": "פלואו-פק",
+      "eng": "Flow pack"
+    },
+    "razor_blade_stripe": {
+      "heb": "פס בסכין גילוח",
+      "eng": "Razor blade stripe"
+    },
+    "cloth": {
+      "heb": "פסי בד",
+      "eng": "Cloth"
+    },
+    "jar": {
+      "heb": "צנצנת",
+      "eng": "Jar"
+    },
+    "box": {
+      "heb": "קופסה",
+      "eng": "Box"
+    },
+    "capsule": {
+      "heb": "קפסולה",
+      "eng": "Capsule"
+    },
+    "roll_on": {
+      "heb": "רול און",
+      "eng": "Roll on"
+    },
+    "patch": {
+      "heb": "רטיה",
+      "eng": "Patch"
+    },
+    "wax_stripes": {
+      "heb": "רצועות שעווה",
+      "eng": "Wax stripes"
+    },
+    "tube": {
+      "heb": "שפורפרת",
+      "eng": "tube"
+    },
+    "bag": {
+      "heb": "שקית",
+      "eng": "Bag"
+    },
+    "spray": {
+      "heb": "תרסיס",
+      "eng": "spray"
+    },
+    "other": {
+      "heb": "אחר (פרט)",
+      "eng": "Other (specify)"
+    }
+  },
+  sizeUnits: {
+    "gr": {
+      "heb": "גרם",
+      "eng": "gr"
+    },
+    "kg": {
+      "heb": "קילוגרם",
+      "eng": "kg"
+    },
+    "liter": {
+      "heb": "ליטר",
+      "eng": "Liter"
+    },
+    "ml": {
+      "heb": "מיליליטר",
+      "eng": "ml"
+    },
+    "unit": {
+      "heb": "יחידה",
+      "eng": "Unit"
+    },
+    "ton": {
+      "heb": "טון",
+      "eng": "Ton"
+    }
+  },
+  packages: {
+    'outer': {
+      'heb': 'חיצונית',
+      'eng': 'Outer'
+    },
+    'inner': {
+      'heb': 'פנימית',
+      'eng': 'Inner'
+    },
+    'single': {
+      'heb': 'בודדת',
+      'eng': 'Single'
+    }
+  },
   labs: {
     'machon_letkanim': {'heb': 'מכון לתקנים של חומרי רפואה'},
     'aminolab': {'heb': 'אמינולב'},

@@ -1,3 +1,118 @@
-<p>
-  packaging works!
-</p>
+<div>
+  <div class="text-field-wrapper">
+    <label class="title">הוספת אריזה חדשה</label>
+  </div>
+  <div class="text-field-wrapper">
+    <label>אריזה</label>
+    <ss-multiselect-dropdown [options]="packages"
+                             [(ngModel)]="pkg"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+  </div>
+  <div class="text-field-wrapper">
+    <label>תאור/גוון</label><input [(ngModel)]="description" class="large" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>ברקוד</label><input [(ngModel)]="barcode" class="large" type="text">
+  </div>
+  <div class="text-field-wrapper">
+    <label>סוג אריזה</label>
+    <ss-multiselect-dropdown [options]="packageTypes"
+                             [(ngModel)]="packageType"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="large-select">
+    </ss-multiselect-dropdown>
+    <input *ngIf="packageType ? (packageType.includes('other')) : false"
+           [(ngModel)]="packageTypeOther"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן סוג אריזה">
+  </div>
+  <div class="text-field-wrapper">
+    <label>קיבולת אריזה</label><input [(ngModel)]="capacity" class="large" type="text">
+    <ss-multiselect-dropdown [options]="sizeUnits"
+                             [(ngModel)]="sizeUnit"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="medium-select">
+    </ss-multiselect-dropdown>
+  </div>
+  <div class="text-field-wrapper">
+    <label>הרכב חומר אריזה</label><input [(ngModel)]="packageMaterial" class="large" type="text">
+    <file-upload (fileUploaded)="onFileUploaded('packageMaterialSpecFiles', $event)" [buttonText]="'צרף מפרט'"></file-upload>
+    <uploaded-files *ngIf="packageMaterialSpecFiles.length > 0" [filesList]="packageMaterialSpecFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper">
+    <label>קובץ ספסיפיקציות</label>
+    <file-upload (fileUploaded)="onFileUploaded('specificationsFile', $event)"></file-upload>
+    <uploaded-files *ngIf="specificationsFile.length > 0" [filesList]="specificationsFile"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper">
+    <label>תצלום אריזה</label>
+    <file-upload (fileUploaded)="onFileUploaded('photoFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="photoFiles.length > 0" [filesList]="photoFiles"></uploaded-files>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="recycled" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      ממוחזר
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="foodGrade" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      תואם food grade
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="heavyMetals" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      מתכות כבדות (עבור א. מתכת)
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="fatalities" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      הצהרת פתאלטים (עבור א. פלסטיק)
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="leakage" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      הצהרת יציבות צבעים/חומרים דולפים
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="migration" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      בדיקת נדידה
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="crm" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      הצהרת CMR
+    </label>
+  </div>
+  <div class="checkbox indent-right">
+    <label>
+      <input type="checkbox" [(ngModel)]="sealed" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      אטימות סגירה (מיכל לחץ)
+    </label>
+  </div>
+
+
+
+  <div style="direction: ltr">{{diagnostic}}</div>
+</div>
