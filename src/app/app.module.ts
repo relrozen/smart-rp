@@ -28,6 +28,7 @@ import { LabelComponent } from './components/tabs/label/label.component';
 import { MarketingComponent } from './components/tabs/marketing/marketing.component';
 import { ConsumersComponent } from './components/tabs/consumers/consumers.component';
 import { MiscComponent } from './components/tabs/misc/misc.component';
+import { ActionsComponent } from './components/tabs/actions/actions.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { MiscComponent } from './components/tabs/misc/misc.component';
     LabelComponent,
     MarketingComponent,
     ConsumersComponent,
-    MiscComponent
+    MiscComponent,
+    ActionsComponent
   ],
   imports: [
     HttpModule,

@@ -26,8 +26,8 @@ export interface IProduct {
     shelfLife?: string[];
     shelfLifeExpiration?: string;
     shelfLifePoa?: string;
-    oneTimeUse?: Boolean;
-    airTight?: Boolean;
+    oneTimeUse?: boolean;
+    airTight?: boolean;
     shelfLifeOther?: boolean;
     shelfLifeOtherText?: string;
     shelfLifeFiles?: IFile[];
@@ -39,6 +39,18 @@ export interface IProduct {
     gmpFiles?: IFile[];
   };
   formula?: {};
+  actions?: {
+    manufacturing: boolean;
+    filling: boolean;
+    packaging: boolean;
+    storage: boolean;
+    distribution: boolean;
+    other: boolean;
+    otherText: string;
+    privateLabel: boolean;
+    privateLabelText: string;
+    privateLabelFiles: IFile[];
+  };
   packaging?: {};
   lab?: {};
   label?: {};

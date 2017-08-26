@@ -45,36 +45,41 @@ export class CosCreateComponent implements OnInit {
     },
     {
       id: 3,
+      hebText: 'פעולות בתמרוק',
+      longText: true
+    },
+    {
+      id: 4,
       hebText: 'אריזות',
       longText: false
     },
     {
-      id: 4,
+      id: 5,
       hebText: 'מעבדה',
       longText: false
     },
     {
-      id: 5,
+      id: 6,
       hebText: 'תיווי',
       longText: false
     },
     {
-      id: 6,
+      id: 7,
       hebText: 'טענות שיווקיות',
       longText: true
     },
     {
-      id: 7,
+      id: 8,
       hebText: 'הערכת בטיחות',
       longText: true
     },
     {
-      id: 8,
+      id: 9,
       hebText: 'פניות צרכנים',
       longText: true
     },
     {
-      id: 9,
+      id: 10,
       hebText: 'שונות',
       longText: false
     },
@@ -119,6 +124,18 @@ export class CosCreateComponent implements OnInit {
         countryOther: null,
         certOfFreeSaleFiles: [],
         gmpFiles: []
+      },
+      actions: {
+        manufacturing: false,
+        filling: false,
+        packaging: false,
+        storage: false,
+        distribution: false,
+        other: false,
+        otherText: null,
+        privateLabel: false,
+        privateLabelText: null,
+        privateLabelFiles: []
       },
       safety: {
         safetyAssessorName: null,

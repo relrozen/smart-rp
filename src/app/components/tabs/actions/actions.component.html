@@ -1,0 +1,72 @@
+<div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.manufacturing" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+ייצור
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.filling" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+מילוי
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.packaging" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+אריזה
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.storage" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+אחסון
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.distribution" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+הפצה
+    </label>
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.other" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      אחר
+    </label>
+    <input *ngIf="actions.other"
+           [(ngModel)]="actions.otherText"
+           [@myAnimation]
+           type="text"
+           placeholder="הזן אחר"
+           class="large">
+  </div>
+
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" [(ngModel)]="actions.privateLabel" value="">
+      <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+      Private label
+    </label>
+    <input *ngIf="actions.privateLabel"
+           [(ngModel)]="actions.privateLabelText"
+           [@myAnimation]
+           type="text"
+           placeholder="פרט"
+           class="large">
+    <file-upload *ngIf="actions.privateLabel" (fileUploaded)="onFileUploaded('privateLabelFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
+    <uploaded-files *ngIf="actions.privateLabelFiles.length > 0" [filesList]="actions.privateLabelFiles"></uploaded-files>
+  </div>
+</div>
