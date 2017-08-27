@@ -84,7 +84,9 @@ export class CosCreateComponent implements OnInit {
       longText: false
     },
   ];
-  constructor(private productService: ProductService) {}
+
+  constructor(private productService: ProductService) {
+  }
 
 
   ngOnInit() {
@@ -156,6 +158,67 @@ export class CosCreateComponent implements OnInit {
       lab: {
         tests: [],
         manSpecificationFiles: []
+      },
+      marketing: {
+        isSunProtection: false,
+        isBroadSpectrum: false,
+        spf: null,
+        spfFiles: [],
+        uva: null,
+        uvaFiles: [],
+        isWaterResistant: false,
+        waterResistantFiles: [],
+        isVeryWaterResistant: false,
+        veryWaterResistantFiles: [],
+        isJellyProtection: false,
+        jellyProtectionFiles: [],
+        isHypoalergenic: false,
+        hypoalergenicFiles: [],
+        isSensitiveSkin: false,
+        sensitiveSkinFiles: [],
+        isDermaTested: false,
+        dermaTestedFiles: [],
+        isOplaTested: false,
+        oplaTested: [],
+        isNonComodogenic: false,
+        nonComodogenicFiles: [],
+        isAntiPerspirant: false,
+        antiPerspirantAi: [],
+        antiPerspirantFiles: [],
+        isSweatPrevention: false,
+        sweatPreventionAi: [],
+        sweatPreventionFiles: [],
+        isMouthHygiene: false,
+        fluoridResults: null,
+        fluoridResultsFiles: [],
+        teethWhitening: null,
+        teethWhiteningFiles: [],
+        decayPrevention: null,
+        decayPreventionFiles: [],
+        isSkinLightening: false,
+        skinLighteningAi: [],
+        skinLighteningFiles: [],
+        isAntiDandruff: false,
+        antiDandruffAi: [],
+        antiDandruffFiles: [],
+        isSelfTan: false,
+        selfTanAi: [],
+        selfTanFiles: [],
+        isLackOf: null,
+        lackOfFiles: [],
+        isContainsIng: false,
+        containsIng: [],
+        containsIngFiles: [],
+        isProof: false,
+        proofMaterials: [],
+        proofMaterialsFiles: [],
+        isOrganic: false,
+        organicFiles: [],
+        isAntiAging: false,
+        antiAgingFiles: [],
+        isOther: false,
+        otherAi: [],
+        otherFiles: [],
       }
     };
   }
@@ -170,7 +233,8 @@ export class CosCreateComponent implements OnInit {
         this.currentProductId = product._id;
       });
     } else {
-      this.productService.updateProduct(this.currentProductId, this.product).subscribe(event => {});
+      this.productService.updateProduct(this.currentProductId, this.product).subscribe(event => {
+      });
     }
   }
 
