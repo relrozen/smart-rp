@@ -47,8 +47,8 @@
   </div>
   <div class="text-field-wrapper">
     <label>קובץ ספסיפיקציות</label>
-    <file-upload (fileUploaded)="onFileUploaded('specificationsFile', $event)"></file-upload>
-    <uploaded-files *ngIf="specificationsFile.length > 0" [filesList]="specificationsFile"></uploaded-files>
+    <file-upload (fileUploaded)="onFileUploaded('specificationsFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="specificationsFiles.length > 0" [filesList]="specificationsFiles"></uploaded-files>
   </div>
   <div class="text-field-wrapper">
     <label>תצלום אריזה</label>
@@ -111,8 +111,70 @@
       אטימות סגירה (מיכל לחץ)
     </label>
   </div>
+  <div class="text-field-wrapper">
+    <label>מסמך יצרן</label>
+    <file-upload (fileUploaded)="onFileUploaded('manufacturerFiles', $event)"></file-upload>
+    <uploaded-files *ngIf="manufacturerFiles.length > 0" [filesList]="manufacturerFiles"></uploaded-files>
+  </div>
+  <div class="text-field-wrapper">
+    <label>שמור אריזה</label>
+    <button class="btn my-btn" (click)="savePackage()">שמור</button>
+  </div>
 
+  <ngx-datatable #myTable
+                 class="material"
+                 [columnMode]="'standard'"
+                 [rows]="packaging.packages"
+                 [columns]="columns"
+                 style="margin-bottom: 150px;"
+                 headerClass="'table-header'">
+    <ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow>
+      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+        <table style="width:50%">
+          <tr>
+            <td>הרכב חומר אריזה</td>
+            <td>{{row.packageMaterial}}</td>
+          </tr>
+          <tr>
+            <td>מפרט הרכב חומר אריזה</td>
+            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.packageMaterialSpecFiles)"></td>
+          </tr>
+        </table>
+      </ng-template>
+    </ngx-datatable-row-detail>
+  </ngx-datatable>
 
+  <ng-template #expandBtnTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+    <a
+      href="#"
+      [class.datatable-icon-left]="!expanded[rowIndex]"
+      [class.datatable-icon-down]="expanded[rowIndex]"
+      title="Expand/Collapse Row"
+      (click)="toggleExpandRow(row, rowIndex)">
+    </a>
+  </ng-template>
+
+  <ng-template #packageTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+    {{scrollBars.packages[row.pkg[0]].heb}}
+  </ng-template>
+
+  <ng-template #packageTypeTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+    {{row.packageType[0] !== 'other' ? scrollBars.packageTypes[row.packageType[0]].heb : row.packageTypeOther}}
+  </ng-template>
+
+  <ng-template #capacityTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+    {{row.capacity}} {{scrollBars.sizeUnits[row.sizeUnit[0]].heb}}
+  </ng-template>
+
+  <ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+    <i style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="deletePackage(rowIndex)"></i>
+  </ng-template>
+
+  <ng-template #editTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+    <i style="cursor:pointer;" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" (click)="editPackage(rowIndex)"></i>
+  </ng-template>
+
+  <uploaded-files [hideIcon]="true" #fileListViewer [filesList]="currentFileList"></uploaded-files>
 
   <div style="direction: ltr">{{diagnostic}}</div>
 </div>

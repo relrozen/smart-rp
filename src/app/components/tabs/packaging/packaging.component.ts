@@ -33,6 +33,16 @@ declare let moment: any;
 export class PackagingComponent implements OnInit {
   @Input() packaging;
 
+  @ViewChild('myTable') table: any;
+  @ViewChild('expandBtnTemplate') expandBtnTemplate: TemplateRef<any>;
+  @ViewChild('packageTemplate') packageTemplate: TemplateRef<any>;
+  @ViewChild('packageTypeTemplate') packageTypeTemplate: TemplateRef<any>;
+  @ViewChild('capacityTemplate') capacityTemplate: TemplateRef<any>;
+  @ViewChild('filesTemplate') filesTemplate: TemplateRef<any>;
+  @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
+  @ViewChild('editTemplate') editTemplate: TemplateRef<any>;
+  @ViewChild('fileListViewer') fileListViewer: UploadedFilesComponent;
+
   inputConfig = inputConfig;
   scrollBars = scrollBars;
 
@@ -51,7 +61,7 @@ export class PackagingComponent implements OnInit {
   sizeUnit: string[];
   packageMaterial: string;
   packageMaterialSpecFiles: any[] = [];
-  specificationsFile: any[] = [];
+  specificationsFiles: any[] = [];
   photoFiles: any[] = [];
   recycled: boolean;
   foodGrade: boolean;
@@ -63,6 +73,11 @@ export class PackagingComponent implements OnInit {
   sealed: boolean;
   manufacturerFiles: any[] = [];
 
+  expanded = {};
+  columns: any[];
+  currentlyEditedIndex = null;
+
+  currentFileList: any[] = [];
 
   constructor() { }
 
@@ -76,6 +91,123 @@ export class PackagingComponent implements OnInit {
     this.sizeUnits = _.map(scrollBars.sizeUnits, (val, key) => {
       return {id: key, name: val.heb};
     });
+
+    this.columns = [
+      {
+        cellTemplate: this.expandBtnTemplate,
+        name: 'הרחב',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 70
+      },
+      {
+        cellTemplate: this.packageTemplate,
+        name: 'אריזה',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 70
+      },
+      { prop: 'description', name: 'תיאור/גוון', headerClass: 'table-header', resizeable: false },
+      { prop: 'barcode', name: 'ברקוד', headerClass: 'table-header', resizeable: false },
+      {
+        cellTemplate: this.packageTypeTemplate,
+        name: 'סוג אריזה',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 70
+      },
+      {
+        cellTemplate: this.capacityTemplate,
+        name: 'קיבולת',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 70
+      },
+      {
+        cellTemplate: this.editTemplate,
+        name: 'עריכה',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
+      },
+      {
+        cellTemplate: this.deleteTemplate,
+        name: 'מחיקה',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
+      }
+    ];
+  }
+
+  savePackage() {
+    if (this.currentlyEditedIndex !== null) {
+      this.packaging.packages.splice(this.currentlyEditedIndex, 1);
+      this.currentlyEditedIndex = null;
+    }
+
+    this.packaging.packages.push({
+      pkg: this.pkg,
+      description: this.description,
+      barcode: this.barcode,
+      packageType: this.packageType,
+      packageTypeOther: this.packageTypeOther,
+      capacity: this.capacity,
+      sizeUnit: this.sizeUnit,
+      packageMaterial: this.packageMaterial,
+      packageMaterialSpecFiles: this.packageMaterialSpecFiles,
+      specificationsFile: this.specificationsFiles,
+      photoFiles: this.photoFiles,
+      recycled: this.recycled,
+      foodGrade: this.foodGrade,
+      heavyMetals: this.heavyMetals,
+      fatalities: this.fatalities,
+      leakage: this.leakage,
+      migration: this.migration,
+      crm: this.crm,
+      sealed: this.sealed,
+      manufacturerFiles: this.manufacturerFiles
+    });
+
+    this.pkg = null;
+    this.description = null;
+    this.barcode = null;
+    this.packageType = null;
+    this.packageTypeOther = null;
+    this.capacity = null;
+    this.sizeUnit = null;
+    this.packageMaterial = null;
+    this.packageMaterialSpecFiles = [];
+    this.specificationsFiles = [];
+    this.photoFiles = [];
+    this.recycled = null;
+    this.foodGrade = null;
+    this.heavyMetals = null;
+    this.fatalities = null;
+    this.leakage = null;
+    this.migration = null;
+    this.crm = null;
+    this.sealed = null;
+    this.manufacturerFiles = [];
+
+    this.packaging.packages = [...this.packaging.packages];
+  }
+
+  deletePackage(index) {
+    this.packaging.packages.splice(index, 1);
+  }
+
+  editPackage(index) {
+    this.currentlyEditedIndex = index;
+    const p = this.packaging.packages[index];
+    this.pkg = p.pkg;
+    this.description = p.description;
+    this.barcode = p.barcode;
+    this.packageType = p.packageType;
+    this.packageTypeOther = p.packageTypeOther;
+    this.capacity = p.capacity;
+    this.sizeUnit = p.sizeUnit;
+    this.packageMaterial = p.packageMaterial;
+    this.packageMaterialSpecFiles = p.packageMaterialSpecFiles;
+    this.specificationsFiles = p.specificationsFiles;
+    this.photoFiles = p.photoFiles;
+    this.recycled = p.recycled;
+    this.foodGrade = p.foodGrade;
+    this.heavyMetals = p.heavyMetals;
+    this.fatalities = p.fatalities;
+    this.leakage = p.leakage;
+    this.migration = p.migration;
+    this.crm = p.crm;
+    this.sealed = p.sealed;
+    this.manufacturerFiles = p.manufacturerFiles;
   }
 
 
@@ -86,5 +218,23 @@ export class PackagingComponent implements OnInit {
   onFileUploaded(modelName, event) {
     event.uploadDate = moment(event.uploadDate).format('D/M/YYYY-HH:mm');
     this[modelName].push(event);
+  }
+
+  toggleExpandRow(row, rowIndex) {
+    if (this.expanded[rowIndex]) {
+      this.expanded[rowIndex] = !this.expanded[rowIndex];
+    } else {
+      this.expanded[rowIndex] = true;
+    }
+    this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  showFiles(files) {
+    this.currentFileList = files;
+    this.fileListViewer.openUploadedFiles();
+  }
+
+  getHeight(row: any, index: number) {
+    return 500;
   }
 }

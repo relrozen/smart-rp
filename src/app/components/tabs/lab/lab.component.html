@@ -72,7 +72,7 @@
            [@myAnimation]
            type="text"
            placeholder="הזן אחר">
-    <label class="my-btn save-btn" (click)="addTests()">הוסף בדיקות</label>
+    <button class="btn my-btn" (click)="addTests()">הוסף בדיקות</button>
   </div>
 
   <div *ngFor="let addedTest of addedTests let i = index" class="text-field-wrapper">
@@ -98,8 +98,8 @@
 
   <div class="text-field-wrapper">
     <label>שמור בדיקה</label>
-    <label class="my-btn save-btn" (click)="saveTest()">שמור</label>
-    <label *ngIf="currentlyEditedIndex !== null" class="my-btn save-btn" (click)="cancelEdit()">בטל עריכה</label>
+    <button class="btn my-btn" (click)="saveTest()">שמור</button>
+    <button *ngIf="currentlyEditedIndex !== null" class="btn my-btn" (click)="cancelEdit()">בטל עריכה</button>
   </div>
 
   <ngx-datatable #myTable
@@ -133,7 +133,7 @@
   </ngx-datatable>
 
 </div>
-<!--<div style="direction: ltr">{{diagnostic}}</div>-->
+<div style="direction: ltr">{{diagnostic}}</div>
 
 <ng-template #expandBtnTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
   <a

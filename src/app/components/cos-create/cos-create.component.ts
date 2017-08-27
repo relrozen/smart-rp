@@ -1,6 +1,6 @@
 import {Component, trigger, transition, style, animate, state, OnInit} from '@angular/core';
 import {IProduct} from '../../models/product';
-import {IFile} from "../../models/file";
+import {IFile} from '../../models/file';
 import {ProductService} from '../../services/product.service';
 
 @Component({
@@ -218,7 +218,10 @@ export class CosCreateComponent implements OnInit {
         antiAgingFiles: [],
         isOther: false,
         otherAi: [],
-        otherFiles: [],
+        otherFiles: []
+      },
+      packaging: {
+        packages: []
       }
     };
   }

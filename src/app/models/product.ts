@@ -51,8 +51,13 @@ export interface IProduct {
     privateLabelText: string;
     privateLabelFiles: IFile[];
   };
-  packaging?: {};
-  lab?: {};
+  packaging?: {
+    packages?: any[]
+  };
+  lab?: {
+    tests?: any[];
+    manSpecificationFiles?: any[];
+  };
   label?: {};
   marketing?: {
     isSunProtection: boolean;

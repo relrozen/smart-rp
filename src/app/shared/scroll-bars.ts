@@ -1,230 +1,230 @@
 export let scrollBars = {
   packageTypes: {
-    "airless": {
-      "heb": "איירלס",
-      "eng": "Airless"
+    'airless': {
+      'heb': 'איירלס',
+      'eng': 'Airless'
     },
-    "aerosol": {
-      "heb": "אירוסול",
-      "eng": "Aerosol"
+    'aerosol': {
+      'heb': 'אירוסול',
+      'eng': 'Aerosol'
     },
-    "ampoule": {
-      "heb": "אמפולה",
-      "eng": "Ampoule"
+    'ampoule': {
+      'heb': 'אמפולה',
+      'eng': 'Ampoule'
     },
-    "vacuum_container": {
-      "heb": "אריזת וואקום",
-      "eng": "Vacuum container"
+    'vacuum_container': {
+      'heb': 'אריזת וואקום',
+      'eng': 'Vacuum container'
     },
-    "pressure_container": {
-      "heb": "אריזת לחץ",
-      "eng": "Pressure container"
+    'pressure_container': {
+      'heb': 'אריזת לחץ',
+      'eng': 'Pressure container'
     },
-    "bulk": {
-      "heb": "באלק",
-      "eng": "Bulk"
+    'bulk': {
+      'heb': 'באלק',
+      'eng': 'Bulk'
     },
-    "blister": {
-      "heb": "בליסטר",
-      "eng": "Blister"
+    'blister': {
+      'heb': 'בליסטר',
+      'eng': 'Blister'
     },
-    "bottle": {
-      "heb": "בקבוק",
-      "eng": "Bottle"
+    'bottle': {
+      'heb': 'בקבוק',
+      'eng': 'Bottle'
     },
-    "godet": {
-      "heb": "גודט",
-      "eng": "Godet"
+    'godet': {
+      'heb': 'גודט',
+      'eng': 'Godet'
     },
-    "gallon": {
-      "heb": "גלון",
-      "eng": "Gallon"
+    'gallon': {
+      'heb': 'גלון',
+      'eng': 'Gallon'
     },
-    "sample": {
-      "heb": "דוגמית",
-      "eng": "Sample"
+    'sample': {
+      'heb': 'דוגמית',
+      'eng': 'Sample'
     },
-    "dispenser": {
-      "heb": "דיספנסר",
-      "eng": "Dispenser"
+    'dispenser': {
+      'heb': 'דיספנסר',
+      'eng': 'Dispenser'
     },
-    "barrel": {
-      "heb": "חבית",
-      "eng": "Barrel"
+    'barrel': {
+      'heb': 'חבית',
+      'eng': 'Barrel'
     },
-    "liner": {
-      "heb": "טוש",
-      "eng": "Liner"
+    'liner': {
+      'heb': 'טוש',
+      'eng': 'Liner'
     },
-    "laminate": {
-      "heb": "למינט",
-      "eng": "Laminate"
+    'laminate': {
+      'heb': 'למינט',
+      'eng': 'Laminate'
     },
-    "wipe": {
-      "heb": "מגבון",
-      "eng": "Wipe"
+    'wipe': {
+      'heb': 'מגבון',
+      'eng': 'Wipe'
     },
-    "tray": {
-      "heb": "מגש",
-      "eng": "Tray"
+    'tray': {
+      'heb': 'מגש',
+      'eng': 'Tray'
     },
-    "container": {
-      "heb": "מיכל",
-      "eng": "Container"
+    'container': {
+      'heb': 'מיכל',
+      'eng': 'Container'
     },
-    "container_with_a_brush": {
-      "heb": "מיכל + מברשת",
-      "eng": "Container with a brush"
+    'container_with_a_brush': {
+      'heb': 'מיכל + מברשת',
+      'eng': 'Container with a brush'
     },
-    "container_with_a_paintbrush": {
-      "heb": "מיכל + מכחול",
-      "eng": "Container with a paintbrush"
+    'container_with_a_paintbrush': {
+      'heb': 'מיכל + מכחול',
+      'eng': 'Container with a paintbrush'
     },
-    "container_with_sponge_and_a_mirror": {
-      "heb": "מיכל + מראה וספוגית",
-      "eng": "Container with sponge and a mirror"
+    'container_with_sponge_and_a_mirror': {
+      'heb': 'מיכל + מראה וספוגית',
+      'eng': 'Container with sponge and a mirror'
     },
-    "container_with_a_sponge": {
-      "heb": "מיכל + ספוגית",
-      "eng": "Container with a sponge"
+    'container_with_a_sponge': {
+      'heb': 'מיכל + ספוגית',
+      'eng': 'Container with a sponge'
     },
-    "container_with_a_stick": {
-      "heb": "מיכל +מקל ספוגי",
-      "eng": "Container with a stick"
+    'container_with_a_stick': {
+      'heb': 'מיכל +מקל ספוגי',
+      'eng': 'Container with a stick'
     },
-    "devided_container": {
-      "heb": "מיכל מחולק",
-      "eng": "Devided container"
+    'devided_container': {
+      'heb': 'מיכל מחולק',
+      'eng': 'Devided container'
     },
-    "rotating_container": {
-      "heb": "מיכל מסתובב",
-      "eng": "Rotating container"
+    'rotating_container': {
+      'heb': 'מיכל מסתובב',
+      'eng': 'Rotating container'
     },
-    "container_with_a_dripper": {
-      "heb": "מיכל עם מטפטף",
-      "eng": "Container with a dripper"
+    'container_with_a_dripper': {
+      'heb': 'מיכל עם מטפטף',
+      'eng': 'Container with a dripper'
     },
-    "container_with_a_pump": {
-      "heb": "מיכל עם משאבה",
-      "eng": "Container with a pump"
+    'container_with_a_pump': {
+      'heb': 'מיכל עם משאבה',
+      'eng': 'Container with a pump'
     },
-    "paper_tissues": {
-      "heb": "ממחטות נייר",
-      "eng": "Paper Tissues"
+    'paper_tissues': {
+      'heb': 'ממחטות נייר',
+      'eng': 'Paper Tissues'
     },
-    "envelope": {
-      "heb": "מעטפה",
-      "eng": "Envelope"
+    'envelope': {
+      'heb': 'מעטפה',
+      'eng': 'Envelope'
     },
-    "stick": {
-      "heb": "סטיק",
-      "eng": "Stick"
+    'stick': {
+      'heb': 'סטיק',
+      'eng': 'Stick'
     },
-    "sponge_soaked_in_liquid": {
-      "heb": "ספוג ספוג בנוזל",
-      "eng": "Sponge soaked in liquid"
+    'sponge_soaked_in_liquid': {
+      'heb': 'ספוג ספוג בנוזל',
+      'eng': 'Sponge soaked in liquid'
     },
-    "sachet": {
-      "heb": "סשט",
-      "eng": "Sachet"
+    'sachet': {
+      'heb': 'סשט',
+      'eng': 'Sachet'
     },
-    "rotating_pen": {
-      "heb": "עט מסתובב",
-      "eng": "rotating pen"
+    'rotating_pen': {
+      'heb': 'עט מסתובב',
+      'eng': 'rotating pen'
     },
-    "pencil": {
-      "heb": "עפרון",
-      "eng": "pencil"
+    'pencil': {
+      'heb': 'עפרון',
+      'eng': 'pencil'
     },
-    "pencil_+_brush": {
-      "heb": "עפרון עם מברשת",
-      "eng": "pencil + brush"
+    'pencil_+_brush': {
+      'heb': 'עפרון עם מברשת',
+      'eng': 'pencil + brush'
     },
-    "peds_in_a_box": {
-      "heb": "פדים בקופסה",
-      "eng": "Peds in a box"
+    'peds_in_a_box': {
+      'heb': 'פדים בקופסה',
+      'eng': 'Peds in a box'
     },
-    "can": {
-      "heb": "פחית",
-      "eng": "Can"
+    'can': {
+      'heb': 'פחית',
+      'eng': 'Can'
     },
-    "flow_pack": {
-      "heb": "פלואו-פק",
-      "eng": "Flow pack"
+    'flow_pack': {
+      'heb': 'פלואו-פק',
+      'eng': 'Flow pack'
     },
-    "razor_blade_stripe": {
-      "heb": "פס בסכין גילוח",
-      "eng": "Razor blade stripe"
+    'razor_blade_stripe': {
+      'heb': 'פס בסכין גילוח',
+      'eng': 'Razor blade stripe'
     },
-    "cloth": {
-      "heb": "פסי בד",
-      "eng": "Cloth"
+    'cloth': {
+      'heb': 'פסי בד',
+      'eng': 'Cloth'
     },
-    "jar": {
-      "heb": "צנצנת",
-      "eng": "Jar"
+    'jar': {
+      'heb': 'צנצנת',
+      'eng': 'Jar'
     },
-    "box": {
-      "heb": "קופסה",
-      "eng": "Box"
+    'box': {
+      'heb': 'קופסה',
+      'eng': 'Box'
     },
-    "capsule": {
-      "heb": "קפסולה",
-      "eng": "Capsule"
+    'capsule': {
+      'heb': 'קפסולה',
+      'eng': 'Capsule'
     },
-    "roll_on": {
-      "heb": "רול און",
-      "eng": "Roll on"
+    'roll_on': {
+      'heb': 'רול און',
+      'eng': 'Roll on'
     },
-    "patch": {
-      "heb": "רטיה",
-      "eng": "Patch"
+    'patch': {
+      'heb': 'רטיה',
+      'eng': 'Patch'
     },
-    "wax_stripes": {
-      "heb": "רצועות שעווה",
-      "eng": "Wax stripes"
+    'wax_stripes': {
+      'heb': 'רצועות שעווה',
+      'eng': 'Wax stripes'
     },
-    "tube": {
-      "heb": "שפורפרת",
-      "eng": "tube"
+    'tube': {
+      'heb': 'שפורפרת',
+      'eng': 'tube'
     },
-    "bag": {
-      "heb": "שקית",
-      "eng": "Bag"
+    'bag': {
+      'heb': 'שקית',
+      'eng': 'Bag'
     },
-    "spray": {
-      "heb": "תרסיס",
-      "eng": "spray"
+    'spray': {
+      'heb': 'תרסיס',
+      'eng': 'spray'
     },
-    "other": {
-      "heb": "אחר (פרט)",
-      "eng": "Other (specify)"
+    'other': {
+      'heb': 'אחר (פרט)',
+      'eng': 'Other (specify)'
     }
   },
   sizeUnits: {
-    "gr": {
-      "heb": "גרם",
-      "eng": "gr"
+    'gr': {
+      'heb': 'גרם',
+      'eng': 'gr'
     },
-    "kg": {
-      "heb": "קילוגרם",
-      "eng": "kg"
+    'kg': {
+      'heb': 'קילוגרם',
+      'eng': 'kg'
     },
-    "liter": {
-      "heb": "ליטר",
-      "eng": "Liter"
+    'liter': {
+      'heb': 'ליטר',
+      'eng': 'Liter'
     },
-    "ml": {
-      "heb": "מיליליטר",
-      "eng": "ml"
+    'ml': {
+      'heb': 'מיליליטר',
+      'eng': 'ml'
     },
-    "unit": {
-      "heb": "יחידה",
-      "eng": "Unit"
+    'unit': {
+      'heb': 'יחידה',
+      'eng': 'Unit'
     },
-    "ton": {
-      "heb": "טון",
-      "eng": "Ton"
+    'ton': {
+      'heb': 'טון',
+      'eng': 'Ton'
     }
   },
   packages: {

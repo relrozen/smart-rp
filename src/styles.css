@@ -196,12 +196,13 @@ div.checkbox>label{
 }
 
 label.my-btn,
-div.my-btn {
+div.my-btn,
+button.my-btn {
 	display: inline-block;
 	height: 32px;
 	width: 125px;
 	background-color: #50b4fd;
-	color: white;
+	color: white !important;
 	line-height: 32px;
 	text-align: center;
 	vertical-align: middle;
@@ -209,11 +210,14 @@ div.my-btn {
 	padding: 0 !important;
 	font-weight: 500;
 	margin: 0;
+  border-radius: 0;
 }
 
 label.my-btn:hover,
-div.my-btn:hover {
+div.my-btn:hover,
+button.my-btn:hover{
 	opacity: 0.8;
+  color: white;
 }
 
 input[type="text"] {
