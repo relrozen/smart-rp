@@ -31,7 +31,7 @@ export class CosCreateComponent implements OnInit {
   product: IProduct;
   currentProductId: number = null;
 
-  selectedTab = 3;
+  selectedTab = 7;
   tabs = [
     {
       id: 1,
@@ -179,7 +179,7 @@ export class CosCreateComponent implements OnInit {
         isDermaTested: false,
         dermaTestedFiles: [],
         isOplaTested: false,
-        oplaTested: [],
+        oplaTestedFiles: [],
         isNonComodogenic: false,
         nonComodogenicFiles: [],
         isAntiPerspirant: false,
@@ -191,9 +191,9 @@ export class CosCreateComponent implements OnInit {
         isMouthHygiene: false,
         fluoridResults: null,
         fluoridResultsFiles: [],
-        teethWhitening: null,
+        teethWhiteningAi: [],
         teethWhiteningFiles: [],
-        decayPrevention: null,
+        decayPreventionAi: [],
         decayPreventionFiles: [],
         isSkinLightening: false,
         skinLighteningAi: [],

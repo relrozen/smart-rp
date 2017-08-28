@@ -79,7 +79,7 @@ export interface IProduct {
     isDermaTested: boolean;
     dermaTestedFiles: IFile[];
     isOplaTested: boolean;
-    oplaTested: IFile[];
+    oplaTestedFiles: IFile[];
     isNonComodogenic: boolean;
     nonComodogenicFiles: IFile[];
     isAntiPerspirant: boolean;
@@ -91,9 +91,9 @@ export interface IProduct {
     isMouthHygiene: boolean;
     fluoridResults: string;
     fluoridResultsFiles: IFile[];
-    teethWhitening: string;
+    teethWhiteningAi: string[];
     teethWhiteningFiles: IFile[];
-    decayPrevention: string;
+    decayPreventionAi: string[];
     decayPreventionFiles: IFile[];
     isSkinLightening: boolean;
     skinLighteningAi: string[];
