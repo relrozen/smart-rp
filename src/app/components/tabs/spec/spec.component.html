@@ -149,6 +149,7 @@
       לשימוש חד פעמי
     </label>
   </div>
+  <br/>
   <div class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="spec.airTight" value="">
@@ -156,6 +157,7 @@
       אריזות אטומות לאויר
     </label>
   </div>
+  <br/>
 
   <div class="checkbox indent-right">
     <label>
@@ -169,6 +171,8 @@
 			<uploaded-files *ngIf="spec.shelfLifeFiles.length" [filesList]="spec.shelfLifeFiles"></uploaded-files>
 		</span>
   </div>
+  <br/>
+
   <div class="text-field-wrapper">
     <label>שיטת קידוד אצווה</label>
     <file-upload (fileUploaded)="onFileUploaded('batchCodeMethodFiles', $event)"></file-upload>
