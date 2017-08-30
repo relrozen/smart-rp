@@ -124,6 +124,11 @@ span.cr.rtl {
 	margin-right: 0;
 	margin-left: 5px;
 }
+
+.checkbox {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
 /* end checkbox css */
 
 /* inputs unified sizes */
@@ -151,6 +156,18 @@ label, input {
 	display: inline-block;
 	vertical-align: middle;
 	font-size: 14px;
+}
+
+label.title-label {
+
+}
+
+.inner-input-label {
+  display: inline-block;
+  font-weight: 500;
+  margin-left: 10px;
+  margin-bottom: 0;
+  width: 90px;
 }
 
 textarea {
@@ -191,8 +208,8 @@ textarea {
 }
 
 div.checkbox>label{
-	padding-top: 6px;
-	padding-bottom: 6px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 label.my-btn,

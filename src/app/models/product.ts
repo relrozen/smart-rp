@@ -104,7 +104,8 @@ export interface IProduct {
     isSelfTan: boolean;
     selfTanAi: string[];
     selfTanFiles: IFile[];
-    isLackOf: string;
+    isLackOf: boolean;
+    lackOf: string;
     lackOfFiles: IFile[];
     isContainsIng: boolean;
     containsIng: string[];
