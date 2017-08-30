@@ -173,6 +173,7 @@
   </div>
   <div *ngIf="marketing.isAntiPerspirant" [@myAnimation] class="indent-right">
     <br/>
+    <label class="inner-input-label">שם רכיב פעיל</label>
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.antiPerspirantAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
@@ -196,6 +197,7 @@
   </div>
   <div *ngIf="marketing.isSweatPrevention" [@myAnimation] class="indent-right">
     <br/>
+    <label class="inner-input-label">שם רכיב פעיל</label>
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.sweatPreventionAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
@@ -353,6 +355,7 @@
   </div>
   <div *ngIf="marketing.isContainsIng" [@myAnimation] class="indent-right">
     <br/>
+    <label class="inner-input-label">שם רכיב</label>
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.containsIng"
                              [settings]="inputConfig.multiSelectSettingsWithSearch"
@@ -376,6 +379,7 @@
   </div>
   <div *ngIf="marketing.isProof" [@myAnimation] class="indent-right">
     <br/>
+    <label class="inner-input-label">שם רכיב</label>
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.proofMaterials"
                              [settings]="inputConfig.multiSelectSettingsWithSearch"
