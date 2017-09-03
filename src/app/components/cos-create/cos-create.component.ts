@@ -31,7 +31,7 @@ export class CosCreateComponent implements OnInit {
   product: IProduct;
   currentProductId: number = null;
 
-  selectedTab = 7;
+  selectedTab = 4;
   tabs = [
     {
       id: 1,
@@ -218,7 +218,7 @@ export class CosCreateComponent implements OnInit {
         isAntiAging: false,
         antiAgingFiles: [],
         isOther: false,
-        otherAi: [],
+        other: null,
         otherFiles: []
       },
       packaging: {

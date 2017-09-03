@@ -128,6 +128,10 @@ export class PackagingComponent implements OnInit {
     ];
   }
 
+  cancelEdit() {
+    this.currentlyEditedIndex = null;
+  }
+
   savePackage() {
     if (this.currentlyEditedIndex !== null) {
       this.packaging.packages.splice(this.currentlyEditedIndex, 1);
@@ -144,7 +148,7 @@ export class PackagingComponent implements OnInit {
       sizeUnit: this.sizeUnit,
       packageMaterial: this.packageMaterial,
       packageMaterialSpecFiles: this.packageMaterialSpecFiles,
-      specificationsFile: this.specificationsFiles,
+      specificationsFiles: this.specificationsFiles,
       photoFiles: this.photoFiles,
       recycled: this.recycled,
       foodGrade: this.foodGrade,
@@ -235,6 +239,41 @@ export class PackagingComponent implements OnInit {
   }
 
   getHeight(row: any, index: number) {
-    return 500;
+    let size = 40;
+    if (row.packageMaterial) {
+      size += 20;
+    }
+    if (row.packageMaterialSpecFiles && row.packageMaterialSpecFiles > 0) {
+      size += 24;
+    }
+    if (row.photoFiles && row.photoFiles > 0) {
+      size += 24;
+    }
+
+    if (row.recycled) {
+      size += 20;
+    }
+    if (row.foodGrade) {
+      size += 20;
+    }
+    if (row.heavyMetals) {
+      size += 20;
+    }
+    if (row.fatalities) {
+      size += 20;
+    }
+    if (row.leakage) {
+      size += 20;
+    }
+    if (row.migration) {
+      size += 20;
+    }
+    if (row.sealed) {
+      size += 20;
+    }
+    if (row.manufacturerFiles && row.manufacturerFiles > 0) {
+      size += 24;
+    }
+    return size;
   }
 }

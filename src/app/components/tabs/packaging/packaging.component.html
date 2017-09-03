@@ -3,6 +3,9 @@
     <label class="title">הוספת אריזה חדשה</label>
   </div>
   <div class="text-field-wrapper">
+    <label>תאור/גוון</label><input [(ngModel)]="description" class="large" type="text">
+  </div>
+  <div class="text-field-wrapper">
     <label>אריזה</label>
     <ss-multiselect-dropdown [options]="packages"
                              [(ngModel)]="pkg"
@@ -10,9 +13,6 @@
                              [texts]="inputConfig.selectBoxTexts"
                              class="medium-select">
     </ss-multiselect-dropdown>
-  </div>
-  <div class="text-field-wrapper">
-    <label>תאור/גוון</label><input [(ngModel)]="description" class="large" type="text">
   </div>
   <div class="text-field-wrapper">
     <label>ברקוד</label><input [(ngModel)]="barcode" class="large" type="text">
@@ -127,6 +127,7 @@
   <div class="text-field-wrapper">
     <label>שמור אריזה</label>
     <button class="btn my-btn" (click)="savePackage()">שמור</button>
+    <button *ngIf="currentlyEditedIndex !== null" class="btn my-btn" (click)="cancelEdit()">בטל עריכה</button>
   </div>
 
   <ngx-datatable #myTable
@@ -143,10 +144,47 @@
             <td>הרכב חומר אריזה</td>
             <td>{{row.packageMaterial}}</td>
           </tr>
-          <tr>
+          <tr *ngIf="row.packageMaterialSpecFiles && row.packageMaterialSpecFiles.length">
             <td>מפרט הרכב חומר אריזה</td>
             <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.packageMaterialSpecFiles)"></td>
           </tr>
+          <tr *ngIf="row.specificationsFiles && row.specificationsFiles.length">
+            <td>קובץ ספסיפיקציות</td>
+            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.specificationsFiles)"></td>
+          </tr>
+          <tr *ngIf="row.photoFiles && row.photoFiles.length">
+            <td>תצלום אריזה</td>
+            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.photoFiles)"></td>
+          </tr>
+          <tr *ngIf="row.recycled">
+            <td>ממוחזר</td>
+          </tr>
+          <tr *ngIf="row.foodGrade">
+            <td>תואם food grade</td>
+          </tr>
+          <tr *ngIf="row.heavyMetals">
+            <td>מתכות כבדות (עבור א. מתכת)</td>
+          </tr>
+          <tr *ngIf="row.fatalities">
+            <td>הצהרת פתאלטים (עבור א. פלסטיק)</td>
+          </tr>
+          <tr *ngIf="row.leakage">
+            <td>הצהרת יציבות צבעים/חומרים דולפים</td>
+          </tr>
+          <tr *ngIf="row.migration">
+            <td>בדיקת נדידה</td>
+          </tr>
+          <tr *ngIf="row.crm">
+            <td>הצהרת CMR</td>
+          </tr>
+          <tr *ngIf="row.sealed">
+            <td>אטימות סגירה (מיכל לחץ)</td>
+          </tr>
+          <tr *ngIf="row.manufacturerFiles && row.manufacturerFiles.length">
+            <td>מסמך יצרן</td>
+            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.manufacturerFiles)"></td>
+          </tr>
+
         </table>
       </ng-template>
     </ngx-datatable-row-detail>
@@ -184,5 +222,5 @@
 
   <uploaded-files [hideIcon]="true" #fileListViewer [filesList]="currentFileList"></uploaded-files>
 
-  <div style="direction: ltr">{{diagnostic}}</div>
+  <!--<div style="direction: ltr">{{diagnostic}}</div>-->
 </div>

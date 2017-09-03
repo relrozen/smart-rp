@@ -20,12 +20,12 @@
       </label>
     </div>
     <br/>
-    <label class="inner-input-label">SPF</label><input [(ngModel)]="marketing.spf" class="small" type="text">
+    <label class="inner-input-label">SPF</label><input [(ngModel)]="marketing.spf" class="small" type="text" placeholder="הזן ערך">
     <file-upload (fileUploaded)="onFileUploaded('spfFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
     <uploaded-files *ngIf="marketing.spfFiles.length > 0" [filesList]="marketing.spfFiles"></uploaded-files>
     <br/>
     <br/>
-    <label class="inner-input-label">UVA</label><input [(ngModel)]="marketing.uva" class="small" type="text">
+    <label class="inner-input-label">UVA</label><input [(ngModel)]="marketing.uva" class="small" type="text" placeholder="הזן ערך">
     <file-upload (fileUploaded)="onFileUploaded('uvaFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
     <uploaded-files *ngIf="marketing.uvaFiles.length > 0" [filesList]="marketing.uvaFiles"></uploaded-files>
   </div>
@@ -45,17 +45,23 @@
     <br/>
     <file-upload (fileUploaded)="onFileUploaded('waterResistantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
     <uploaded-files *ngIf="marketing.waterResistantFiles.length > 0" [filesList]="marketing.waterResistantFiles"></uploaded-files>
-    <br/>
-    <br/>
+  </div>
+
+  <br/>
+
+  <div class="checkbox-section">
     <div class="checkbox">
       <label>
         <input type="checkbox" [(ngModel)]="marketing.isVeryWaterResistant" value="">
         <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-        Very Water Resistanat
+        Very Water Resistant
       </label>
-      <file-upload (fileUploaded)="onFileUploaded('veryWaterResistantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
-      <uploaded-files *ngIf="marketing.veryWaterResistantFiles.length > 0" [filesList]="marketing.veryWaterResistantFiles"></uploaded-files>
     </div>
+  </div>
+  <div *ngIf="marketing.isVeryWaterResistant" [@myAnimation] class="indent-right">
+    <br/>
+    <file-upload (fileUploaded)="onFileUploaded('veryWaterResistantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
+    <uploaded-files *ngIf="marketing.veryWaterResistantFiles.length > 0" [filesList]="marketing.veryWaterResistantFiles"></uploaded-files>
   </div>
 
   <br/>
@@ -177,7 +183,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.antiPerspirantAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('antiPerspirantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -201,7 +207,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.sweatPreventionAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('sweatPreventionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -232,7 +238,7 @@
       <ss-multiselect-dropdown [options]="formula"
                                [(ngModel)]="marketing.teethWhiteningAi"
                                [settings]="inputConfig.singleSelectSettingsWithSearch"
-                               [texts]="inputConfig.selectBoxTexts"
+                               [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                                class="large-select">
       </ss-multiselect-dropdown>
       <file-upload (fileUploaded)="onFileUploaded('teethWhiteningFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -244,7 +250,7 @@
       <ss-multiselect-dropdown [options]="formula"
                                [(ngModel)]="marketing.decayPreventionAi"
                                [settings]="inputConfig.singleSelectSettingsWithSearch"
-                               [texts]="inputConfig.selectBoxTexts"
+                               [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                                class="large-select">
       </ss-multiselect-dropdown>
       <file-upload (fileUploaded)="onFileUploaded('decayPreventionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -269,7 +275,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.skinLighteningAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('skinLighteningFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -293,7 +299,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.antiDandruffAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('antiDandruffFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -317,7 +323,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.selfTanAi"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיב מהפורמולה'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('selfTanFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -359,7 +365,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.containsIng"
                              [settings]="inputConfig.multiSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר רכיבים מהפורמולה'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('containsIngFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -373,7 +379,7 @@
       <label>
         <input type="checkbox" [(ngModel)]="marketing.isProof" value="">
         <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-        הוכחת פעילות מרכיבים:
+        הוכחת פעילות מרכיבים
       </label>
     </div>
   </div>
@@ -383,7 +389,7 @@
     <ss-multiselect-dropdown [options]="formula"
                              [(ngModel)]="marketing.proofMaterials"
                              [settings]="inputConfig.multiSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
+                             [texts]="_.assign({}, inputConfig.selectBoxTexts, { defaultTitle: 'בחר חומרי גלם'})"
                              class="large-select">
     </ss-multiselect-dropdown>
     <file-upload (fileUploaded)="onFileUploaded('proofMaterialsFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
@@ -437,249 +443,8 @@
   </div>
   <div *ngIf="marketing.isOther" [@myAnimation] class="indent-right">
     <br/>
-    <ss-multiselect-dropdown [options]="formula"
-                             [(ngModel)]="marketing.otherAi"
-                             [settings]="inputConfig.multiSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
-                             class="large-select">
-    </ss-multiselect-dropdown>
+    <label class="inner-input-label">הזן אחר</label><textarea [(ngModel)]="marketing.other" class="large" ></textarea>
     <file-upload (fileUploaded)="onFileUploaded('otherFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>
     <uploaded-files *ngIf="marketing.otherFiles.length > 0" [filesList]="marketing.otherFiles"></uploaded-files>
   </div>
-
-
-
-
-
-  <!--<div class="text-field-wrapper">-->
-    <!--<div class="checkbox">-->
-      <!--<label>-->
-        <!--<input type="checkbox" [(ngModel)]="marketing.isJellyProtection" value="">-->
-        <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-        <!--הגנה מפני צריבת מדוזות-->
-      <!--</label>-->
-    <!--</div>-->
-    <!--<ss-multiselect-dropdown *ngIf="marketing.isJellyProtection"-->
-                             <!--[options]="formula"-->
-                             <!--[(ngModel)]="marketing.teethWhiteningAi"-->
-                             <!--[settings]="inputConfig.singleSelectSettingsWithSearch"-->
-                             <!--[texts]="inputConfig.selectBoxTexts"-->
-                             <!--class="large-select indent-right">-->
-    <!--</ss-multiselect-dropdown>-->
-    <!--<file-upload *ngIf="marketing.isJellyProtection" (fileUploaded)="onFileUploaded('jellyProtectionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.jellyProtectionFiles.length > 0" [filesList]="marketing.jellyProtectionFiles"></uploaded-files>-->
-  <!--</div>-->
-  <!--<div class="text-field-wrapper">-->
-    <!--<div class="checkbox">-->
-      <!--<label>-->
-        <!--<input type="checkbox" [(ngModel)]="marketing.isJellyProtection" value="">-->
-        <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-        <!--הגנה מפני צריבת מדוזות-->
-      <!--</label>-->
-      <!--<ss-multiselect-dropdown *ngIf="marketing.isJellyProtection"-->
-                               <!--[options]="formula"-->
-                               <!--[(ngModel)]="marketing.teethWhiteningAi"-->
-                               <!--[settings]="inputConfig.singleSelectSettingsWithSearch"-->
-                               <!--[texts]="inputConfig.selectBoxTexts"-->
-                               <!--class="large-select">-->
-      <!--</ss-multiselect-dropdown>-->
-      <!--<file-upload *ngIf="marketing.isJellyProtection" (fileUploaded)="onFileUploaded('jellyProtectionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.jellyProtectionFiles.length > 0" [filesList]="marketing.jellyProtectionFiles"></uploaded-files>-->
-    <!--</div>-->
-  <!--</div>-->
-  <!--<div class="text-field-wrapper">-->
-    <!--<div class="checkbox">-->
-      <!--<label>-->
-        <!--<input type="checkbox" [(ngModel)]="marketing.isJellyProtection" value="">-->
-        <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-        <!--הגנה מפני צריבת מדוזות-->
-      <!--</label>-->
-      <!--<file-upload *ngIf="marketing.isJellyProtection" (fileUploaded)="onFileUploaded('jellyProtectionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.jellyProtectionFiles.length > 0" [filesList]="marketing.jellyProtectionFiles"></uploaded-files>-->
-    <!--</div>-->
-  <!--</div>-->
-
-
-
-
-
-
-  <!--<div class="text-field-wrapper">-->
-    <!--<div class="checkbox">-->
-        <!--<label>-->
-          <!--<input type="checkbox" [(ngModel)]="marketing.isSunProtection" value="">-->
-          <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-          <!--הגנה מפני קרני השמש-->
-        <!--</label>-->
-    <!--</div>-->
-      <!--<div class="checkbox">-->
-        <!--<label>-->
-          <!--<input type="checkbox" [(ngModel)]="marketing.isBroadSpectrum" value="">-->
-          <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-          <!--Broad Spectrum-->
-        <!--</label>-->
-      <!--</div>-->
-      <!--<div class="text-field-wrapper">-->
-        <!--<label>שם המוצר (עברית)</label><input [(ngModel)]="spec.hebName" class="small" type="text">-->
-      <!--</div>-->
-      <!--<label>SPF</label><input [(ngModel)]="marketing.spf" class="small" type="text">-->
-      <!--<file-upload (fileUploaded)="onFileUploaded('spfFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.spfFiles.length > 0" [filesList]="marketing.spfFiles"></uploaded-files>-->
-      <!--<br/>-->
-      <!--<br/>-->
-      <!--<label>UVA</label><input [(ngModel)]="marketing.uva" class="small" type="text">-->
-      <!--<file-upload (fileUploaded)="onFileUploaded('uvaFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.uvaFiles.length > 0" [filesList]="marketing.uvaFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isWaterResistant" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--Water Resistant-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isWaterResistant" (fileUploaded)="onFileUploaded('waterResistantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.waterResistantFiles.length > 0" [filesList]="marketing.waterResistantFiles"></uploaded-files>-->
-    <!--&nbsp;-->
-    <!--&nbsp;-->
-    <!--<span *ngIf="marketing.isWaterResistant">-->
-      <!--<label>-->
-        <!--<input type="checkbox" [(ngModel)]="marketing.isVeryWaterResistant" value="">-->
-        <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-        <!--Very Water Resistant-->
-      <!--</label>-->
-      <!--<file-upload *ngIf="marketing.isVeryWaterResistant" (fileUploaded)="onFileUploaded('veryWaterResistantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.veryWaterResistantFiles.length > 0" [filesList]="marketing.veryWaterResistantFiles"></uploaded-files>-->
-    <!--</span>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isJellyProtection" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--הגנה מפני צריבת מדוזות-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isJellyProtection" (fileUploaded)="onFileUploaded('jellyProtectionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.jellyProtectionFiles.length > 0" [filesList]="marketing.jellyProtectionFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isHypoalergenic" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--היפואלרגני-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isHypoalergenic" (fileUploaded)="onFileUploaded('hypoalergenicFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.hypoalergenicFiles.length > 0" [filesList]="marketing.hypoalergenicFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isSensitiveSkin" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--עור רגיש-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isSensitiveSkin" (fileUploaded)="onFileUploaded('sensitiveSkinFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.sensitiveSkinFiles.length > 0" [filesList]="marketing.sensitiveSkinFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isDermaTested" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--נבדק דרמטולוגית-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isDermaTested" (fileUploaded)="onFileUploaded('dermaTestedFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.dermaTestedFiles.length > 0" [filesList]="marketing.dermaTestedFiles"></uploaded-files>-->
-  <!--</div>-->
-
-    <!--<div class="checkbox">-->
-      <!--<label>-->
-        <!--<input type="checkbox" [(ngModel)]="marketing.isOplaTested" value="">-->
-        <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-        <!--נבדק אופלטלמולוגית-->
-      <!--</label>-->
-      <!--<file-upload *ngIf="marketing.isOplaTested" (fileUploaded)="onFileUploaded('oplaTestedFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.oplaTestedFiles.length > 0" [filesList]="marketing.oplaTestedFiles"></uploaded-files>-->
-    <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isNonComodogenic" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--נון קומודוגני-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isNonComodogenic" (fileUploaded)="onFileUploaded('nonComodogenicFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.nonComodogenicFiles.length > 0" [filesList]="marketing.nonComodogenicFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="text-field-wrapper">-->
-    <!--<span class="checkbox">-->
-      <!--<label>-->
-        <!--<input type="checkbox" [(ngModel)]="marketing.isAntiPerspirant" value="">-->
-        <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-        <!--ANTIPERSPIRANT-->
-      <!--</label>-->
-    <!--</span>-->
-    <!--<ss-multiselect-dropdown *ngIf="marketing.isAntiPerspirant"-->
-                             <!--[options]="formula"-->
-                             <!--[(ngModel)]="marketing.teethWhiteningAi"-->
-                             <!--[settings]="inputConfig.singleSelectSettingsWithSearch"-->
-                             <!--[texts]="inputConfig.selectBoxTexts"-->
-                             <!--class="large-select indent-right">-->
-    <!--</ss-multiselect-dropdown>-->
-    <!--<file-upload *ngIf="marketing.isAntiPerspirant" (fileUploaded)="onFileUploaded('antiPerspirantFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.antiPerspirantFiles.length > 0" [filesList]="marketing.antiPerspirantFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isSweatPrevention" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--למניעת ריח זיעה-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isSweatPrevention" (fileUploaded)="onFileUploaded('sweatPreventionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.sweatPreventionFiles.length > 0" [filesList]="marketing.sweatPreventionFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isSweatPrevention" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--למניעת ריח זיעה-->
-    <!--</label>-->
-    <!--<file-upload *ngIf="marketing.isSweatPrevention" (fileUploaded)="onFileUploaded('sweatPreventionFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-    <!--<uploaded-files *ngIf="marketing.sweatPreventionFiles.length > 0" [filesList]="marketing.sweatPreventionFiles"></uploaded-files>-->
-  <!--</div>-->
-
-  <!--<div class="checkbox">-->
-    <!--<label>-->
-      <!--<input type="checkbox" [(ngModel)]="marketing.isMouthHygiene" value="">-->
-      <!--<span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>-->
-      <!--מוצרי הגיינת הפה-->
-    <!--</label>-->
-    <!--<div *ngIf="marketing.isMouthHygiene" class="indent-right">-->
-      <!--<br/>-->
-      <!--<label>תוצאת בדיקת פלואוריד</label><input [(ngModel)]="marketing.fluoridResults" class="small" type="text">-->
-      <!--<file-upload (fileUploaded)="onFileUploaded('fluoridResultsFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-      <!--<uploaded-files *ngIf="marketing.fluoridResultsFiles.length > 0" [filesList]="marketing.fluoridResultsFiles"></uploaded-files>-->
-      <!--<br/>-->
-      <!--<br/>-->
-      <!--<label>הלבנת השיניים</label>-->
-      <!--<div class="select-wrapper">-->
-        <!--<ss-multiselect-dropdown [options]="formula"-->
-                                 <!--[(ngModel)]="marketing.teethWhiteningAi"-->
-                                 <!--[settings]="inputConfig.singleSelectSettingsWithSearch"-->
-                                 <!--[texts]="inputConfig.selectBoxTexts"-->
-                                 <!--class="large-select">-->
-        <!--</ss-multiselect-dropdown>-->
-        <!--<file-upload (fileUploaded)="onFileUploaded('fluoridResultsFiles', $event)" [buttonText]="'צרף מסמך'"></file-upload>-->
-        <!--<uploaded-files *ngIf="marketing.fluoridResultsFiles.length > 0" [filesList]="marketing.fluoridResultsFiles"></uploaded-files>-->
-      <!--</div>-->
-
-    <!--</div>-->
-  <!--</div>-->
-
-
-
 </div>

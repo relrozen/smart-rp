@@ -1,6 +1,7 @@
 import {animate, Component, Input, OnInit, style, TemplateRef, transition, trigger, ViewChild} from '@angular/core';
 import { inputConfig} from '../../../shared/input-config';
 declare let moment: any;
+import * as _ from 'lodash';
 
 
 @Component({
@@ -33,6 +34,8 @@ export class MarketingComponent implements OnInit {
   formula = [{id: 1, name: 'סתם'}, {id: 2, name: 'סתם2'}];
 
   inputConfig = inputConfig;
+
+  _ = _;
 
   constructor() { }
 

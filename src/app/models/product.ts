@@ -118,7 +118,7 @@ export interface IProduct {
     isAntiAging: boolean;
     antiAgingFiles: IFile[];
     isOther: boolean;
-    otherAi: string[];
+    other: string;
     otherFiles: IFile[];
 
   };
