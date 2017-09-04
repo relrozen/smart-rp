@@ -40,7 +40,7 @@
                              class="medium-select">
     </ss-multiselect-dropdown>
   </div>
-  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="text-field-wrapper">
+  <div *ngIf="pkg[0]" class="text-field-wrapper">
     <label>הרכב חומר אריזה</label><input [(ngModel)]="packageMaterial" class="large" type="text">
     <file-upload (fileUploaded)="onFileUploaded('packageMaterialSpecFiles', $event)" [buttonText]="'צרף מפרט'"></file-upload>
     <uploaded-files *ngIf="packageMaterialSpecFiles.length > 0" [filesList]="packageMaterialSpecFiles"></uploaded-files>
