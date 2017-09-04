@@ -14,10 +14,10 @@
                              class="medium-select">
     </ss-multiselect-dropdown>
   </div>
-  <div class="text-field-wrapper">
+  <div *ngIf="pkg[0]" class="text-field-wrapper">
     <label>ברקוד</label><input [(ngModel)]="barcode" class="large" type="text">
   </div>
-  <div class="text-field-wrapper">
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="text-field-wrapper">
     <label>סוג אריזה</label>
     <ss-multiselect-dropdown [options]="packageTypes"
                              [(ngModel)]="packageType"
@@ -31,7 +31,7 @@
            type="text"
            placeholder="הזן סוג אריזה">
   </div>
-  <div class="text-field-wrapper">
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="text-field-wrapper">
     <label>קיבולת אריזה</label><input [(ngModel)]="capacity" class="large" type="text">
     <ss-multiselect-dropdown [options]="sizeUnits"
                              [(ngModel)]="sizeUnit"
@@ -40,22 +40,22 @@
                              class="medium-select">
     </ss-multiselect-dropdown>
   </div>
-  <div class="text-field-wrapper">
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="text-field-wrapper">
     <label>הרכב חומר אריזה</label><input [(ngModel)]="packageMaterial" class="large" type="text">
     <file-upload (fileUploaded)="onFileUploaded('packageMaterialSpecFiles', $event)" [buttonText]="'צרף מפרט'"></file-upload>
     <uploaded-files *ngIf="packageMaterialSpecFiles.length > 0" [filesList]="packageMaterialSpecFiles"></uploaded-files>
   </div>
-  <div class="text-field-wrapper">
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="text-field-wrapper">
     <label>קובץ ספסיפיקציות</label>
     <file-upload (fileUploaded)="onFileUploaded('specificationsFiles', $event)"></file-upload>
     <uploaded-files *ngIf="specificationsFiles.length > 0" [filesList]="specificationsFiles"></uploaded-files>
   </div>
-  <div class="text-field-wrapper">
+  <div *ngIf="pkg[0]" class="text-field-wrapper">
     <label>תצלום אריזה</label>
     <file-upload (fileUploaded)="onFileUploaded('photoFiles', $event)"></file-upload>
     <uploaded-files *ngIf="photoFiles.length > 0" [filesList]="photoFiles"></uploaded-files>
   </div>
-  <div class="checkbox indent-right">
+  <div *ngIf="pkg[0]" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="recycled" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
@@ -63,63 +63,63 @@
     </label>
   </div>
   <br/>
-  <div class="checkbox indent-right">
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="foodGrade" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       תואם food grade
     </label>
   </div>
-  <br/>
-  <div class="checkbox indent-right">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="heavyMetals" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       מתכות כבדות (עבור א. מתכת)
     </label>
   </div>
-  <br/>
-  <div class="checkbox indent-right">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="fatalities" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       הצהרת פתאלטים (עבור א. פלסטיק)
     </label>
   </div>
-  <br/>
-  <div class="checkbox indent-right">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="leakage" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       הצהרת יציבות צבעים/חומרים דולפים
     </label>
   </div>
-  <br/>
-  <div class="checkbox indent-right">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="migration" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       בדיקת נדידה
     </label>
   </div>
-  <br/>
-  <div class="checkbox indent-right">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="crm" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       הצהרת CMR
     </label>
   </div>
-  <br/>
-  <div class="checkbox indent-right">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="checkbox indent-right">
     <label>
       <input type="checkbox" [(ngModel)]="sealed" value="">
       <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
       אטימות סגירה (מיכל לחץ)
     </label>
   </div>
-  <br/>
-  <div class="text-field-wrapper">
+  <br *ngIf="pkg[0]=='inner' || pkg[0]=='single'"/>
+  <div *ngIf="pkg[0]=='inner' || pkg[0]=='single'" class="text-field-wrapper">
     <label>מסמך יצרן</label>
     <file-upload (fileUploaded)="onFileUploaded('manufacturerFiles', $event)"></file-upload>
     <uploaded-files *ngIf="manufacturerFiles.length > 0" [filesList]="manufacturerFiles"></uploaded-files>
@@ -205,11 +205,13 @@
   </ng-template>
 
   <ng-template #packageTypeTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
-    {{row.packageType[0] !== 'other' ? scrollBars.packageTypes[row.packageType[0]].heb : row.packageTypeOther}}
+    {{row.packageType && row.packageType[0] !== 'other' ? scrollBars.packageTypes[row.packageType[0]].heb : row.packageTypeOther}}
   </ng-template>
 
   <ng-template #capacityTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
-    {{row.capacity}} {{scrollBars.sizeUnits[row.sizeUnit[0]].heb}}
+    <div *ngIf="row.sizeUnit.length > 0">
+      {{row.capacity}} {{scrollBars.sizeUnits[row.sizeUnit[0]].heb}}
+    </div>
   </ng-template>
 
   <ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">

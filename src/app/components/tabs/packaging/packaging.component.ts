@@ -52,25 +52,25 @@ export class PackagingComponent implements OnInit {
   sizeUnits: any[];
 
   // properties for currently added packaging item
-  pkg: string[];
+  pkg: string[] = [];
   description: string;
-  barcode: string;
+  barcode: string = null;
   packageType: string[];
-  packageTypeOther: string;
-  capacity: string;
-  sizeUnit: string[];
-  packageMaterial: string;
+  packageTypeOther: string = null;
+  capacity: string = null;
+  sizeUnit: string[] = [];
+  packageMaterial: string = null;
   packageMaterialSpecFiles: any[] = [];
   specificationsFiles: any[] = [];
   photoFiles: any[] = [];
-  recycled: boolean;
-  foodGrade: boolean;
-  heavyMetals: boolean;
-  fatalities: boolean;
-  leakage: boolean;
-  migration: boolean;
-  crm: boolean;
-  sealed: boolean;
+  recycled = false;
+  foodGrade = false;
+  heavyMetals = false;
+  fatalities = false;
+  leakage = false;
+  migration = false;
+  crm = false;
+  sealed = false;
   manufacturerFiles: any[] = [];
 
   expanded = {};
@@ -130,6 +130,26 @@ export class PackagingComponent implements OnInit {
 
   cancelEdit() {
     this.currentlyEditedIndex = null;
+    this.pkg = [];
+    this.description = null;
+    this.barcode = null;
+    this.packageType = [];
+    this.packageTypeOther = null;
+    this.capacity = null;
+    this.sizeUnit = [];
+    this.packageMaterial = null;
+    this.packageMaterialSpecFiles = [];
+    this.specificationsFiles = [];
+    this.photoFiles = [];
+    this.recycled = false;
+    this.foodGrade = false;
+    this.heavyMetals = false;
+    this.fatalities = false;
+    this.leakage = false;
+    this.migration = false;
+    this.crm = false;
+    this.sealed = false;
+    this.manufacturerFiles = [];
   }
 
   savePackage() {
@@ -161,25 +181,25 @@ export class PackagingComponent implements OnInit {
       manufacturerFiles: this.manufacturerFiles
     });
 
-    this.pkg = null;
+    this.pkg = [];
     this.description = null;
     this.barcode = null;
-    this.packageType = null;
+    this.packageType = [];
     this.packageTypeOther = null;
     this.capacity = null;
-    this.sizeUnit = null;
+    this.sizeUnit = [];
     this.packageMaterial = null;
     this.packageMaterialSpecFiles = [];
     this.specificationsFiles = [];
     this.photoFiles = [];
-    this.recycled = null;
-    this.foodGrade = null;
-    this.heavyMetals = null;
-    this.fatalities = null;
-    this.leakage = null;
-    this.migration = null;
-    this.crm = null;
-    this.sealed = null;
+    this.recycled = false;
+    this.foodGrade = false;
+    this.heavyMetals = false;
+    this.fatalities = false;
+    this.leakage = false;
+    this.migration = false;
+    this.crm = false;
+    this.sealed = false;
     this.manufacturerFiles = [];
 
     this.packaging.packages = [...this.packaging.packages];
@@ -239,14 +259,14 @@ export class PackagingComponent implements OnInit {
   }
 
   getHeight(row: any, index: number) {
-    let size = 40;
+    let size = 60;
     if (row.packageMaterial) {
       size += 20;
     }
-    if (row.packageMaterialSpecFiles && row.packageMaterialSpecFiles > 0) {
+    if (row.packageMaterialSpecFiles && row.packageMaterialSpecFiles.length > 0) {
       size += 24;
     }
-    if (row.photoFiles && row.photoFiles > 0) {
+    if (row.photoFiles && row.photoFiles.length > 0) {
       size += 24;
     }
 
@@ -271,7 +291,7 @@ export class PackagingComponent implements OnInit {
     if (row.sealed) {
       size += 20;
     }
-    if (row.manufacturerFiles && row.manufacturerFiles > 0) {
+    if (row.manufacturerFiles && row.manufacturerFiles.length > 0) {
       size += 24;
     }
     return size;
