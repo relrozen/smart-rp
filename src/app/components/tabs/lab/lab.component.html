@@ -24,8 +24,8 @@
            [@myAnimation]
            type="text"
            placeholder="הזן שם מעבדה">
-    <file-upload *ngIf="selectedLab ? (selectedLab.includes('other')) : false" (fileUploaded)="onFileUploaded('labCertification', $event)" [buttonText]="'תעודת הסמכה'"></file-upload>
-    <uploaded-files *ngIf="lab.manSpecificationFiles.length > 0" [filesList]="lab.labCertification"></uploaded-files>
+    <file-upload *ngIf="selectedLab ? (selectedLab.includes('other')) : false" (fileUploaded)="onFileUploadedTest('labCertificationFiles', $event)" [buttonText]="'תעודת הסמכה'"></file-upload>
+    <uploaded-files *ngIf="labCertificationFiles.length > 0" [filesList]="labCertificationFiles"></uploaded-files>
   </div>
 
   <div class="text-field-wrapper">
@@ -40,7 +40,7 @@
 
   <div class="text-field-wrapper">
     <label>הוספת קובץ</label>
-    <file-upload (fileUploaded)="onFileUploaded('testFiles', $event)"></file-upload>
+    <file-upload (fileUploaded)="onFileUploadedTest('testFiles', $event)"></file-upload>
     <uploaded-files *ngIf="testFiles.length > 0" [filesList]="testFiles"></uploaded-files>
   </div>
 
@@ -72,7 +72,7 @@
            [@myAnimation]
            type="text"
            placeholder="הזן אחר">
-    <button class="btn my-btn" (click)="addTests()">הוסף בדיקות</button>
+    <button class="btn my-btn" (click)="addTests()" [disabled]="selectedSubTests.length === 0">הוסף בדיקות</button>
   </div>
 
   <div *ngFor="let addedTest of addedTests let i = index" class="text-field-wrapper">

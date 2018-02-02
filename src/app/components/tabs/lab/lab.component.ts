@@ -53,6 +53,7 @@ export class LabComponent implements OnInit {
   selectedTest: string[];
   selectedSubTests: string[] = [];
   selectedSubTestsOther: string;
+  labCertificationFiles: any[] = []
   selectedLab: string[] = [];
   selectedLabOther: string;
   testDate: Date;
@@ -164,9 +165,14 @@ export class LabComponent implements OnInit {
     return _.filter(subTests, (test: any) => test.name !== 'other');
   }
 
-  onFileUploaded(modelName, event) {
+  onFileUploadedTest(modelName, event) {
     event.uploadDate = moment(event.uploadDate).format('D/M/YYYY-HH:mm');
     this[modelName].push(event);
+  }
+
+  onFileUploaded(modelName, event) {
+    event.uploadDate = moment(event.uploadDate).format('D/M/YYYY-HH:mm');
+    this.lab[modelName].push(event);
   }
 
   saveTest() {
@@ -194,12 +200,15 @@ export class LabComponent implements OnInit {
     this.selectedTest = [];
     this.selectedSubTests = [];
     this.selectedSubTestsOther = null;
-    this.selectedLab = null;
+    this.selectedLab = [];
     this.testDate = null;
     this.certNumber = null;
     this.testFiles = [];
 
     this.lab.tests = [...this.lab.tests];
+    _.forOwn(this.expanded, (value, key) => {
+      this.expanded[key] = false;
+    });
   }
 
   toggleExpandRow(row, rowIndex) {
@@ -238,6 +247,11 @@ export class LabComponent implements OnInit {
 
   cancelEdit() {
     this.currentlyEditedIndex = null;
+    this.addedTests = [];
+    this.selectedLab = [];
+    this.certNumber = null;
+    this.testFiles = [];
+    this.testDate = null;
   }
 
   getTestHebName(test) {

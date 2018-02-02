@@ -31,7 +31,7 @@ export class CosCreateComponent implements OnInit {
   product: IProduct;
   currentProductId: number = null;
 
-  selectedTab = 4;
+  selectedTab = 5;
   tabs = [
     {
       id: 1,
