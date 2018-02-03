@@ -24,7 +24,7 @@
     "@angular/platform-browser": "^4.0.0",
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/router": "^4.0.0",
-    "@swimlane/ngx-datatable": "^10.0.1",
+    "@swimlane/ngx-datatable": "10.0.1",
     "@types/bootstrap-datepicker": "0.0.9",
     "@types/bootstrap.timepicker": "0.0.31",
     "@types/jquery": "^3.2.11",
