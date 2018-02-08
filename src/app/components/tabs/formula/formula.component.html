@@ -1,3 +1,25 @@
-<p>
-  formula works!
-</p>
+<div>
+  <div class="text-field-wrapper">
+    <label class="title">חומרי גלם</label>
+  </div>
+  <div class="text-field-wrapper">
+    <label>בחר חומר גלם</label>
+    <ss-multiselect-dropdown [options]="rawMaterials"
+                             [(ngModel)]="selectedRm"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="large-select">
+    </ss-multiselect-dropdown>
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>הזן ריכוז באחוזים</label><input [(ngModel)]="concentration" class="small" type="text">
+  </div>
+
+  <div class="text-field-wrapper">
+    <label></label>
+    <button class="btn my-btn"
+            (click)="addRawMaterial()"
+            [disabled]="selectedRm.length === 0 || concentration.length === 0">הוסף לפורמולה</button>
+  </div>
+</div>

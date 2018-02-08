@@ -1,15 +1,15 @@
-const express = require('express');
-const path = require('path');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
+const express =      require('express');
+const path =         require('path');
+const favicon =      require('serve-favicon');
+const logger =       require('morgan');
 const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const http = require('http');
-const mongoose = require('mongoose');
-const config = require('config');
-const mongoConfig = config.get('mongo');
+const bodyParser =   require('body-parser');
+const http =         require('http');
+const mongoose =     require('mongoose');
+const config =       require('config');
 
-const db = mongoose.connect(`mongodb://${mongoConfig.host}:${mongoConfig.port}/productAPI`, { useMongoClient: true }, function(err) {
+const mongoConfig = config.get('mongo');
+const db = mongoose.connect(`mongodb://${mongoConfig.host}:${mongoConfig.port}/${mongoConfig.db}`, { useMongoClient: true }, function(err) {
   if (err) console.log(err);
 });
 
@@ -37,6 +37,7 @@ app.use(function(err, req, res, next) {
 });
 
 app.use('/upload', require('./server/routes'));
+app.use('/api/ingredients/', require('./server/routes/ingredients-routes'));
 app.use('/api/products/', require('./server/routes/product-routes'));
 
 // catch 404 and forward to error handler

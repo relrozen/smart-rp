@@ -9,6 +9,7 @@ router.post('/', createProduct);
 router.use('/:productId', getProductById);
 router.get('/:productId', getProduct);
 router.put('/:productId', updateProduct);
+router.delete('/:productId', deleteProduct);
 
 
 module.exports = router;
@@ -58,7 +59,7 @@ function createProduct(req, res) {
   let product = new Product(req.body);
   // console.log(product);
   product.save((err) => {
-    if (err) { console.log(err) };
+    if (err) { console.log(err) }
   });
   res.status(201).send(product.toJSON());
 }
@@ -71,6 +72,17 @@ function updateProduct(req, res) {
     }
     else {
       res.json(req.product.toJSON());
+    }
+  })
+}
+
+function deleteProduct(req, res) {
+  req.product.remove(err => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    else {
+      res.status(204).send('Removed')
     }
   })
 }

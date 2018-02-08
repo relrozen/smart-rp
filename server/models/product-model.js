@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const productSchema = new Schema({
-	spec: Schema.Types.Mixed,
+  spec: Schema.Types.Mixed,
   formula: Schema.Types.Mixed,
   packaging: Schema.Types.Mixed,
   lab: Schema.Types.Mixed,

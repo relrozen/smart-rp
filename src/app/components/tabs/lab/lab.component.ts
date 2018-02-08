@@ -53,7 +53,7 @@ export class LabComponent implements OnInit {
   selectedTest: string[];
   selectedSubTests: string[] = [];
   selectedSubTestsOther: string;
-  labCertificationFiles: any[] = []
+  labCertificationFiles: any[] = [];
   selectedLab: string[] = [];
   selectedLabOther: string;
   testDate: Date;

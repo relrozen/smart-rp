@@ -38,7 +38,10 @@ export interface IProduct {
     certOfFreeSaleFiles?: IFile[];
     gmpFiles?: IFile[];
   };
-  formula?: {};
+  formula?: {
+    rawMaterials?: any[];
+
+  };
   actions?: {
     manufacturing: boolean;
     filling: boolean;

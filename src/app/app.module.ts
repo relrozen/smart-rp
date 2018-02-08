@@ -2,13 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { SelectModule } from 'ng2-select-compat';
 import { FormsModule} from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NKDatetimeModule } from 'ng2-datetime/ng2-datetime';
 import { SidebarModule } from 'ng-sidebar';
 import * as $ from 'jquery';
-
 
 import { AppComponent } from './app.component';
 import { CosCreateComponent } from './components/cos-create/cos-create.component';
@@ -18,6 +18,8 @@ import { ModalComponent } from './shared/modal/modal.component';
 import { FileUploadComponent } from './shared/file-upload/file-upload.component';
 import { UploadedFilesComponent } from './shared/uploaded-files/uploaded-files.component';
 import { ProductService } from './services/product.service';
+import { IngredientService } from './services/ingredient.service';
+import { RawMaterialService } from './services/raw-material.service';
 import { HttpModule } from '@angular/http';
 import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 import { PackagingComponent } from './components/tabs/packaging/packaging.component';
@@ -53,6 +55,7 @@ import { ActionsComponent } from './components/tabs/actions/actions.component';
   ],
   imports: [
     HttpModule,
+    HttpClientModule,
     BrowserModule,
     SidebarModule.forRoot(),
     SelectModule,
@@ -62,7 +65,11 @@ import { ActionsComponent } from './components/tabs/actions/actions.component';
     NKDatetimeModule,
     MultiselectDropdownModule
   ],
-  providers: [ProductService],
+  providers: [
+    ProductService,
+    IngredientService,
+    RawMaterialService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,7 @@
+{
+  "mongo": {
+    "host": "heroku_9dbfgh9z:mml3qapssrnkvc0gk674fhfdjj@ds115131.mlab.com",
+    "port": 15131,
+    "db": "heroku_9dbfgh9z"
+  }
+}
