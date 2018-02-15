@@ -1,10 +1,13 @@
 <div>
+  <div>{{selectedRm}}</div>
+  <div>{{selectedShadeRm}}</div>
+
   <div class="text-field-wrapper">
     <label class="title">חומרי גלם</label>
   </div>
   <div class="text-field-wrapper">
     <label>בחר חומר גלם</label>
-    <ss-multiselect-dropdown [options]="rawMaterials"
+    <ss-multiselect-dropdown [options]="rawMaterialsSelectValues"
                              [(ngModel)]="selectedRm"
                              [settings]="inputConfig.singleSelectSettingsWithSearch"
                              [texts]="inputConfig.selectBoxTexts"
@@ -20,6 +23,88 @@
     <label></label>
     <button class="btn my-btn"
             (click)="addRawMaterial()"
-            [disabled]="selectedRm.length === 0 || concentration.length === 0">הוסף לפורמולה</button>
+            [disabled]="!selectedRm || concentration.length === 0">הוסף לפורמולה</button>
   </div>
+
+
+
+  <div class="text-field-wrapper">
+    <label class="title">גוונים</label>
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>שם גוון</label><input [(ngModel)]="shadeName" class="small" type="text">
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>בחר חומר גלם</label>
+    <ss-multiselect-dropdown [options]="rawMaterialsSelectValues"
+                             [(ngModel)]="selectedShadeRm"
+                             [settings]="inputConfig.singleSelectSettingsWithSearch"
+                             [texts]="inputConfig.selectBoxTexts"
+                             class="large-select">
+    </ss-multiselect-dropdown>
+  </div>
+
+  <div class="text-field-wrapper">
+    <label>הזן ריכוז באחוזים</label><input [(ngModel)]="shadeConcentration" class="small" type="text">
+  </div>
+
+  <div class="text-field-wrapper">
+    <label></label>
+    <button class="btn my-btn"
+            [disabled]="!selectedShadeRm || shadeConcentration.length === 0"
+            (click)="addToShade()">הוסף לגוון</button>
+  </div>
+
+  <div class="text-field-wrapper">
+    <label style="vertical-align: top">גוון עד כה</label>
+    <div class="rtl-table" style="width:400px;display: inline-block">
+      <ngx-datatable #ShadeSoFarTable
+                     class="material"
+                     [columnMode]="'standard'"
+                     [rows]="shadeFormulaSoFar"
+                     [columns]="shadeSoFarColumns"
+                     style=""
+                     headerClass="'table-header'">
+      </ngx-datatable>
+    </div>
+  </div>
+
+  <div class="text-field-wrapper">
+    <label></label>
+    <button class="btn my-btn"
+            [disabled]="shadeFormulaSoFar.length === 0 || shadeName.length === 0"
+            (click)="addShadeToFormula()">הוסף גוון לפורמולה</button>
+  </div>
+
+  <label>פורמולת בסיס</label>
+  <div style="direction: ltr">
+    <ngx-datatable #BaseFormulaTable
+                   class="material"
+                   [columnMode]="'standard'"
+                   [rows]="baseFormulaTableData"
+                   [columns]="baseFormulaColumns"
+                   style=""
+                   headerClass="'table-header'">
+    </ngx-datatable>
+  </div>
+
+  <br/>
+  <br/>
+
+  <label>פורמולה מלאה</label>
+  <div style="direction: ltr">
+    <ngx-datatable #FullFormulaTable
+                   class="material"
+                   [columnMode]="'standard'"
+                   [rows]="fullFormulaTableData"
+                   [columns]="fullFormulaColumns"
+                   style=""
+                   headerClass="'table-header'">
+    </ngx-datatable>
+  </div>
+
 </div>
+
+<br/>

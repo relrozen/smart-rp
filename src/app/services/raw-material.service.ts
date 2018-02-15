@@ -12,30 +12,30 @@ export class RawMaterialService {
   constructor(private http: HttpClient) {}
 
   public getRawMaterials(): Observable<IRawMaterial[]> {
-    return this.http.get<IRawMaterial[]>('/api/raw-material')
+    return this.http.get<IRawMaterial[]>('/api/raw-materials')
       .pipe(retry(3), catchError(this.handleError));
   }
 
   public getRawMaterial(id: string): Observable<IRawMaterial> {
-    return this.http.get<IRawMaterial>(`/api/raw-material/${id}`)
+    return this.http.get<IRawMaterial>(`/api/raw-materials/${id}`)
       .pipe(retry(3), catchError(this.handleError));
   }
 
   public saveRawMaterial(rawMaterial: IRawMaterial): Observable<IRawMaterial> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-    return this.http.post<IRawMaterial>('/api/raw-material', rawMaterial, httpOptions)
+    return this.http.post<IRawMaterial>('/api/raw-materials', rawMaterial, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   public updateRawMaterial(id, rawMaterial: IRawMaterial): Observable<IRawMaterial> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-    return this.http.put<IRawMaterial>(`/api/raw-material/${id}`, rawMaterial, httpOptions)
+    return this.http.put<IRawMaterial>(`/api/raw-materials/${id}`, rawMaterial, httpOptions)
       .pipe(catchError(this.handleError));
   }
 
   public deleteRawMaterial(id): Observable<string> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
-    return this.http.delete<string>(`/api/raw-material/${id}`, httpOptions)
+    return this.http.delete<string>(`/api/raw-materials/${id}`, httpOptions)
       .pipe(catchError(this.handleError));
   }
 

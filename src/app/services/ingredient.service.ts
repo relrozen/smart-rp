@@ -21,6 +21,12 @@ export class IngredientService {
       .pipe(retry(3), catchError(this.handleError));
   }
 
+  public getIngredientsByIds(ids: string[]): Observable<IIngredient[]> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
+    return this.http.post<IIngredient[]>(`/api/ingredients/get-by-ids`, ids, httpOptions)
+      .pipe(retry(3), catchError(this.handleError));
+  }
+
   public saveIngredient(ingredient: IIngredient): Observable<IIngredient> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };
     return this.http.post<IIngredient>('/api/ingredients', ingredient, httpOptions)

@@ -1,6 +1,6 @@
 export let ingredients = [
   {
-    id: '1',
+    _id: '1',
     cosing_ref_number: '1',
     inci_name: 'protein',
     cas_number: '11',
@@ -15,11 +15,10 @@ export let ingredients = [
     warning: "Do not mix with yolk!",
     identified_substances: "not so important stuff in here",
     func: "Good for the omelette!",
-    update_date: new Date()
-
+    // update_date: new Date()
   },
   {
-    id: '2',
+    _id: '2',
     cosing_ref_number: '2',
     inci_name: 'yolk',
     cas_number: '22',
@@ -34,10 +33,10 @@ export let ingredients = [
     warning: "Do not mix with protein!",
     identified_substances: "not so important stuff in here",
     func: "Good for the omelette!",
-    update_date: new Date()
+    // update_date: new Date()
   },
   {
-    id: '3',
+    _id: '3',
     cosing_ref_number: '3',
     inci_name: 'flour',
     cas_number: '33',
@@ -52,10 +51,10 @@ export let ingredients = [
     warning: "do not eat raw",
     identified_substances: "not so important stuff in here",
     func: "Good substitut for Coke!",
-    update_date: new Date()
+    // update_date: new Date()
   },
   {
-    id: '4',
+    _id: '4',
     cosing_ref_number: '4',
     inci_name: 'poison',
     cas_number: '44',

@@ -1,11 +1,13 @@
 <img *ngIf="!hideIcon" class="file-mag" src="/assets/images/file_mag.png" (click)="openUploadedFiles()">
 <modal [@myAnimation] *ngIf="showUploadedFilesModal">
-	<ngx-datatable class="material"
-		[columnMode]="'standard'"
-		[rows]="filesList"
-		[columns]="columns"
-		headerClass="'table-header'">
-	</ngx-datatable>
+  <div class="rtl-table">
+    <ngx-datatable class="material"
+                   [columnMode]="'standard'"
+                   [rows]="filesList"
+                   [columns]="columns"
+                   headerClass="'table-header'">
+    </ngx-datatable>
+  </div>
 	<button type="button"
 		class="btn btn-info btn-s"
 		(click)="closeUploadedFiles($event)">

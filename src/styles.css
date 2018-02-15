@@ -188,7 +188,7 @@ textarea {
   width: auto;
   margin-left: 5px;
   margin-bottom: 0;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .select-wrapper {
@@ -288,18 +288,19 @@ span.caret {
 
 /* css for tables */
 
-.table-header {
+.rtl-table .table-header {
 	float: right !important;
 	text-align: right !important;
 	word-wrap: break-word;
 
 }
 
-.datatable-body-cell-label {
+.rtl-table .datatable-body-cell-label {
   text-align: right;
 }
 
 /* css for datepicker */
+
 .form-group.input-group.date > .input-group-addon {
 	display: none;
 }

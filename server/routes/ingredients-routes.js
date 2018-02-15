@@ -6,6 +6,7 @@ let router = express.Router();
 router.get('/', getAll);
 router.get('/getAllMin', getAllWithMinimalProps);
 router.post('/', createIngredient);
+router.post('/get-by-ids', getIngredientsByIds);
 router.use('/:ingredientId', getIngredientById);
 router.get('/:ingredientId', getIngredient);
 router.put('/:ingredientId', updateIngredient);
@@ -33,6 +34,18 @@ function getAllWithMinimalProps(req, res) {
       res.json(ingredients);
     }
   })
+}
+
+function getIngredientsByIds(req, res) {
+  let ids = req.body;
+  Ingredient.find({ "_id": { "$in": ids } }, (err, ingredients) => {
+    if (err) {
+      res.status(500).send(err);
+    }
+    else {
+      res.json(ingredients);
+    }
+  });
 }
 
 function getIngredientById(req, res, next) {

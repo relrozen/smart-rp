@@ -129,66 +129,67 @@
     <button class="btn my-btn" (click)="savePackage()">שמור</button>
     <button *ngIf="currentlyEditedIndex !== null" class="btn my-btn" (click)="cancelEdit()">בטל עריכה</button>
   </div>
+  <div class="rtl-table">
+    <ngx-datatable #myTable
+                   class="material"
+                   [columnMode]="'standard'"
+                   [rows]="packaging.packages"
+                   [columns]="columns"
+                   style="margin-bottom: 150px;"
+                   headerClass="'table-header'">
+      <ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow>
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+          <table style="width:50%">
+            <tr>
+              <td>הרכב חומר אריזה</td>
+              <td>{{row.packageMaterial}}</td>
+            </tr>
+            <tr *ngIf="row.packageMaterialSpecFiles && row.packageMaterialSpecFiles.length">
+              <td>מפרט הרכב חומר אריזה</td>
+              <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.packageMaterialSpecFiles)"></td>
+            </tr>
+            <tr *ngIf="row.specificationsFiles && row.specificationsFiles.length">
+              <td>קובץ ספסיפיקציות</td>
+              <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.specificationsFiles)"></td>
+            </tr>
+            <tr *ngIf="row.photoFiles && row.photoFiles.length">
+              <td>תצלום אריזה</td>
+              <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.photoFiles)"></td>
+            </tr>
+            <tr *ngIf="row.recycled">
+              <td>ממוחזר</td>
+            </tr>
+            <tr *ngIf="row.foodGrade">
+              <td>תואם food grade</td>
+            </tr>
+            <tr *ngIf="row.heavyMetals">
+              <td>מתכות כבדות (עבור א. מתכת)</td>
+            </tr>
+            <tr *ngIf="row.fatalities">
+              <td>הצהרת פתאלטים (עבור א. פלסטיק)</td>
+            </tr>
+            <tr *ngIf="row.leakage">
+              <td>הצהרת יציבות צבעים/חומרים דולפים</td>
+            </tr>
+            <tr *ngIf="row.migration">
+              <td>בדיקת נדידה</td>
+            </tr>
+            <tr *ngIf="row.crm">
+              <td>הצהרת CMR</td>
+            </tr>
+            <tr *ngIf="row.sealed">
+              <td>אטימות סגירה (מיכל לחץ)</td>
+            </tr>
+            <tr *ngIf="row.manufacturerFiles && row.manufacturerFiles.length">
+              <td>מסמך יצרן</td>
+              <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.manufacturerFiles)"></td>
+            </tr>
 
-  <ngx-datatable #myTable
-                 class="material"
-                 [columnMode]="'standard'"
-                 [rows]="packaging.packages"
-                 [columns]="columns"
-                 style="margin-bottom: 150px;"
-                 headerClass="'table-header'">
-    <ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow>
-      <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-        <table style="width:50%">
-          <tr>
-            <td>הרכב חומר אריזה</td>
-            <td>{{row.packageMaterial}}</td>
-          </tr>
-          <tr *ngIf="row.packageMaterialSpecFiles && row.packageMaterialSpecFiles.length">
-            <td>מפרט הרכב חומר אריזה</td>
-            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.packageMaterialSpecFiles)"></td>
-          </tr>
-          <tr *ngIf="row.specificationsFiles && row.specificationsFiles.length">
-            <td>קובץ ספסיפיקציות</td>
-            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.specificationsFiles)"></td>
-          </tr>
-          <tr *ngIf="row.photoFiles && row.photoFiles.length">
-            <td>תצלום אריזה</td>
-            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.photoFiles)"></td>
-          </tr>
-          <tr *ngIf="row.recycled">
-            <td>ממוחזר</td>
-          </tr>
-          <tr *ngIf="row.foodGrade">
-            <td>תואם food grade</td>
-          </tr>
-          <tr *ngIf="row.heavyMetals">
-            <td>מתכות כבדות (עבור א. מתכת)</td>
-          </tr>
-          <tr *ngIf="row.fatalities">
-            <td>הצהרת פתאלטים (עבור א. פלסטיק)</td>
-          </tr>
-          <tr *ngIf="row.leakage">
-            <td>הצהרת יציבות צבעים/חומרים דולפים</td>
-          </tr>
-          <tr *ngIf="row.migration">
-            <td>בדיקת נדידה</td>
-          </tr>
-          <tr *ngIf="row.crm">
-            <td>הצהרת CMR</td>
-          </tr>
-          <tr *ngIf="row.sealed">
-            <td>אטימות סגירה (מיכל לחץ)</td>
-          </tr>
-          <tr *ngIf="row.manufacturerFiles && row.manufacturerFiles.length">
-            <td>מסמך יצרן</td>
-            <td><img class="file-mag" src="/assets/images/file_mag.png" (click)="showFiles(row.manufacturerFiles)"></td>
-          </tr>
-
-        </table>
-      </ng-template>
-    </ngx-datatable-row-detail>
-  </ngx-datatable>
+          </table>
+        </ng-template>
+      </ngx-datatable-row-detail>
+    </ngx-datatable>
+  </div>
 
   <ng-template #expandBtnTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
     <a

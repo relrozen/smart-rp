@@ -38,6 +38,7 @@ app.use(function(err, req, res, next) {
 
 app.use('/upload', require('./server/routes'));
 app.use('/api/ingredients/', require('./server/routes/ingredients-routes'));
+app.use('/api/raw-materials/', require('./server/routes/raw-materials-routes'));
 app.use('/api/products/', require('./server/routes/product-routes'));
 
 // catch 404 and forward to error handler
