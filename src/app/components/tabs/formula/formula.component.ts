@@ -1,9 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {inputConfig} from '../../../shared/input-config';
 import * as _ from 'lodash';
+import * as async from 'async';
 import {IngredientService} from "../../../services/ingredient.service";
 import {RawMaterialService} from "../../../services/raw-material.service";
 import {rm} from "../../../shared/raw-materials";
+import {IRawMaterial} from "../../../models/raw-material";
+import {IIngredient} from "../../../models/ingredient";
 
 @Component({
   selector: 'app-formula',
@@ -29,6 +32,7 @@ export class FormulaComponent implements OnInit {
   rawMaterialsSelectValues: any[];
 
   baseFormulaColumns: any[];
+  ShadesColumns: any[];
   fullFormulaColumns: any[];
   shadeSoFarColumns: any[];
 
@@ -48,6 +52,17 @@ export class FormulaComponent implements OnInit {
     ];
 
     this.baseFormulaColumns = [
+      { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', resizeable: false },
+      { prop: 'cosing_ref_number', name: 'Cosing ref#', headerClass: 'table-header', resizeable: false },
+      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', resizeable: false, width: 100 },
+      { prop: 'cas_number', name: 'cas#', headerClass: 'table-header', resizeable: false, width: 100 },
+      { prop: 'ec_number', name: 'EINECS', headerClass: 'table-header', resizeable: false, width: 100 },
+      { prop: 'func', name: 'Function', headerClass: 'table-header', resizeable: false, width: 100 },
+      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', resizeable: false, width: 100 }
+    ];
+
+    this.ShadesColumns = [
+      { prop: 'shadeName', name: 'Shade', headerClass: 'table-header', resizeable: false },
       { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', resizeable: false },
       { prop: 'cosing_ref_number', name: 'Cosing ref#', headerClass: 'table-header', resizeable: false },
       { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', resizeable: false, width: 100 },
@@ -106,11 +121,35 @@ export class FormulaComponent implements OnInit {
   }
 
   addShadeToFormula() {
-    this.rawMaterialService.getRawMaterial(this.selectedShadeRm).subscribe(rmFromDb => {
-      
-    })
+    this.formula.shades.push({
+      name: this.shadeName,
+      rm: []
+    });
+    async.each(this.shadeFormulaSoFar, (rm, callback) => {
+      this.rawMaterialService.getRawMaterial(rm.rmId).subscribe((rmFromDb: IRawMaterial) => {
+        let IngIds = _.map(rmFromDb.ingredients, ing => { return ing.id; });
+        this.ingredientService.getIngredientsByIds(IngIds).subscribe((ingsFromDb: IIngredient[]) => {
+          let ingredients = _.map(ingsFromDb, ingFromDb => {
+            return _.assign({}, ingFromDb, {
+              concentration: parseFloat(rm.concentration) * _.find(rmFromDb.ingredients, i => {
+                  return i.id === ingFromDb._id
+                }).concentration / 100
+            })
+          });
+          _.last(this.formula.shades)["rm"].push(_.assign({}, rmFromDb, {
+            concentration: parseFloat(this.concentration),
+            ingredients: ingredients
+          }));
+          callback();
+        });
+      })
+    },err => {
+      this.shadeName = "";
+      this.shadeFormulaSoFar = [];
+      this.calculateShadesTable();
+      this.calculateIngredientsTable();
+    });
   }
-
   calculateRawMaterialsTable() {
     let res = [];
     _.forEach(this.formula.rawMaterials, rm => {
@@ -122,7 +161,22 @@ export class FormulaComponent implements OnInit {
       })
     });
     this.baseFormulaTableData = res;
-    // console.log(this.baseFormulaTableData);
+  }
+
+  calculateShadesTable() {
+    let res = [];
+    _.forEach(this.formula.shades, shade => {
+      _.forEach(shade.rm, rm => {
+        _.forEach(rm.ingredients, ing => {
+          res.push(_.assign({}, ing, {
+            shadeName: shade.name,
+            rawMaterialId: rm._id,
+            rawMaterialName: rm.name
+          }));
+        });
+      });
+    });
+    this.shadesTableData = res;
   }
 
   calculateIngredientsTable() {
@@ -138,8 +192,22 @@ export class FormulaComponent implements OnInit {
         }
       })
     });
+    _.forEach(this.formula.shades, shade => {
+      _.forEach(shade.rm, rm => {
+        _.forEach(rm.ingredients, ing => {
+          let existingIng = _.find(res, i => {
+            return i._id === ing._id
+          });
+          if (existingIng) {
+            existingIng.concentration += ing.concentration;
+          }
+          else {
+            res.push(ing);
+          }
+        })
+      });
+    });
     this.fullFormulaTableData = res;
-    console.log(this.fullFormulaTableData);
   }
 
 

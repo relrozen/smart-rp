@@ -40,7 +40,7 @@ export interface IProduct {
   };
   formula?: {
     rawMaterials?: any[];
-
+    shades?: any[];
   };
   actions?: {
     manufacturing: boolean;

@@ -93,6 +93,21 @@
   <br/>
   <br/>
 
+  <label>גוונים</label>
+  <div style="direction: ltr">
+    <ngx-datatable #ShadesTable
+                   class="material"
+                   [columnMode]="'standard'"
+                   [rows]="shadesTableData"
+                   [columns]="ShadesColumns"
+                   style=""
+                   headerClass="'table-header'">
+    </ngx-datatable>
+  </div>
+
+  <br/>
+  <br/>
+
   <label>פורמולה מלאה</label>
   <div style="direction: ltr">
     <ngx-datatable #FullFormulaTable
