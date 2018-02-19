@@ -288,16 +288,25 @@ span.caret {
 
 /* css for tables */
 
+.table-header {
+  text-align: center !important;
+}
+
+.cell-center-data {
+  text-align: center !important;
+}
+
 .rtl-table .table-header {
 	float: right !important;
 	text-align: right !important;
 	word-wrap: break-word;
-
 }
 
 .rtl-table .datatable-body-cell-label {
   text-align: right;
 }
+
+
 
 /* css for datepicker */
 

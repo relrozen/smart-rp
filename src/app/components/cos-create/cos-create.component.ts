@@ -226,7 +226,8 @@ export class CosCreateComponent implements OnInit {
       },
       formula: {
         rawMaterials: [],
-        shades: []
+        shades: [],
+        includesShades: false
       }
     };
   }

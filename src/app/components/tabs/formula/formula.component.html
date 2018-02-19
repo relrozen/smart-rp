@@ -1,11 +1,8 @@
 <div>
-  <div>{{selectedRm}}</div>
-  <div>{{selectedShadeRm}}</div>
-
   <div class="text-field-wrapper">
     <label class="title">חומרי גלם</label>
   </div>
-  <div class="text-field-wrapper">
+  <div class="text-field-wrapper" style="display: inline-block">
     <label>בחר חומר גלם</label>
     <ss-multiselect-dropdown [options]="rawMaterialsSelectValues"
                              [(ngModel)]="selectedRm"
@@ -15,7 +12,7 @@
     </ss-multiselect-dropdown>
   </div>
 
-  <div class="text-field-wrapper">
+  <div class="text-field-wrapper" style="margin-right: 20px; display: inline-block;">
     <label>הזן ריכוז באחוזים</label><input [(ngModel)]="concentration" class="small" type="text">
   </div>
 
@@ -24,58 +21,6 @@
     <button class="btn my-btn"
             (click)="addRawMaterial()"
             [disabled]="!selectedRm || concentration.length === 0">הוסף לפורמולה</button>
-  </div>
-
-
-
-  <div class="text-field-wrapper">
-    <label class="title">גוונים</label>
-  </div>
-
-  <div class="text-field-wrapper">
-    <label>שם גוון</label><input [(ngModel)]="shadeName" class="small" type="text">
-  </div>
-
-  <div class="text-field-wrapper">
-    <label>בחר חומר גלם</label>
-    <ss-multiselect-dropdown [options]="rawMaterialsSelectValues"
-                             [(ngModel)]="selectedShadeRm"
-                             [settings]="inputConfig.singleSelectSettingsWithSearch"
-                             [texts]="inputConfig.selectBoxTexts"
-                             class="large-select">
-    </ss-multiselect-dropdown>
-  </div>
-
-  <div class="text-field-wrapper">
-    <label>הזן ריכוז באחוזים</label><input [(ngModel)]="shadeConcentration" class="small" type="text">
-  </div>
-
-  <div class="text-field-wrapper">
-    <label></label>
-    <button class="btn my-btn"
-            [disabled]="!selectedShadeRm || shadeConcentration.length === 0"
-            (click)="addToShade()">הוסף לגוון</button>
-  </div>
-
-  <div class="text-field-wrapper">
-    <label style="vertical-align: top">גוון עד כה</label>
-    <div class="rtl-table" style="width:400px;display: inline-block">
-      <ngx-datatable #ShadeSoFarTable
-                     class="material"
-                     [columnMode]="'standard'"
-                     [rows]="shadeFormulaSoFar"
-                     [columns]="shadeSoFarColumns"
-                     style=""
-                     headerClass="'table-header'">
-      </ngx-datatable>
-    </div>
-  </div>
-
-  <div class="text-field-wrapper">
-    <label></label>
-    <button class="btn my-btn"
-            [disabled]="shadeFormulaSoFar.length === 0 || shadeName.length === 0"
-            (click)="addShadeToFormula()">הוסף גוון לפורמולה</button>
   </div>
 
   <label>פורמולת בסיס</label>
@@ -93,16 +38,76 @@
   <br/>
   <br/>
 
-  <label>גוונים</label>
-  <div style="direction: ltr">
-    <ngx-datatable #ShadesTable
-                   class="material"
-                   [columnMode]="'standard'"
-                   [rows]="shadesTableData"
-                   [columns]="ShadesColumns"
-                   style=""
-                   headerClass="'table-header'">
-    </ngx-datatable>
+  <div class="checkbox-section">
+    <div class="checkbox">
+      <label style="font-weight: 700">
+        <input type="checkbox" [(ngModel)]="formula.includesShades" value="">
+        <span style="float:right" class="cr rtl"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+        כולל גוונים
+      </label>
+    </div>
+  </div>
+  <div *ngIf="formula.includesShades" [@myAnimation]>
+
+    <div class="text-field-wrapper">
+      <label>שם גוון</label><input [(ngModel)]="shadeName" class="small" type="text">
+    </div>
+
+    <div class="text-field-wrapper" style="display: inline-block">
+      <label>בחר חומר גלם</label>
+      <ss-multiselect-dropdown [options]="rawMaterialsSelectValues"
+                               [(ngModel)]="selectedShadeRm"
+                               [settings]="inputConfig.singleSelectSettingsWithSearch"
+                               [texts]="inputConfig.selectBoxTexts"
+                               class="large-select">
+      </ss-multiselect-dropdown>
+    </div>
+
+    <div class="text-field-wrapper" style="margin-right: 20px; display: inline-block;">
+      <label>הזן ריכוז באחוזים</label><input [(ngModel)]="shadeConcentration" class="small" type="text">
+    </div>
+
+    <div class="text-field-wrapper">
+      <label></label>
+      <button class="btn my-btn"
+              [disabled]="!selectedShadeRm || shadeConcentration.length === 0"
+              (click)="addToShade()">הוסף לגוון</button>
+    </div>
+
+    <div class="text-field-wrapper">
+      <label style="vertical-align: top">גוון עד כה</label>
+      <div class="rtl-table" style="width:400px;display: inline-block">
+        <ngx-datatable #ShadeSoFarTable
+                       class="material"
+                       [columnMode]="'standard'"
+                       [rows]="shadeFormulaSoFar"
+                       [columns]="shadeSoFarColumns"
+                       style=""
+                       headerClass="'table-header'">
+        </ngx-datatable>
+      </div>
+    </div>
+
+    <div class="text-field-wrapper">
+      <label></label>
+      <button class="btn my-btn"
+              [disabled]="shadeFormulaSoFar.length === 0 || shadeName.length === 0"
+              (click)="addShadeToFormula()">הוסף גוון לפורמולה</button>
+    </div>
+
+
+
+    <label>גוונים</label>
+    <div style="direction: ltr">
+      <ngx-datatable #ShadesTable
+                     class="material"
+                     [columnMode]="'standard'"
+                     [rows]="shadesTableData"
+                     [columns]="ShadesColumns"
+                     style=""
+                     headerClass="'table-header'">
+      </ngx-datatable>
+    </div>
   </div>
 
   <br/>
@@ -117,9 +122,24 @@
                    [columns]="fullFormulaColumns"
                    style=""
                    headerClass="'table-header'">
+        <ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow>
+        <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+
+        </ng-template>
+      </ngx-datatable-row-detail>
     </ngx-datatable>
   </div>
 
 </div>
 
 <br/>
+
+<ng-template #expandBtnTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <a
+    href="#"
+    [class.datatable-icon-right]="!expanded[rowIndex]"
+    [class.datatable-icon-down]="expanded[rowIndex]"
+    title="Expand/Collapse Row"
+    (click)="toggleExpandRow(row, rowIndex)">
+  </a>
+</ng-template>

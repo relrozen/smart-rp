@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {animate, Component, Input, OnInit, style, TemplateRef, transition, trigger, ViewChild} from '@angular/core';
 import {inputConfig} from '../../../shared/input-config';
 import * as _ from 'lodash';
 import * as async from 'async';
@@ -11,10 +11,32 @@ import {IIngredient} from "../../../models/ingredient";
 @Component({
   selector: 'app-formula',
   templateUrl: './formula.component.html',
-  styleUrls: ['./formula.component.css']
+  styleUrls: ['./formula.component.css'],
+  animations: [
+    trigger(
+      'myAnimation',
+      [
+        transition(
+          ':enter', [
+            style({transform: 'translateX(-100%)', opacity: 0}),
+            animate('200ms', style({transform: 'translateX(0)', 'opacity': 1}))
+          ]
+        ),
+        transition(
+          ':leave', [
+            style({transform: 'translateX(0)', 'opacity': 1}),
+            animate('200ms', style({transform: 'translateX(100%)', 'opacity': 0}))
+
+          ]
+        )]
+    )
+  ]
 })
 export class FormulaComponent implements OnInit {
   @Input() formula;
+
+  @ViewChild('FullFormulaTable') table: any;
+  @ViewChild('expandBtnTemplate') expandBtnTemplate: TemplateRef<any>;
 
   inputConfig = inputConfig;
 
@@ -31,6 +53,7 @@ export class FormulaComponent implements OnInit {
 
   rawMaterialsSelectValues: any[];
 
+  expanded = {};
   baseFormulaColumns: any[];
   ShadesColumns: any[];
   fullFormulaColumns: any[];
@@ -52,34 +75,37 @@ export class FormulaComponent implements OnInit {
     ];
 
     this.baseFormulaColumns = [
-      { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', resizeable: false },
-      { prop: 'cosing_ref_number', name: 'Cosing ref#', headerClass: 'table-header', resizeable: false },
-      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'cas_number', name: 'cas#', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'ec_number', name: 'EINECS', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'func', name: 'Function', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', resizeable: false, width: 100 }
+      { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentrationInRm', name: '% of RM', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header',cellClass: 'cell-center-data' },
+      { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
     ];
 
     this.ShadesColumns = [
-      { prop: 'shadeName', name: 'Shade', headerClass: 'table-header', resizeable: false },
-      { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', resizeable: false },
-      { prop: 'cosing_ref_number', name: 'Cosing ref#', headerClass: 'table-header', resizeable: false },
-      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'cas_number', name: 'cas#', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'ec_number', name: 'EINECS', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'func', name: 'Function', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', resizeable: false, width: 100 }
+      { prop: 'shadeName', name: 'Shade', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentrationInRm', name: '% of RM', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
     ];
 
     this.fullFormulaColumns = [
-      { prop: 'cosing_ref_number', name: 'Cosing ref#', headerClass: 'table-header', resizeable: false },
-      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'cas_number', name: 'cas#', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'ec_number', name: 'EINECS', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'func', name: 'Function', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'max_concentration', name: 'Percent limit', headerClass: 'table-header', resizeable: false, width: 100 },
-      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', resizeable: false, width: 100 },
+      {
+        cellTemplate: this.expandBtnTemplate,
+        name: '',
+        width: 20
+      },
+      { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'cas_number', name: 'cas#', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'ec_number', name: 'EINECS', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'max_concentration', name: 'Percent limit', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', cellClass: 'cell-center-data' },
 
     ]
   }
@@ -89,10 +115,12 @@ export class FormulaComponent implements OnInit {
       let IngIds = _.map(rmFromDb.ingredients, ing => { return ing.id; });
       this.ingredientService.getIngredientsByIds(IngIds).subscribe(ingsFromDb => {
         let ingredients = _.map(ingsFromDb, ingFromDb => {
+          let concentrationInRm = _.find(rmFromDb.ingredients, i => {
+            return i.id === ingFromDb._id
+          }).concentration;
           return _.assign({}, ingFromDb, {
-            concentration: parseFloat(this.concentration) * _.find(rmFromDb.ingredients, i => {
-              return i.id === ingFromDb._id
-            }).concentration / 100
+            concentration: parseFloat(this.concentration) * concentrationInRm / 100,
+            concentrationInRm: concentrationInRm
           })
         });
         this.formula.rawMaterials.push(_.assign({}, rmFromDb, {
@@ -130,10 +158,12 @@ export class FormulaComponent implements OnInit {
         let IngIds = _.map(rmFromDb.ingredients, ing => { return ing.id; });
         this.ingredientService.getIngredientsByIds(IngIds).subscribe((ingsFromDb: IIngredient[]) => {
           let ingredients = _.map(ingsFromDb, ingFromDb => {
+            let concentrationInRm = _.find(rmFromDb.ingredients, i => {
+              return i.id === ingFromDb._id;
+            }).concentration;
             return _.assign({}, ingFromDb, {
-              concentration: parseFloat(rm.concentration) * _.find(rmFromDb.ingredients, i => {
-                  return i.id === ingFromDb._id
-                }).concentration / 100
+              concentration: parseFloat(rm.concentration) * concentrationInRm / 100,
+              concentrationInRm: concentrationInRm
             })
           });
           _.last(this.formula.shades)["rm"].push(_.assign({}, rmFromDb, {
@@ -161,6 +191,7 @@ export class FormulaComponent implements OnInit {
       })
     });
     this.baseFormulaTableData = res;
+    console.log(this.baseFormulaTableData)
   }
 
   calculateShadesTable() {
@@ -208,6 +239,19 @@ export class FormulaComponent implements OnInit {
       });
     });
     this.fullFormulaTableData = res;
+  }
+
+  getHeight(row: any, index: number) {
+    return 100;
+  }
+
+  toggleExpandRow(row, rowIndex) {
+    if (this.expanded[rowIndex]) {
+      this.expanded[rowIndex] = !this.expanded[rowIndex];
+    } else {
+      this.expanded[rowIndex] = true;
+    }
+    this.table.rowDetail.toggleExpandRow(row);
   }
 
 

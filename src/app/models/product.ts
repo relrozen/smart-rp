@@ -41,6 +41,7 @@ export interface IProduct {
   formula?: {
     rawMaterials?: any[];
     shades?: any[];
+    includesShades?: boolean;
   };
   actions?: {
     manufacturing: boolean;
