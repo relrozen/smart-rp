@@ -234,7 +234,7 @@ export class FormulaComponent implements OnInit {
           existingIng.concentration += ing.concentration;
         }
         else {
-          res.push(ing);
+          res.push(_.assign({}, ing));
         }
       })
     });
@@ -248,7 +248,7 @@ export class FormulaComponent implements OnInit {
             existingIng.concentration += ing.concentration;
           }
           else {
-            res.push(ing);
+            res.push(_.assign({}, ing));
           }
         })
       });
