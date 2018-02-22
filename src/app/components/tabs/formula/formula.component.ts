@@ -37,6 +37,9 @@ export class FormulaComponent implements OnInit {
 
   @ViewChild('FullFormulaTable') table: any;
   @ViewChild('expandBtnTemplate') expandBtnTemplate: TemplateRef<any>;
+  @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
+  @ViewChild('editShadeTemplate') editShadeTemplate: TemplateRef<any>;
+  @ViewChild('deleteShadeTemplate') deleteShadeTemplate: TemplateRef<any>;
 
   inputConfig = inputConfig;
 
@@ -81,6 +84,7 @@ export class FormulaComponent implements OnInit {
       { prop: 'concentration', name: 'Concentration', headerClass: 'table-header',cellClass: 'cell-center-data' },
       { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { cellTemplate: this.deleteTemplate, name: '', headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50 }
     ];
 
     this.ShadesColumns = [
@@ -91,20 +95,31 @@ export class FormulaComponent implements OnInit {
       { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      {
+        cellTemplate: this.editShadeTemplate,
+        name: '',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
+      },
+      { cellTemplate: this.deleteShadeTemplate, name: '', headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50 }
     ];
 
     this.fullFormulaColumns = [
       {
         cellTemplate: this.expandBtnTemplate,
+        cellClass: 'cell-center-data',
         name: '',
-        width: 20
+        width: 15
       },
       { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'cas_number', name: 'cas#', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'ec_number', name: 'EINECS', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'error', name: 'Error', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'restrictions', name: 'Restrictions', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'product_type_body_parts', name: 'Product Type', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'max_concentration', name: 'Percent limit', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'other', name: 'Other', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'concentration', name: 'Concentration', headerClass: 'table-header', cellClass: 'cell-center-data' },
 
     ]
@@ -167,7 +182,7 @@ export class FormulaComponent implements OnInit {
             })
           });
           _.last(this.formula.shades)["rm"].push(_.assign({}, rmFromDb, {
-            concentration: parseFloat(this.concentration),
+            concentration: parseFloat(rm.concentration),
             ingredients: ingredients
           }));
           callback();
@@ -252,6 +267,35 @@ export class FormulaComponent implements OnInit {
       this.expanded[rowIndex] = true;
     }
     this.table.rowDetail.toggleExpandRow(row);
+  }
+
+  removeRawMaterial(row) {
+    this.formula.rawMaterials.splice(_.findIndex(this.formula.rawMaterials, (rm: any) => { return rm._id === row.rawMaterialId }) ,1)
+    this.calculateRawMaterialsTable();
+    this.calculateIngredientsTable();
+  }
+
+  editShade(row) {
+    this.shadeFormulaSoFar = [];
+    let shadeIndex = _.findIndex(this.formula.shades, (shade: any) => { return shade.name === row.shadeName });
+    this.shadeName = this.formula.shades[shadeIndex].name;
+    _.forEach(this.formula.shades[shadeIndex].rm, (rm: any) => {
+      this.shadeFormulaSoFar.push({
+        rmId: rm._id,
+        rmName: rm.name,
+        concentration: rm.concentration
+      });
+    });
+    this.formula.shades.splice(shadeIndex ,1);
+    this.calculateShadesTable();
+    this.calculateIngredientsTable();
+  }
+
+  removeShade(row) {
+    let shadeIndex = _.findIndex(this.formula.shades, (shade: any) => { return shade.name === row.shadeName });
+    this.formula.shades.splice(shadeIndex ,1);
+    this.calculateShadesTable();
+    this.calculateIngredientsTable();
   }
 
 

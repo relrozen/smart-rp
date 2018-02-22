@@ -117,14 +117,17 @@
   <div style="direction: ltr">
     <ngx-datatable #FullFormulaTable
                    class="material"
-                   [columnMode]="'standard'"
+                   [columnMode]="'force'"
                    [rows]="fullFormulaTableData"
                    [columns]="fullFormulaColumns"
                    style=""
                    headerClass="'table-header'">
         <ngx-datatable-row-detail [rowHeight]="getHeight" #myDetailRow>
         <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-
+          <div *ngIf="row.description !== ''"><span><b>Description</b>: {{row.description}}</span></div>
+          <div *ngIf="row.color !== ''"><span><b>Color</b>: {{row.color}}</span></div>
+          <div *ngIf="row.color_index_number !== ''"><span><b>Color Index Number</b>: {{row.color_index_number}}</span></div>
+          <div *ngIf="row.identified_substances !== ''"><span><b>Identified Ingredients</b>: {{row.identified_substances}}</span></div>
         </ng-template>
       </ngx-datatable-row-detail>
     </ngx-datatable>
@@ -142,4 +145,16 @@
     title="Expand/Collapse Row"
     (click)="toggleExpandRow(row, rowIndex)">
   </a>
+</ng-template>
+
+<ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <i style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="removeRawMaterial(row)"></i>
+</ng-template>
+
+<ng-template #deleteShadeTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <i style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="removeShade(row)"></i>
+</ng-template>
+
+<ng-template #editShadeTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <i style="cursor:pointer;" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" (click)="editShade(row)"></i>
 </ng-template>
