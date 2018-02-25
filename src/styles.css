@@ -306,7 +306,9 @@ span.caret {
   text-align: right;
 }
 
-
+.last-line {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.12);
+}
 
 /* css for datepicker */
 

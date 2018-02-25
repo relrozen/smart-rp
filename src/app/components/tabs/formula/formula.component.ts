@@ -79,6 +79,7 @@ export class FormulaComponent implements OnInit {
 
     this.baseFormulaColumns = [
       { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentrationFromInput', name: 'RM breakdown', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'concentrationInRm', name: '% of RM', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'concentration', name: 'Concentration', headerClass: 'table-header',cellClass: 'cell-center-data' },
@@ -142,6 +143,7 @@ export class FormulaComponent implements OnInit {
           concentration: parseFloat(this.concentration),
           ingredients: ingredients
         }));
+        this.formula.rawMaterials = _.sortBy(this.formula.rawMaterials, rm => { return -rm.concentration; });
         this.calculateRawMaterialsTable();
         this.calculateIngredientsTable();
 
@@ -198,15 +200,17 @@ export class FormulaComponent implements OnInit {
   calculateRawMaterialsTable() {
     let res = [];
     _.forEach(this.formula.rawMaterials, rm => {
-      _.forEach(rm.ingredients, ing => {
+      _.forEach(rm.ingredients, (ing, index: Number) => {
         res.push(_.assign({}, ing, {
-            rawMaterialId: rm._id,
-            rawMaterialName: rm.name
-          }));
+          concentrationFromInput: index === 0 ? rm.concentration : "",
+          rawMaterialId: rm._id,
+          rawMaterialName: index === 0 ? rm.name : "",
+          isFirst: index === 0,
+          isLast: index === rm.ingredients.length - 1
+        }));
       })
     });
     this.baseFormulaTableData = res;
-    console.log(this.baseFormulaTableData)
   }
 
   calculateShadesTable() {
@@ -296,6 +300,12 @@ export class FormulaComponent implements OnInit {
     this.formula.shades.splice(shadeIndex ,1);
     this.calculateShadesTable();
     this.calculateIngredientsTable();
+  }
+
+  getRowClass(row: any) {
+    return {
+      "last-line": row.isLast
+    }
   }
 
 

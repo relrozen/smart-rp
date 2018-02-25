@@ -30,6 +30,7 @@
                    [columnMode]="'standard'"
                    [rows]="baseFormulaTableData"
                    [columns]="baseFormulaColumns"
+                   [rowClass]="getRowClass"
                    style=""
                    headerClass="'table-header'">
     </ngx-datatable>
@@ -148,7 +149,7 @@
 </ng-template>
 
 <ng-template #deleteTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
-  <i style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="removeRawMaterial(row)"></i>
+  <i *ngIf="row.isFirst" style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="removeRawMaterial(row)"></i>
 </ng-template>
 
 <ng-template #deleteShadeTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
