@@ -81,8 +81,8 @@ export class FormulaComponent implements OnInit {
       { prop: 'rawMaterialName', name: 'Raw-Material', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'concentrationFromInput', name: 'RM breakdown', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: 'inci_name', name: 'inci name', headerClass: 'table-header', cellClass: 'cell-center-data' },
-      { prop: 'concentrationInRm', name: '% of RM', headerClass: 'table-header', cellClass: 'cell-center-data' },
-      { prop: 'concentration', name: 'Concentration', headerClass: 'table-header',cellClass: 'cell-center-data' },
+      { prop: 'concentrationInRm', name: '% RM', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      { prop: 'concentration', name: 'Conc.', headerClass: 'table-header',cellClass: 'cell-center-data' },
       { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { cellTemplate: this.deleteTemplate, name: '', headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50 }
