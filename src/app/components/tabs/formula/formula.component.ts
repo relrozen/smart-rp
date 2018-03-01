@@ -39,11 +39,12 @@ export class FormulaComponent implements OnInit {
   @ViewChild('expandBtnTemplate') expandBtnTemplate: TemplateRef<any>;
   @ViewChild('deleteTemplate') deleteTemplate: TemplateRef<any>;
   @ViewChild('editShadeTemplate') editShadeTemplate: TemplateRef<any>;
+  @ViewChild('editRmTemplate') editRmTemplate: TemplateRef<any>;
   @ViewChild('deleteShadeTemplate') deleteShadeTemplate: TemplateRef<any>;
 
   inputConfig = inputConfig;
 
-  selectedRm: string;
+  selectedRm = [];
   concentration: string = "";
   shadeName: string = "";
   selectedShadeRm: string;
@@ -85,6 +86,11 @@ export class FormulaComponent implements OnInit {
       { prop: 'concentration', name: 'Conc.', headerClass: 'table-header',cellClass: 'cell-center-data' },
       { prop: 'func', name: 'Function', headerClass: 'table-header', cellClass: 'cell-center-data' },
       { prop: '_id', name: 'Cosing ref#', headerClass: 'table-header', cellClass: 'cell-center-data' },
+      {
+        cellTemplate: this.editRmTemplate,
+        name: '',
+        headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50
+      },
       { cellTemplate: this.deleteTemplate, name: '', headerClass: 'table-header', cellClass: 'table-header', resizeable: false, width: 50 }
     ];
 
@@ -127,7 +133,7 @@ export class FormulaComponent implements OnInit {
   }
 
   addRawMaterial() {
-    this.rawMaterialService.getRawMaterial(this.selectedRm).subscribe(rmFromDb => {
+    this.rawMaterialService.getRawMaterial(this.selectedRm[0]).subscribe(rmFromDb => {
       let IngIds = _.map(rmFromDb.ingredients, ing => { return ing.id; });
       this.ingredientService.getIngredientsByIds(IngIds).subscribe(ingsFromDb => {
         let ingredients = _.map(ingsFromDb, ingFromDb => {
@@ -199,6 +205,7 @@ export class FormulaComponent implements OnInit {
   }
   calculateRawMaterialsTable() {
     let res = [];
+    let total = 0;
     _.forEach(this.formula.rawMaterials, rm => {
       _.forEach(rm.ingredients, (ing, index: Number) => {
         res.push(_.assign({}, ing, {
@@ -209,7 +216,15 @@ export class FormulaComponent implements OnInit {
           isLast: index === rm.ingredients.length - 1
         }));
       })
+      total += parseFloat(rm.concentration);
     });
+    if (this.formula.rawMaterials.length > 0) {
+      res.push({
+        concentrationFromInput: total,
+        rawMaterialName: "Total",
+        isTotal: true
+      });
+    }
     this.baseFormulaTableData = res;
   }
 
@@ -274,7 +289,7 @@ export class FormulaComponent implements OnInit {
   }
 
   removeRawMaterial(row) {
-    this.formula.rawMaterials.splice(_.findIndex(this.formula.rawMaterials, (rm: any) => { return rm._id === row.rawMaterialId }) ,1)
+    this.formula.rawMaterials.splice(_.findIndex(this.formula.rawMaterials, (rm: any) => { return rm._id === row.rawMaterialId }) ,1);
     this.calculateRawMaterialsTable();
     this.calculateIngredientsTable();
   }
@@ -295,6 +310,14 @@ export class FormulaComponent implements OnInit {
     this.calculateIngredientsTable();
   }
 
+  editRawMaterial(row) {
+    this.formula.rawMaterials.splice(_.findIndex(this.formula.rawMaterials, (rm: any) => { return rm._id === row.rawMaterialId }) ,1);
+    this.calculateRawMaterialsTable();
+    this.calculateIngredientsTable();
+    this.selectedRm = row.rawMaterialId;
+    this.concentration = row.concentrationFromInput;
+  }
+
   removeShade(row) {
     let shadeIndex = _.findIndex(this.formula.shades, (shade: any) => { return shade.name === row.shadeName });
     this.formula.shades.splice(shadeIndex ,1);
@@ -304,7 +327,10 @@ export class FormulaComponent implements OnInit {
 
   getRowClass(row: any) {
     return {
-      "last-line": row.isLast
+      "last-line": row.isLast,
+      "total-line": row.isTotal,
+      "green-total-text": row.isTotal && (row.concentrationFromInput === 100),
+      "red-total-text": row.isTotal && (row.concentrationFromInput !== 100),
     }
   }
 

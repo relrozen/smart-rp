@@ -156,6 +156,10 @@
   <i style="cursor:pointer;" class="fa fa-trash fa-lg" aria-hidden="true" (click)="removeShade(row)"></i>
 </ng-template>
 
+<ng-template #editRmTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
+  <i *ngIf="row.isFirst" style="cursor:pointer;" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" (click)="editRawMaterial(row)"></i>
+</ng-template>
+
 <ng-template #editShadeTemplate let-row="row" let-value="value" let-rowIndex="rowIndex">
   <i style="cursor:pointer;" class="fa fa-pencil-square-o fa-lg" aria-hidden="true" (click)="editShade(row)"></i>
 </ng-template>

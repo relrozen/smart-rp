@@ -310,6 +310,18 @@ span.caret {
   border-bottom: solid 1px rgba(0, 0, 0, 0.12);
 }
 
+.total-line {
+  font-weight: 700;
+}
+
+.green-total-text {
+  color: green;
+}
+
+.red-total-text {
+  color: red;
+}
+
 /* css for datepicker */
 
 .form-group.input-group.date > .input-group-addon {
